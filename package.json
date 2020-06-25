@@ -1,0 +1,24 @@
+{
+  "name": "pedestriabotofficial",
+  "version": "1.0.0",
+  "description": "A custom discord bot for Pedestria discord server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theopcoder/PedestriaBotOfficial.git"
+  },
+  "author": "theopcoder",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/theopcoder/PedestriaBotOfficial/issues"
+  },
+  "homepage": "https://github.com/theopcoder/PedestriaBotOfficial#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "discord.js-commando": "^0.10.0",
+    "quick.db": "^7.1.1"
+  }
+}
