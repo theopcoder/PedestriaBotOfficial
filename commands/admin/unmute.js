@@ -1,5 +1,7 @@
 const Commando = require("discord.js-commando");
-const discord = require('discord.js');
+const discord = require("discord.js");
+const db = require("quick.db");
+const BotData = require("../../data.js")
 
 class UnmuteCommand extends Commando.Command
 {
@@ -39,36 +41,39 @@ class UnmuteCommand extends Commando.Command
         }
         let words = args.split(' ');
         let reason = words.slice(1).join(' ');
-        {
-            if (!reason) return message.reply(':warning: Please supply a reason for the unmute!')
-            .then(msg => {
-                msg.delete(10000)
-            })
-        }
-        /*{
-            let role = message.guild.roles.find(r => r.name === "Member");
-            let member = message.mentions.members.first();
-            member.addRole(role)
-        }*/
-        {
-            let role = message.guild.roles.find(r => r.name === "Muted");
-            let member = message.mentions.members.first();
-            member.removeRole(role)
-        }
-        message.reply(message.author.tag+' Has unmuted '+message.mentions.users.first()+ ' For, '+reason);
+        if (!reason) return message.reply(':warning: Please supply a reason for the unmute!')
+        .then(msg => {
+            msg.delete(10000)
+        });
 
-        const unmutemsg = new discord.RichEmbed()
-        .setColor("0xFF0000")
-        .setTimestamp()
-        .setThumbnail(message.author.avatarURL)
-        .addField('Action:', 'Unmute') 
-        .addField('Moderator:', 
-        `${message.author.tag}`)
-        .addField('Unmuted User:', message.mentions.users.first())
-        .addField('Reason', reason)
-        message.channel.send(`This has been logged!`)
+        let role = message.guild.roles.find(r => r.name === "Muted");
+        let member = message.mentions.members.first();
+        member.removeRole(role)
+
+        let users = message.mentions.users.first();
+
+        const ChatMutemsg = new discord.RichEmbed()
+            .setColor("0x008000")
+            .setTimestamp()
+            .setThumbnail(users.displayAvatarURL)
+            .addField("Moderator:", message.author)
+            .addField("Unmuted User:", message.mentions.users.first())
+            .addField("Reason:", reason)
+            .setFooter(`Successfully unmuted ${message.mentions.users.first().tag}!`)
+        message.channel.sendEmbed(ChatMutemsg)
+
+        const Unmutemsg = new discord.RichEmbed()
+            .setColor("0x008000")
+            .setTimestamp()
+            .setThumbnail(users.displayAvatarURL)
+            .addField('Action:', 'Unmute') 
+            .addField('Moderator:', 
+            `${message.author}`)
+            .addField('Unmuted User:', message.mentions.users.first())
+            .addField("User ID:", message.mentions.users.first().id)
+            .addField('Reason:', reason)
         let logchannel = message.guild.channels.find('name', 'logs');
-        return logchannel.send(unmutemsg);
+        return logchannel.send(Unmutemsg);
     }
 }
 

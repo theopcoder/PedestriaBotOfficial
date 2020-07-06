@@ -1,5 +1,7 @@
 const Commando = require("discord.js-commando");
-const Errors = require("../../errors");
+const discord = require("discord.js");
+const db = require("quick.db");
+const BotData = require("../../data.js")
 
 class TestCommand extends Commando.Command
 {

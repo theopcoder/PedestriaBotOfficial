@@ -1,6 +1,7 @@
 const Commando = require("discord.js-commando");
-const discord = require('discord.js');
-const db = require('quick.db');
+const discord = require("discord.js");
+const db = require("quick.db");
+const BotData = require("../../data.js")
 
 class OpenClosedCommand extends Commando.Command
 {
@@ -34,14 +35,14 @@ class OpenClosedCommand extends Commando.Command
         }
         {
             if (reason == 'open'){
-                if (db.get('closedrequests')== 0)return message.reply('Application requests are already open!')
-                db.subtract('closedrequests', 1)+message.reply('Successfully opened application requests')
+                if (db.get("closedrequests")== 1)return message.reply("Sorry, Application Requests are already **open!**")
+                db.add("closedrequests", 1)+message.reply("Successfully **opened** Application Requests!")
             }
         }
         {
             if (reason == 'close'){
-                if (db.get('closedrequests')== 1)return message.reply('Application requests are already closed!')
-                db.add('closedrequests', 1)+message.reply('Successfully closed application requests!')
+                if (db.get("closedrequests")== 0)return message.reply("Sorry, Application Requests are already **closed!**")
+                db.subtract("closedrequests", 1)+message.reply("Successfully **closed** Application Requests!")
             }
         }
     }

@@ -1,4 +1,7 @@
 const Commando = require("discord.js-commando");
+const discord = require("discord.js");
+const db = require("quick.db");
+const BotData = require("../../data.js")
 
 class RateCommand extends Commando.Command
 {
@@ -16,9 +19,8 @@ class RateCommand extends Commando.Command
     {
         let words = args.split(' ');
         let reason = words.slice(0).join(' ');
-        {
-            if (!reason) return message.reply('Please supply something to rate! EXP: -rate This command');
-        }
+        if (!reason) return message.reply('Please supply something to rate! EXP: -rate This command');
+        
         {
             var chance = Math.floor(Math.random() * 11);
             if (chance == 0)

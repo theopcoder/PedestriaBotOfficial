@@ -1,7 +1,7 @@
 const Commando = require('discord.js-commando'); //This dependency allows the use of commands. Refer to https://discord.js.org/#/docs/commando/master/general/welcome for help.
 const discord = require('discord.js'); //This dependency allows the use of Discord features such as Embeds. Refer to https://discord.js.org/#/docs/main/stable/general/welcome for help.
 const db = require('quick.db'); //This dependency allows the use of sqlite database. Refer to https://quickdb.js.org/docs.html for help.
-const Errors = require("./errors.js");//This imports custom error codes from errors.js
+const BotData = require("./data.js");//This imports custom error codes from errors.js
 const token = require("./Token")
 const client = new discord.Client();
 
@@ -10,8 +10,6 @@ const bot = new Commando.Client({
 })
 
 const TOKEN = key;
-
-var Version = "0.3.0";
 
 bot.registry.registerGroup("admin", 'Admin');
 bot.registry.registerGroup("economy", 'Economy');
@@ -22,8 +20,7 @@ bot.registry.registerDefaults();
 bot.registry.registerCommandsIn(__dirname + '/commands');
 
 bot.on('ready', function(){
-    console.log(`Successfully signed in as, ${bot.user.tag}`);
-    console.log(`${bot.user.tag} Successfully launched and is on Version: ${Version}`);
+    console.log(`Successfully signed into, ${bot.user.tag} Version: ${Version}!`);
     bot.user.setActivity("play.pedestriamc.com");//Use to be bot.user.setGame
 });
 
@@ -40,7 +37,7 @@ bot.on('guildMemberAdd', member => {
         :globe_with_meridians: https://www.pedestriamc.com/
         :satellite: play.pedestriamc.com
         `)
-        .addField("Welcome", "We hope you enjoy your stay and check out our awesome Minecraft servers! Make sure to check out, <#703833697153187840> and, <#704893263177580544>! Sincerely, Pedestria Team")
+        .addField("Welcome", "We hope you enjoy your stay! Make sure to read <#703833697153187840> and, <#704893263177580544>! Also, don't forget to check out our awesome Minecraft server! Sincerely, Pedestria Team")
     let logchannel = member.guild.channels.get('704876411177140364'); 
     return logchannel.send(Welcomemsg);
 });
@@ -50,27 +47,30 @@ bot.on('message', function(message){
     if (message.content == "test")
     {
         if (message.author.bot)return;
-        if(!message.member.roles.find(r => r.name === "Bot Dev")) {
+        if(!message.member.roles.find(r => r.name === "Bot Dev")){
             message.reply(Error5);
             return;
         }
-        message.reply("It works!")
+        message.reply("PlaceHolder:");
     }
-    //Normal features
+    //Message responses
     if (message.content == "1234")
     {
         if (message.author.bot)return;
-        message.reply("I declare a Ginger war!")
+        message.reply("I declare a Ginger war!");
     }
-    /*if (message.content.includes(pizza)) //TODO Add a chat filter to bot
-    {
+    const BadWords =                                                                                                                                                                                                ["bitch", "fuck", "shit"];
+    if( BadWords.some(word => message.content.includes(word))){ //Filter is on the right of this page. Don't scroll unless you are ok with seeing  curse words for the filter!
         if (message.author.bot)return;
-        message.reply("It works!")
-    }*/
+        message.delete();
+        message.channel.send(`No cursing is allowed ${message.author}! Make sure to follow <#703833697153187840>!`)
+    }
 });
 
 bot.on('message', function(message){
     if (message.author.bot)return;
+    if (db.get("MLS")== null)return;
+    if (db.get("MLS")== 0)return;
     db.add(`{xp}_${message.author.id}`, 1)
 
     if (db.get(`{xp}_${message.author.id}`)== 5){

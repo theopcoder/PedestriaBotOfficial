@@ -1,0 +1,74 @@
+This new changelog now shows the most recent changes for the bot coming out of Beta! Versions 1.0.0+ to 2.0.0
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Version Name: Out of Beta!
+Version Description: The bot is now officially out of Beta! Many things have changed in this version so I recomend you read the changlog! Changes will now officially become logged as the bot updates and changes. Bugs fixed will also be numbered for location faster. Make sure to check out the new features and commands and enjoy! make sure to report any bugs so I can fix them as soon as I can! have fun and enjoy!
+Version: 1.0.0
+Release Date: 
+
+New Command/Features
+1. Added -settings Command
+2. Added -survival game to the bot. This is a W.I.P and it may be deleted in future updates
+3. Added a chat filter to the bot
+4. Added light chat moderation
+5. Changelog is now public to see changelog history
+6. Created new Changelog folder to hold all the changelogs
+7. A new Changelog file named 1.0.0 Changelog has been made to track all the changes in 1.0.0+ and stops at 2.0.0
+8. Added a new DevPromt to data.js to access bot tools/messages globally
+9. Added BotData to data.js for easier exports and have global updates
+10. New error messages
+11. Added -ui command to look at a users statistics
+12. the -bug command will now create a number system for bugs. Example, Bug 1, Bug 2 and so on
+13. 
+
+Changes: 
+1. Added a check for MLS to make sure setting is on before it starts collecting xp
+2. Added a check for staff sign up commands
+3. Updated -apprtoggle to be compatible with -settings and redid messages
+4. Updated -answers to be compatible with -settings
+5. Cleaned up code for some commands to make them cleaner
+6. Updated what -tc command can access. (Now can access discord.js, quick.db, discord.js-commando, and the errors.js file)
+7. The Version variable now has the name of the most recent update
+8. Updated the wording slitely for line #42 in the index.js file
+9. Updated the console.log when the bot turns on
+10. All commands can now access the dependencys and can access the data.js file
+11. errors.js has been changed to data.js to make the name sound better for carring global information
+12. Version variable has been moved to the data.js file
+13. Updated Error messages to look nicer. We will expiriment to see what will stay as for changes to the error messages
+14. Updated some wording for some errors in the data.js file
+15. const Errors = require("./errors.js") has changed to const BotData = require("./data.js")
+16. Removed messages sending to chat when a user is (warned, kicked, banned, muted) and is now replaced with a description in the chat embed
+17. Admin commands now show the mentioned users pfp
+18. When mentioning a user doing -bal, it now shows the mentioned users pfp
+19. The -rank command now shows the mentioned users pfp
+20. Updated some commands using the variables named for the wrong command
+21. Updated -suggest to no longer have a field saying the Bot is in Beta
+22. 
+
+Bug Fixes:
+1. Fixed -rank not mentioning user when command is exocuted (Bug 1)
+2. fixed Levels and XP going on the same line (Bug: 2)
+3. Fixed admin commands showing other offences as null and now shows 0 (Bug: 3)
+4. Fixed -bal command showing null as a response, now says 0 instead (Bug: 4)
+5. Fixed some variables in -suggest. Some embeds where classified as kickmsg, banmsg (Bug: 5)
+6. Fixed an issue with -rank not mentioning a user showing the author's Level twice in Level and XP Fields (6)
+7. Fixed an issue in -rank that shows a users Level/xp as null and now shows 0 instead (7)
+8. 
+
+Notes: The bot is now out of Beta and now on official releases! Future commands are planned on being added but are currently hidden for development. This is a big update so make sure to look out for any bugs that may occur!
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Release Name: 
+Release Description: 
+Release Version: 
+Release Date: 
+
+New Commands/Features:
+1. 
+
+Changes: 
+1. 
+
+Bug Fixes:
+1. 
+
+Notes: 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

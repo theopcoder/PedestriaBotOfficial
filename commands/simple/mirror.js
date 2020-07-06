@@ -1,4 +1,7 @@
 const Commando = require("discord.js-commando");
+const discord = require("discord.js");
+const db = require("quick.db");
+const BotData = require("../../data.js")
 
 class MirrorCommand extends Commando.Command
 {
@@ -14,15 +17,14 @@ class MirrorCommand extends Commando.Command
 
     async run(message, args)
     {
-        let KickedUser = message.guild.member(message.mentions.users.first());
-
-        message.reply(message.author.avatarURL)
-
+        let MirrorUser = message.guild.member(message.mentions.users.first());
         let users = message.mentions.users.first();
 
-        if (KickedUser)
+        if (MirrorUser)
         {
-            message.reply(users.displayAvatarURL)
+            message.reply(users.displayAvatarURL);
+        }else{
+            message.reply(message.author.avatarURL)
         }
     }
 }

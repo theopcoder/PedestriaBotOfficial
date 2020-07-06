@@ -1,4 +1,7 @@
 const Commando = require("discord.js-commando");
+const discord = require("discord.js");
+const db = require("quick.db");
+const BotData = require("../../data.js")
 
 class RollCommand extends Commando.Command
 {
@@ -14,10 +17,8 @@ class RollCommand extends Commando.Command
 
     async run(message, args)
     {
-        {
-            var diceRoll = Math.floor(Math.random() * 6) + 1;
-            message.reply("Your Dice landed on " +diceRoll);
-         }
+        var diceRoll = Math.floor(Math.random() * 6) + 1;
+        message.reply("Your Dice landed on " +diceRoll);
     }
 }
 

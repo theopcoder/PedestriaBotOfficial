@@ -1,6 +1,7 @@
 const Commando = require("discord.js-commando");
-const discord = require('discord.js');
-const db = require('quick.db');
+const discord = require("discord.js");
+const db = require("quick.db");
+const BotData = require("../../data.js")
 
 class SuggestCommand extends Commando.Command
 {
@@ -20,36 +21,39 @@ class SuggestCommand extends Commando.Command
         let words = args.split(' ');
         let reason = words.slice(0).join(' ');
         {
-            if (!reason) return message.reply("Please say what you wan't to suggest/add to the server!")
+            if (!reason) return message.reply("Please say your suggestion!")
             .then(msg => {
                 msg.delete(10000)
             })
         }
+        const BadWords =                                                                                                                                                                                                ["bitch", "fuck", "shit"];
+        if( BadWords.some(word => message.content.includes(word)))
         {
-            const banmsg = new discord.RichEmbed()
-                .setColor("0x20B2AA")
-                .setTimestamp()
-                .setFooter("Click the green check to like the idea or the red x to not have the suggestion done!")
-                .setTitle('Suggestion')
-                .addField('User:', 
-                `${message.author}`)
-                .addField('Sugestion', reason)
-            let logchannel = message.guild.channels.find('name', 'suggestions'); 
-            logchannel.send(banmsg).then(embedMessage => {
-                embedMessage.react("✅");
-                embedMessage.react("❌");
-            });
+
         }
-        const applymsg = new discord.RichEmbed()
+
+        const Suggestmsg = new discord.RichEmbed()
             .setColor("0x20B2AA")
             .setTimestamp()
-            .setFooter('Hi Their! This bot is in BETA. If you find any bugs report them in #report-a-bug')
+            .setFooter("Click the green check to like the idea or the red x to not have the suggestion done!")
+            .setTitle('Suggestion')
+            .addField('User:', 
+            `${message.author}`)
+            .addField('Sugestion', reason)
+        let logchannel = message.guild.channels.find('name', 'suggestions'); 
+        logchannel.send(Suggestmsg).then(embedMessage => {
+            embedMessage.react("✅");
+            embedMessage.react("❌");
+        });
+
+        const UserSuggestmsg = new discord.RichEmbed()
+            .setColor("0x20B2AA")
+            .setTimestamp()
             .setTitle("Suggestion")
             .addField("User:", message.author)
             .addField("Suggestion:", reason)
-            .addField(`Hey, _${message.author.tag}. Your suggestion has been sent to the #suggestion channel to be voted on!`, "-PedestriaBotOfficial")
-            .addField("Please wait until it gets approved or rejected by a staff member.", "-PedestriaTeam")
-        message.member.sendEmbed(applymsg);
+            .addField(`Hey, ${message.author}!`, `Your suggestion has been successfully sent to <#703833713997381743>! We hope your suggestion makes it! Sincerely, Pedestria Team`)
+        message.member.sendEmbed(UserSuggestmsg);
     }
 }
 

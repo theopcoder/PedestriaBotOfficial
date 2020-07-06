@@ -1,6 +1,7 @@
 const Commando = require("discord.js-commando");
-const discord = require('discord.js');
-const db = require('quick.db');
+const discord = require("discord.js");
+const db = require("quick.db");
+const BotData = require("../../data.js")
 
 class AnswerCommand extends Commando.Command
 {
@@ -18,7 +19,7 @@ class AnswerCommand extends Commando.Command
     {
         message.delete()
         { 
-            if (db.get('closedrequests')== 1)return message.reply('Im sorry, Application requests are closed')
+            if (db.get('closedrequests')== 0)return message.reply('Im sorry, Application requests are closed')
         }
         if (message.member.hasPermission("MANAGE_MESSAGES"))
         {

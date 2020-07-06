@@ -1,6 +1,7 @@
 const Commando = require("discord.js-commando");
-const discord = require('discord.js');
-const db = require('quick.db');
+const discord = require("discord.js");
+const db = require("quick.db");
+const BotData = require("../../data.js")
 
 class BugCommand extends Commando.Command
 {
@@ -16,7 +17,6 @@ class BugCommand extends Commando.Command
 
     async run(message, args)
     {
-        message.delete();
         let words = args.split(' ');
         let reason = words.slice(0).join(' ');
 
@@ -25,16 +25,20 @@ class BugCommand extends Commando.Command
             msg.delete(10000)
         });
 
-        const banmsg = new discord.RichEmbed()
+        db.add("BugNumber", 1)
+
+        const Bugmsg = new discord.RichEmbed()
             .setColor("0x20B2AA")
             .setTimestamp()
-            .setFooter("Click the green check to like the idea or the red x to not have the suggestion done!")
-            .setTitle('Suggestion')
+            .setTitle('Bug Report')
             .addField('User:', 
             `${message.author}`)
-            .addField('Sugestion', reason)
+            .addField("Bug Number:", db.get("BugNumber"))
+            .addField('Bug: ', reason)
+            .setFooter("Thank you for sending the Bug Report! Developers will try and fix the issue as soon as possible! Sincerely, Pedestria Team")
         let logchannel = message.guild.channels.find('name', 'bug-reports');
-        logchannel.send(banmsg);
+        message.channel.send(`Successfully sent your bug report ${message.author}!`)
+        logchannel.send(Bugmsg);
     }
 }
 

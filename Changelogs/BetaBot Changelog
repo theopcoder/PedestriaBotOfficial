@@ -1,0 +1,51 @@
+Version: 0.1.0 || The first number is for massive new releases like getting out of Beta for example. The second number is for when the current version is ready to move on EX(0.1.2 => 0.2.0). The last number is for bug fixes/improvement/security patches, ext.
+Release date: 6/11/2020 
+Release Name: Release 0.1.0
+
+New Features: 
+New Commands: 
+
+Fixed Features: 
+Fixed Commands: 
+
+Updated Features:
+Updated Commands: 
+
+Notes: Since this is the first release, you can just do -help and since its the first release, there is no fixes/changes.
+
+==============================================================================================================================================================================
+Version: 0.2.0
+Release date: 
+Release Name: 
+
+New Features:
+1. Added Message Level System (Also refered as MLS)
+2. 
+
+New Commands: 
+1. Added -bug
+2. Added -info
+3. Added -suggest
+
+Bug Fixes: 
+
+Command/Feature Changes: 
+
+Notes: The bot has now been put into older versions of dependencies which is going to be easier to code the bot. Discord.js: ^11.5.1 Discord.js-Commando: ^0.10.0 and quick.db stayed the same.
+
+=================================================================================================================================================================================================
+Version Name: Fresh start
+Version Description: The bot and repository has gone through many changes/issues lately and so I decided it would be best to wipe everything and start fresh! More updates and changes will be released alongside bug fixes!
+Version: 0.3.0
+Release Date: 
+
+New Features
+1. N/A
+
+Changes: 
+1. N/A
+
+Bug Fixes:
+1. N/A
+
+Notes: Since this was a fresh start to reset the github repository and bot, the changes have not been documented! They will start being documented in future updates!

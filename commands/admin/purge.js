@@ -1,5 +1,7 @@
 const Commando = require("discord.js-commando");
-const discord = require('discord.js');
+const discord = require("discord.js");
+const db = require("quick.db");
+const BotData = require("../../data.js")
 
 class PurgeCommand extends Commando.Command
 {
