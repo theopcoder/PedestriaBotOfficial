@@ -1,7 +1,7 @@
 const Commando = require("discord.js-commando");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js")
+const BotData = require("../../data.js");
 
 class SettingsCommand extends Commando.Command
 {
@@ -34,27 +34,29 @@ class SettingsCommand extends Commando.Command
             const BotSettingsHelp = new discord.RichEmbed()
             .setColor("0xFFA500")
             .setTimestamp()
+            .setThumbnail('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTvypYAFynUpTRITuiYvJstD17LjWB2zIzfLA&usqp=CAU')//I do not own this image. The image is from google.com. Click the link for the image
             .setTitle("Bot Settings Help")
             .addField("Feature Available: ", 
             `These are features you are able to turn off! The names in parentheses are nicknames
                 1. Message Level System (mls)
                 2. Application requests (ar)
+                3. Dead Chat Pings (dcp)
             `)
             .addField("Turn On features: ", 
             `
-                To turn a feature on, do -settings (Feature nick name above) on
+                To turn a feature on, do -settings (Settings name above) on
                 Example: -settings mls on
             `)
             .addField("Turn Off features: ", 
             `
-                To turn a feature off, do -settings (Feature nick name above) off
+                To turn a feature off, do -settings (Settings name above) off
                 Example: -settings mls off
             `)
             .addField("Congrats!", "You now know how to turn features on/off! You can always refer back to this by doing the command -settings help")
             message.channel.sendEmbed(BotSettingsHelp)
         }
 
-        //MLS Settings
+        //MLS(Message Level System) Settings
         if (reason == "mls on")
         {
             if (db.get("MLS")== 1)return message.reply("Sorry, the Message Level System is already on!")
@@ -91,14 +93,55 @@ class SettingsCommand extends Commando.Command
         }else{
             AR = "Off";
         }
+        //Dead chat settings
+        if (reason == "dcp on")
+        {
+            if (db.get("DeadChatMessage")== 1)return message.reply("Sorry, Dead Chat Pings are already on!")
+            db.add("DeadChatMessage", 1)
+            message.reply("Successfully turned **on** Dead Chat Pings!")
+        }
+        if (reason == "dcp off")
+        {
+            if (db.get("DeadChatMessage")== 0)return message.reply("Sorry, Dead Chat Pings are already off!")
+            db.subtract("DeadChatMessage", 1)
+            message.reply("Successfully turned **off** Dead Chat Pings!")
+        }
+
+        if (db.get("DeadChatMessage")== 1){
+            var DCP = "On"
+        }else{
+            DCP = "Off";
+        }
+        //Auto Moderation
+        if (reason == "am on")
+        {
+            if (db.get("AutoModeration")== 1)return message.reply("Sorry, Auto Moderation are already on!")
+            db.add("AutoModeration", 1)
+            message.reply("Successfully turned **on** Auto Moderation!")
+        }
+        if (reason == "am off")
+        {
+            if (db.get("AutoModeration")== 0)return message.reply("Sorry, Auto Moderation are already off!")
+            db.subtract("AutoModeration", 1)
+            message.reply("Successfully turned **off** Auto Moderation!")
+        }
+
+        if (db.get("AutoModeration")== 1){
+            var AutoModeration = "On"
+        }else{
+            AutoModeration = "Off";
+        }
 
         //Settings message
         const BotSettings = new discord.RichEmbed()
-        .setColor("0xFFA500")
-        .setTimestamp()
-        .setTitle("Bot Settings")
-        .addField("Message Level System: ", MLS)
-        .addField("Application Requests: ", AR)
+            .setColor("0xFFA500")
+            .setTimestamp()
+            .setThumbnail('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTvypYAFynUpTRITuiYvJstD17LjWB2zIzfLA&usqp=CAU')//I do not own this image. The image is from google.com. Click the link for the image
+            .setTitle("Bot Settings")
+            .addField("Message Level System: ", MLS)
+            .addField("Application Requests: ", AR)
+            .addField("DeadChatPings:", DCP)
+            .addField("AutoModeration", AutoModeration)
         message.channel.sendEmbed(BotSettings)
     }
 }

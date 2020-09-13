@@ -1,11 +1,12 @@
 var BotData = [
-    Version = "**1.0.0 Out Of Beta!**",
-
+    Version = "1.1.0",
+    VN = "Quick Update",//VN stands for Version Name
 ];
 
 var DevPromt = [
     DevAccess = "**:no_entry_sign:** Access Denied! :no_entry_sign:",
-    DevWarning = "**:warning:** You are attempting to access commands that can cause damage! Proceed with caution!"
+    //DevWarning = "**:warning:** You are attempting to access commands that can cause damage! Proceed with caution!"
+    DevWarning = ":warning: You are attempting to access developer features that can cause damage! Proceed with caution!",
 ];
 
 var Errors = [

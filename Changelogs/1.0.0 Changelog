@@ -3,7 +3,7 @@ This new changelog now shows the most recent changes for the bot coming out of B
 Version Name: Out of Beta!
 Version Description: The bot is now officially out of Beta! Many things have changed in this version so I recomend you read the changlog! Changes will now officially become logged as the bot updates and changes. Bugs fixed will also be numbered for location faster. Make sure to check out the new features and commands and enjoy! make sure to report any bugs so I can fix them as soon as I can! have fun and enjoy!
 Version: 1.0.0
-Release Date: 
+Release Date: 7/5/2020
 
 New Command/Features
 1. Added -settings Command
@@ -55,6 +55,59 @@ Bug Fixes:
 8. 
 
 Notes: The bot is now out of Beta and now on official releases! Future commands are planned on being added but are currently hidden for development. This is a big update so make sure to look out for any bugs that may occur!
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Release Name: 1.1.0 Quick Update
+Release Description: This is a simple update. Many features are being worked on/are going to be added/removed. There are likely bugs so make sure to report any in the bugs page!
+Release Version: 1.1.0
+Release Date: 9/13/2020
+
+New Commands/Features:
+1. Added dead chat pings
+2. Added Mute Bypass Protection
+3. Added -gamble command
+4. Added -pay command
+5. Added the ability to turn auto moderation off and on in -settings
+6. Added feature to turn dead chat messages off and on in -settings
+
+Changes: 
+1. Updated -info command
+2. Updated data.js
+3. Updated Chat filter
+4. Updated Message Level System Level Ups messages
+5. Updated footer in -suggest
+6. The -settings help command now shows a setting picture
+7. Updated the chat filter message
+8. The console.log will only say the version instead of version and the updates name
+9. Added a new variable for update names in data.js
+10. Updated the Dev Warning message in data.js
+
+Bug Fixes:
+1. Not a bug fix: Cleaned up some code
+
+Known Bugs:
+1. The Mute Bypass Protect is currently not working and has been disabled. This should be fixed in the next update.
+
+Notes: 
+1. The -store command is going to come in a future update.
+2. There is plans to start using .json with commands. Some new features are planned for the next release.
+3. This is a messy update so there are likely a few bugs! Please report any bugs you find in issues!
+4. Commands, features, and other things will be added and removed in future updates.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Release Name: 
+Release Description: 
+Release Version: 
+Release Date: 
+
+New Commands/Features:
+1. 
+
+Changes: 
+1. 
+
+Bug Fixes:
+1. 
+
+Notes: 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Release Name: 
 Release Description: 

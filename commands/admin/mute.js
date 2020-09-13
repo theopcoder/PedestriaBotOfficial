@@ -1,7 +1,7 @@
 const Commando = require("discord.js-commando");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js")
+const BotData = require("../../data.js");
 
 class MuteCommand extends Commando.Command
 {
@@ -34,25 +34,22 @@ class MuteCommand extends Commando.Command
             })
             return;
         }
-        if (MutedUser.hasPermission("MANAGE_MESSAGES"))
+        /*if (MutedUser.hasPermission("MANAGE_MESSAGES"))
         {
             message.reply(":no_entry_sign: Sorry, you can't mute a staff member! :no_entry_sign:")
             return;
-        }
+        }*/
         let words = args.split(' ');
         let reason = words.slice(1).join(' ');
-        {
-            if (!reason) return message.reply(':warning: Please supply a reason for the mute!')
-            .then(msg => {
-                msg.delete(10000)
-            })
-        }
-        {
-            let role = message.guild.roles.find(r => r.name === "Muted");
-            let member = message.mentions.members.first();
-            member.addRole(role)
-        }
+        if (!reason) return message.reply(':warning: Please supply a reason for the mute!')
+        .then(msg => {
+            msg.delete(10000)
+        });
+        let role = message.guild.roles.find(r => r.name === "Muted");
+        let member = message.mentions.members.first();
+        member.addRole(role)
         
+        //db.add(`{CurrentlyMuted}_${message.author.id}`, 1);
         db.add(`{mutep}_${message.mentions.members.first().id}`, 1);
         db.add(`{reputation}_${message.mentions.members.first().id}`, 1);
         let WarnP = db.get(`{warnp}_${message.mentions.users.first().id}`); if (WarnP == null)WarnP = "0";

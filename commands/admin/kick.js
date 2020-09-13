@@ -1,7 +1,7 @@
 const Commando = require("discord.js-commando");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js")
+const BotData = require("../../data.js");
 
 class KickCommand extends Commando.Command
 {
@@ -22,7 +22,7 @@ class KickCommand extends Commando.Command
             message.channel.send(":no_entry_sign: You do NOT have the permission to perform this command! :no_entry_sign:")
             .then(msg => {
                 msg.delete(10000)
-            })
+            });
             return;
         }
         let KickedUser = message.guild.member(message.mentions.users.first());
@@ -31,7 +31,7 @@ class KickCommand extends Commando.Command
             message.channel.send(":warning: Sorry, I couldn't find that user")
             .then(msg => {
                 msg.delete(10000)
-            })
+            });
             return;
         }
         if (KickedUser.hasPermission("MANAGE_MESSAGES"))
@@ -47,9 +47,7 @@ class KickCommand extends Commando.Command
                 msg.delete(10000)
             });
         }
-        {
-            message.mentions.members.first().send("Hi there! You have been kicked from "+message.guild.name+" because, "+reason+".")
-        }
+        message.mentions.members.first().send("Hi there! You have been kicked from "+message.guild.name+" because, "+reason+".")
         message.guild.member(KickedUser).kick(reason)
         //.then(console.log)
         .catch(console.error);

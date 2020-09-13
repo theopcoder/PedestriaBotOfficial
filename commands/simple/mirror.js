@@ -1,7 +1,7 @@
 const Commando = require("discord.js-commando");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js")
+const BotData = require("../../data.js");
 
 class MirrorCommand extends Commando.Command
 {
@@ -22,9 +22,15 @@ class MirrorCommand extends Commando.Command
 
         if (MirrorUser)
         {
-            message.reply(users.displayAvatarURL);
+            const MentionedPFP = new discord.RichEmbed()
+                .setColor("RANDOM")
+                .setThumbnail(users.displayAvatarURL)
+            message.channel.sendEmbed(MentionedPFP)
         }else{
-            message.reply(message.author.avatarURL)
+            const AuthorPFP = new discord.RichEmbed()
+                .setColor("RANDOM")
+                .setThumbnail(message.author.avatarURL)
+            message.channel.sendEmbed(AuthorPFP)
         }
     }
 }

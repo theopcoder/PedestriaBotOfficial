@@ -24,10 +24,16 @@ class InfoCommand extends Commando.Command
             .setTitle('Pedestria Information')
             .addField("Information: ", 
             `
-                Minecraft IP: play.pedestriamc.com :satellite:
-                Website: https://www.pedestriamc.com/ :globe_with_meridians:
-                Store: https://store.pedestriamc.com/ :shopping_cart:
-
+                :satellite: Minecraft IP: play.pedestriamc.com
+                :globe_with_meridians: Website: https://www.pedestriamc.com/
+                :shopping_cart: Store: https://store.pedestriamc.com/
+                Members: ${message.guild.memberCount}
+            `)
+            .addField("Bot Info:", 
+            `
+                **Developer:** theopcoder
+                **Version:**  ${Version}
+                **GitHub repository:** https://github.com/theopcoder/PedestriaBotOfficial
             `)
         message.channel.sendEmbed(PedestriaInfo)
     }

@@ -20,26 +20,18 @@ class SuggestCommand extends Commando.Command
         message.delete();
         let words = args.split(' ');
         let reason = words.slice(0).join(' ');
-        {
-            if (!reason) return message.reply("Please say your suggestion!")
-            .then(msg => {
-                msg.delete(10000)
-            })
-        }
-        const BadWords =                                                                                                                                                                                                ["bitch", "fuck", "shit"];
-        if( BadWords.some(word => message.content.includes(word)))
-        {
-
-        }
+        if (!reason) return message.reply("Please say your suggestion!")
+        .then(msg => {
+            msg.delete(10000)
+        });
 
         const Suggestmsg = new discord.RichEmbed()
             .setColor("0x20B2AA")
             .setTimestamp()
-            .setFooter("Click the green check to like the idea or the red x to not have the suggestion done!")
             .setTitle('Suggestion')
-            .addField('User:', 
-            `${message.author}`)
+            .addField('User:', `${message.author}`)
             .addField('Sugestion', reason)
+            .setFooter("Click the green check to like the idea or the red x if you don't like the idea!")
         let logchannel = message.guild.channels.find('name', 'suggestions'); 
         logchannel.send(Suggestmsg).then(embedMessage => {
             embedMessage.react("✅");

@@ -1,7 +1,7 @@
 const Commando = require("discord.js-commando");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js")
+const BotData = require("../../data.js");
 
 class BanCommand extends Commando.Command
 {
@@ -22,7 +22,7 @@ class BanCommand extends Commando.Command
             message.channel.send(":no_entry_sign: You do NOT have the permission to perform this command! :no_entry_sign:")
             .then(msg => {
                 msg.delete(10000)
-            })
+            });
             return;
         }
         let bannedUser = message.guild.member(message.mentions.users.first());
@@ -31,12 +31,12 @@ class BanCommand extends Commando.Command
             message.channel.send(":warning: Sorry, I couldn't find that user")
             .then(msg => {
                 msg.delete(10000)
-            })
+            });
             return;
         }
         if (bannedUser.hasPermission("MANAGE_MESSAGES"))
         {
-            message.reply(":no_entry_sign: Sorry, you can't ban a staff member! :no_entry_sign:")
+            message.reply(":no_entry_sign: Sorry, you can't ban a staff member! :no_entry_sign:");
             return;
         }
         let words = args.split(' ');

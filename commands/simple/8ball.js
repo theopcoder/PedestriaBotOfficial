@@ -19,9 +19,8 @@ class MagicBallCommand extends Commando.Command
     {
         let words = args.split(' ');
         let reason = words.slice(0).join(' ');
-        {
-            if (!reason) return message.reply('Please say your message! EX: -8ball Is this command cool?');
-        }
+        if (!reason) return message.reply('Please say your message! EX: -8ball Is this command cool?');
+        
         var chance = Math.floor(Math.random() * 20);
         if (chance == 0)
         {
