@@ -39,6 +39,9 @@ class UnmuteCommand extends Commando.Command
             message.reply(":no_entry_sign: Sorry, you can't unmute a staff member! :no_entry_sign:")
             return;
         }
+        let UserNotMutedMessage = message.reply(`${message.mentions.users.first().username} isn't muted!`);
+        if (db.get(`{CurrentlyMuted}_${message.mentions.users.first().id}`)== null)return UserNotMutedMessage;
+        if (db.get(`{CurrentlyMuted}_${message.mentions.users.first().id}`)== 0)return UserNotMutedMessage;
         let words = args.split(' ');
         let reason = words.slice(1).join(' ');
         if (!reason) return message.reply(':warning: Please supply a reason for the unmute!')
@@ -46,13 +49,15 @@ class UnmuteCommand extends Commando.Command
             msg.delete(10000)
         });
 
+        db.subtract(`{CurrentlyMuted}_${message.mentions.users.first().id}`, 1);
         let role = message.guild.roles.find(r => r.name === "Muted");
         let member = message.mentions.members.first();
-        member.removeRole(role)
+        member.removeRole(role);
 
         let users = message.mentions.users.first();
+        let TimesBypassMuted = db.get(`{MyteBypass}_${message.mentions.users.first().id}`); if(TimesBypassMuted == null)TimesBypassMuted = "0";
 
-        const ChatMutemsg = new discord.RichEmbed()
+        const ChatUnmutemsg = new discord.RichEmbed()
             .setColor("0x008000")
             .setTimestamp()
             .setThumbnail(users.displayAvatarURL)
@@ -60,20 +65,23 @@ class UnmuteCommand extends Commando.Command
             .addField("Unmuted User:", message.mentions.users.first())
             .addField("Reason:", reason)
             .setFooter(`Successfully unmuted ${message.mentions.users.first().tag}!`)
-        message.channel.sendEmbed(ChatMutemsg)
+        message.channel.sendEmbed(ChatUnmutemsg);
 
-        const Unmutemsg = new discord.RichEmbed()
-            .setColor("0x008000")
+        const UnmuteMSG = new discord.RichEmbed()
             .setTimestamp()
-            .setThumbnail(users.displayAvatarURL)
-            .addField('Action:', 'Unmute') 
-            .addField('Moderator:', 
-            `${message.author}`)
-            .addField('Unmuted User:', message.mentions.users.first())
-            .addField("User ID:", message.mentions.users.first().id)
-            .addField('Reason:', reason)
+            .setColor()
+            .setTitle("Unmute:")
+            .setDescription(`
+                **Moderator:** ${message.author}
+                **Unmuted User:** ${UnmutedUser}
+                **User ID:** ${message.mentions.users.first().id}
+                **Times Bypassed Mute:** ${TimesBypassMuted}
+                **Reason:** ${reason}
+            `)
         let logchannel = message.guild.channels.find('name', 'logs');
-        return logchannel.send(Unmutemsg);
+        db.delete(`{MuteBypass}_${message.mentions.users.first().id}`);
+        return logchannel.send(UnmuteMSG);
+
     }
 }
 

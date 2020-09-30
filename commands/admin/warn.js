@@ -22,7 +22,7 @@ class WarnCommand extends Commando.Command
             message.channel.send(":no_entry_sign: You do NOT have the permission to perform this command! :no_entry_sign:")
             .then(msg => {
                 msg.delete(10000)
-            })
+            });
             return;
         }
         let WarnedUser = message.guild.member(message.mentions.users.first());
@@ -36,7 +36,7 @@ class WarnCommand extends Commando.Command
         }
         if (WarnedUser.hasPermission("MANAGE_MESSAGES"))
         {
-            message.reply(":no_entry_sign: Sorry, you can't warn a staff member! :no_entry_sign:")
+            message.reply(":no_entry_sign: Sorry, you can't warn a staff member! :no_entry_sign:");
             return;
         }
         let words = args.split(' ');
@@ -48,6 +48,7 @@ class WarnCommand extends Commando.Command
 
         db.add(`{warnp}_${message.mentions.members.first().id}`, 1);
         db.add(`{reputation}_${message.mentions.members.first().id}`, 1);
+        let RepP = db.get(`{reputation}_${message.mentions.users.first().id}`); if (RepP == null)RepP = "0";
         let WarnP = db.get(`{warnp}_${message.mentions.users.first().id}`); if (WarnP == null)WarnP = "0";
         let MuteP = db.get(`{mutep}_${message.mentions.users.first().id}`); if (MuteP == null)MuteP = "0";
         let KickP = db.get(`{kickp}_${message.mentions.users.first().id}`); if (KickP == null)KickP = "0";
@@ -62,20 +63,21 @@ class WarnCommand extends Commando.Command
             .addField("Warned User:", message.mentions.users.first())
             .addField("Reason:", reason)
             .setFooter("Successfully logged the warning!")
-        message.channel.sendEmbed(ChatWarnmsg)
+        message.channel.sendEmbed(ChatWarnmsg);
 
         const Warnmsg = new discord.RichEmbed()
             .setColor("0xFFA500")
             .setTimestamp()
             .setThumbnail(users.displayAvatarURL)
-            .addField('Action:', 'Warn') 
-            .addField('Moderator:', 
-            `${message.author}`)
-            .addField('Warned User:', message.mentions.users.first())
-            .addField("User ID:", message.mentions.users.first().id)
-            .addField('Reason:', reason)
-            .addField('Offences:', `${message.mentions.users.first()} has **${db.get(`{reputation}_${message.mentions.users.first().id}`)}** offence(s).`)
-            .addField("Other Offences:", `${message.mentions.users.first()} has, ${WarnP} Warning(s), ${MuteP} Mute(s), ${KickP} Kick(s), ${BanP} Ban(s).`)
+            .setTitle("Warning:")
+            .setDescription(`
+                **Moderator:** ${message.author}
+                **Warned User:** ${WarnedUser}
+                **User ID:** ${message.mentions.users.first().id}
+                **Reason:** ${reason}
+                **Total Offences:** ${RepP}
+                **Other Offences:** Warnings: ${WarnP} | Mutes: ${MuteP} | Kicks: ${KickP} | Bans: ${BanP}
+            `)
         let logchannel = message.guild.channels.find('name', 'logs');
         return logchannel.send(Warnmsg);
     }

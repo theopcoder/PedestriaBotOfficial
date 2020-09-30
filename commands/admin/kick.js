@@ -47,13 +47,14 @@ class KickCommand extends Commando.Command
                 msg.delete(10000)
             });
         }
-        message.mentions.members.first().send("Hi there! You have been kicked from "+message.guild.name+" because, "+reason+".")
+        message.mentions.members.first().send(`You have been kicked from ${message.guild.name} because, ${reason}.`);
         message.guild.member(KickedUser).kick(reason)
         //.then(console.log)
         .catch(console.error);
 
         db.add(`{kickp}_${message.mentions.members.first().id}`, 1);
         db.add(`{reputation}_${message.mentions.members.first().id}`, 1);
+        let RepP = db.get(`{reputation}_${message.mentions.users.first().id}`); if (RepP == null)RepP = "0";
         let WarnP = db.get(`{warnp}_${message.mentions.users.first().id}`); if (WarnP == null)WarnP = "0";
         let MuteP = db.get(`{mutep}_${message.mentions.users.first().id}`); if (MuteP == null)MuteP = "0";
         let KickP = db.get(`{kickp}_${message.mentions.users.first().id}`); if (KickP == null)KickP = "0";
@@ -65,23 +66,24 @@ class KickCommand extends Commando.Command
             .setTimestamp()
             .setThumbnail(users.displayAvatarURL)
             .addField("Moderator:", message.author)
-            .addField("Kicked User:", message.mentions.users.first())
+            .addField("Kicked User:", KickedUser)
             .addField("Reason:", reason)
             .setFooter("Successfully logged the kick!")
-        message.channel.sendEmbed(ChatKickmsg)
+        message.channel.sendEmbed(ChatKickmsg);
 
         const Kickmsg = new discord.RichEmbed()
             .setColor("0xFF0000")
             .setTimestamp()
             .setThumbnail(users.displayAvatarURL)
-            .addField('Action:', 'Kick') 
-            .addField('Moderator:', 
-            `${message.author}`)
-            .addField('Kicked User:', message.mentions.users.first())
-            .addField("User ID:", message.mentions.users.first().id)
-            .addField('Reason:', reason)
-            .addField('Offences:', `${message.mentions.users.first()} has **${db.get(`{reputation}_${message.mentions.users.first().id}`)}** offence(s).`)
-            .addField("Other Offences:", `${message.mentions.users.first()} has, ${WarnP} Warning(s), ${MuteP} Mute(s), ${KickP} Kick(s), ${BanP} Ban(s).`)
+            .setTitle("Kick:")
+            .setDescription(`
+                **Moderator:** ${message.author}
+                **Banned User:** ${KickedUser}
+                **User ID:** ${message.mentions.users.first().id}
+                **Reason:** ${reason}
+                **Total Offences:** ${RepP}
+                **Other Offences:** Warnings: ${WarnP} | Mutes: ${MuteP} | Kicks: ${KickP} | Bans: ${BanP}
+            `)
         let logchannel = message.guild.channels.find('name', 'logs');
         return logchannel.send(Kickmsg);
     }

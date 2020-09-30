@@ -1,7 +1,7 @@
 const Commando = require("discord.js-commando");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js")
+const BotData = require("../../data.js");
 
 class InfoCommand extends Commando.Command
 {
@@ -35,7 +35,7 @@ class InfoCommand extends Commando.Command
                 **Version:**  ${Version}
                 **GitHub repository:** https://github.com/theopcoder/PedestriaBotOfficial
             `)
-        message.channel.sendEmbed(PedestriaInfo)
+        message.channel.sendEmbed(PedestriaInfo);
     }
 }
 

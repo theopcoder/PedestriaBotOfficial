@@ -1,7 +1,7 @@
 const Commando = require("discord.js-commando");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js")
+const BotData = require("../../data.js");
 
 class SuggestCommand extends Commando.Command
 {
@@ -22,12 +22,13 @@ class SuggestCommand extends Commando.Command
         let reason = words.slice(0).join(' ');
         if (!reason) return message.reply("Please say your suggestion!")
         .then(msg => {
-            msg.delete(10000)
+            msg.delete(10000);
         });
 
         const Suggestmsg = new discord.RichEmbed()
             .setColor("0x20B2AA")
             .setTimestamp()
+            .setThumbnail(message.author.avatarURL)
             .setTitle('Suggestion')
             .addField('User:', `${message.author}`)
             .addField('Sugestion', reason)
@@ -41,10 +42,13 @@ class SuggestCommand extends Commando.Command
         const UserSuggestmsg = new discord.RichEmbed()
             .setColor("0x20B2AA")
             .setTimestamp()
-            .setTitle("Suggestion")
-            .addField("User:", message.author)
-            .addField("Suggestion:", reason)
-            .addField(`Hey, ${message.author}!`, `Your suggestion has been successfully sent to <#703833713997381743>! We hope your suggestion makes it! Sincerely, Pedestria Team`)
+            .setThumbnail(message.author.avatarURL)
+            .setTitle("Suggestion:")
+            .setDescription(`
+            ${reason}
+
+            Thanks for your suggestion ${message.author.username}! We hope it gets added! Sincerely, Pedestria Team
+            `)
         message.member.sendEmbed(UserSuggestmsg);
     }
 }

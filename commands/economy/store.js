@@ -11,21 +11,26 @@ class StoreCommand extends Commando.Command
             name: "store",
             group: "economy",
             memberName: 'store',
-            description: 'A list of items you can buy with the bot currency!'
+            description: 'A list of items you can buy from the bot!'
         });
     }
 
+    //TODO finish command in the an update
     async run(message, args)
-    {//TODO finish command in the next update
-        message.reply(Error1)
-        const MentionedUsersMoney = new discord.RichEmbed()
+    {
+        let Money = db.get(`{money}_${message.mentions.users.first().id}`); if (Money == null)Money = "0";
+
+        const Store = new discord.RichEmbed()
             .setColor(0x668d3c)
             .setThumbnail(users.displayAvatarURL)
             .setTitle("Store")
-            .addField("User:", message.mentions.users.first())
-            .addField("Bal:", `$${MentionedUsersBalance}`)
+            .addField("Balance:", `$${Money}`)
+            .addField("Items:", `
+                Null
+            `)
             .addField("WARNING:", "This command is not done yet! This command will be worked on in future updates!")
-        message.channel.sendEmbed(MentionedUsersMoney);
+        message.channel.sendEmbed(Store);
+        message.reply(Error3);
     }
 }
 

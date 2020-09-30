@@ -11,7 +11,7 @@ class UserInfoCommand extends Commando.Command
             name: "ui",
             group: "admin",
             memberName: 'ui',
-            description: 'Shows you a little about a person. Example: how much money or wanrs they have!'
+            description: 'Shows a moderator your stats and violations.'
         });
     }
 
@@ -35,28 +35,30 @@ class UserInfoCommand extends Commando.Command
             return;
         }
 
-        let XP = db.get(`{xp}_${message.mentions.users.first().id}`); if (XP == null)XP = "0";
+        let RepP = db.get(`{reputation}_${message.mentions.users.first().id}`); if (RepP == null)RepP = "0";
         let Level = db.get(`{Level}_${message.mentions.users.first().id}`); if (Level == null)Level = "0";
         let Money = db.get(`{money}_${message.mentions.users.first().id}`); if (Money == null)Money = "0";
-        let RepP = db.get(`{reputation}_${message.mentions.users.first().id}`); if (RepP == null)RepP = "0";
         let WarnP = db.get(`{warnp}_${message.mentions.users.first().id}`); if (WarnP == null)WarnP = "0";
         let MuteP = db.get(`{mutep}_${message.mentions.users.first().id}`); if (MuteP == null)MuteP = "0";
         let KickP = db.get(`{kickp}_${message.mentions.users.first().id}`); if (KickP == null)KickP = "0";
         let BanP = db.get(`{banp}_${message.mentions.users.first().id}`); if (BanP == null)BanP = "0";
+        let XP = db.get(`{xp}_${message.mentions.users.first().id}`); if (XP == null)XP = "0";
         let users = message.mentions.users.first();
 
         const UserInfomsg = new discord.RichEmbed()
-            .setColor("0xFFA500")
+            .setColor("#03adfc")
             .setTimestamp()
             .setThumbnail(users.displayAvatarURL)
             .setTitle("User Info")
-            .addField('Mentioned User:', message.mentions.users.first())
-            .addField("User ID:", message.mentions.users.first().id)
-            .addField("Money:", db.get(`{money}_${message.mentions.users.first().id}`))
-            .addField("Rank:", `${message.mentions.users.first()} is Level, ${Level} and has, ${XP} xp!`)
-            .addField('Violations:', 'This is, '+message.mentions.users.first()+' '+db.get(`{reputation}_${message.mentions.users.first().id}`)+' offence!')
-            .addField("Other offences:", `${message.mentions.users.first()} has, ${WarnP} Warning(s), ${MuteP} Mute(s), ${KickP} Kick(s), ${BanP} Ban(s).`)
-        message.channel.sendEmbed(UserInfomsg)
+            .setDescription(`
+                **Mentioned User:** ${UserInfo}
+                **User ID:** ${message.mentions.users.first().id}
+                **Money:** ${Money}
+                **Rank:** Level, ${Level} | XP, ${XP}
+                **Violations:** ${RepP}
+                **Other Offences:** Warnings: ${WarnP} | Mutes ${MuteP} | Kicks ${KickP} | Bans ${BanP}
+            `)
+        message.channel.sendEmbed(UserInfomsg);
     }
 }
 

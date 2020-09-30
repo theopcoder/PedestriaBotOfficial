@@ -18,7 +18,6 @@ New Command/Features
 10. New error messages
 11. Added -ui command to look at a users statistics
 12. the -bug command will now create a number system for bugs. Example, Bug 1, Bug 2 and so on
-13. 
 
 Changes: 
 1. Added a check for MLS to make sure setting is on before it starts collecting xp
@@ -42,7 +41,6 @@ Changes:
 19. The -rank command now shows the mentioned users pfp
 20. Updated some commands using the variables named for the wrong command
 21. Updated -suggest to no longer have a field saying the Bot is in Beta
-22. 
 
 Bug Fixes:
 1. Fixed -rank not mentioning user when command is exocuted (Bug 1)
@@ -52,7 +50,6 @@ Bug Fixes:
 5. Fixed some variables in -suggest. Some embeds where classified as kickmsg, banmsg (Bug: 5)
 6. Fixed an issue with -rank not mentioning a user showing the author's Level twice in Level and XP Fields (6)
 7. Fixed an issue in -rank that shows a users Level/xp as null and now shows 0 instead (7)
-8. 
 
 Notes: The bot is now out of Beta and now on official releases! Future commands are planned on being added but are currently hidden for development. This is a big update so make sure to look out for any bugs that may occur!
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -93,26 +90,55 @@ Notes:
 3. This is a messy update so there are likely a few bugs! Please report any bugs you find in issues!
 4. Commands, features, and other things will be added and removed in future updates.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Release Name: 
-Release Description: 
-Release Version: 
-Release Date: 
+Release Version: 1.2.0
+Release Name: 1.2.0 Bug Fixes and Improvements 
+Release Date: 9/29/2020
+Release Description: This is a basic update with a few new features and bug fixes/changes. Quick.db was also updated to the latest version.
 
 New Commands/Features:
-1. 
+1. Added new message responses
+2. Added settings check when the bot starts
+3. Added -tempmute command to temporarily mute people
+4. Added -stats command
 
 Changes: 
-1. 
+1. Updated the README.md to look better
+2. Updated the console.log message for version. It now says Running Version: {Version}
+3. Updated the dead chat message
+4. Updated the -suggest command with a new look and shows your pfp in the suggestions now
+5. Doing -bug will now auto delete your message
+6. The dead chat ping now has random questions
+7. Updated the -ui command to look nicer and the description
+8. Doing -mute will now check if the user is already muted
+9. Removed test.js
+10. Updated -ban log message
+11. Updated -kick log message and user message when they are kicked
+12. Updated data.js Error3 message
+13. Updated -store command. Command is not done, it will be fully released in future updates
+14. Removed MLS check for the MLS (Message Level System)
+15. Updated -settings message to look better with embeds
 
 Bug Fixes:
-1. 
+1. Fixed -mute command not checking for mentioned user being a staff member
+2. Fixed bug where Level Ups don't add $200 to your balance
+3. Fixed -suggest where is mentioned the users id number and mentioned a deleted chanel.
+4. Fixed the Dead Chat Messages sending the message to the wrong channel
+5. Fixed the Dead Chat Message not pinging the correct group
+6. Fixed the Dead Chat Message not being able to turn off/on
+7. Fixed the -ui command showing some sections as null
+8. Fixed -ban command returning reputation field as null
+9. Fixed -warn returning reputation field as null
+10. Fixed -kick returning reputation field as null
 
-Notes: 
+Dependency Updates:
+1. Quick.db was updated from 7.1.1 to 7.1.2
+
+Notes: Quick.db was updated and some commands had some code clean up
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Release Name: 
-Release Description: 
 Release Version: 
+Release Name: 
 Release Date: 
+Release Description: 
 
 New Commands/Features:
 1. 

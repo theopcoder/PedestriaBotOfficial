@@ -1,7 +1,7 @@
 const Commando = require("discord.js-commando");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js")
+const BotData = require("../../data.js");
 
 class SurvivalCommand extends Commando.Command
 {
@@ -15,6 +15,7 @@ class SurvivalCommand extends Commando.Command
         });
     }
 
+    //TODO Finish survival game command
     async run(message, args)
     {
         if(!message.member.roles.find(r => r.name === "Bot Dev")){

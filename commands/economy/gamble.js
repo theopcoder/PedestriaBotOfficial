@@ -36,25 +36,25 @@ class GambleCommand extends Commando.Command
         if (Extra)return message.reply("Incorect command usage/arguments! Example: -gamble 1500");
         if (!bet) return message.reply(':warning: You must bet atleast $1000 to use this command!')
         .then(msg => {
-            msg.delete(10000)
+            msg.delete(10000);
         });
         if (bet < 1000)return message.channel.send(`I'm sorry ${message.author}, you have to bet **$1000** or more to use this command!`);
         if (bet > bal)return message.channel.send(`I'm sorry ${message.author}, You don't have enough money to make a $**${bet}** bet. You only have $**${bal}**!`);
-        db.subtract(`{money}_${message.author.id}`, bet)
-        var GambleBet = Math.floor(Math.random() * 25)
-        var Compare = Math.floor(Math.random() * 25)
+        db.subtract(`{money}_${message.author.id}`, bet);
+        var GambleBet = Math.floor(Math.random() * 25);
+        var Compare = Math.floor(Math.random() * 25);
         if (GambleBet == Compare){
             var Win = Math.floor(Math.random() * 3000);
             db.add(`{money}_${message.author.id}`, Win)
-            if (Win < bet)return message.channel.send(`Congradulations ${message.author}! You just won **$${Win}** but you still lost **$${bet-Win}**. :face_with_monocle:`)
-            if (Win == bet)return message.channel.send(`Congradulations ${message.author}! You got your **$${bet}** back! :dollar:`)
-            message.channel.send(`Congradulations ${message.author}! You just won **$${Win}**! :money_with_wings:`)
+            if (Win < bet)return message.channel.send(`Congradulations ${message.author}! You just won **$${Win}** but you still lost **$${bet-Win}**. :face_with_monocle:`);
+            if (Win == bet)return message.channel.send(`Congradulations ${message.author}! You got your **$${bet}** back! :dollar:`);
+            message.channel.send(`Congradulations ${message.author}! You just won **$${Win}**! :money_with_wings:`);
         }else{
             let NewBal = db.get(`{money}_${message.author.id}`); if (NewBal == null)NewBal = "0";
             if (NewBal > 1000){
-                message.reply(`Better luck next time. Why not try again? You still have **$${NewBal}**!`)
+                message.reply(`Better luck next time. Why not try again? You still have **$${NewBal}**!`);
             }else{
-                message.reply("You lost. Better luck next time!")
+                message.reply("You lost. Better luck next time!");
             }
         }
     }

@@ -1,7 +1,7 @@
 const Commando = require("discord.js-commando");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js")
+const BotData = require("../../data.js");
 
 class BugCommand extends Commando.Command
 {
@@ -17,15 +17,16 @@ class BugCommand extends Commando.Command
 
     async run(message, args)
     {
+        message.delete();
         let words = args.split(' ');
         let reason = words.slice(0).join(' ');
 
         if (!reason)return message.reply("Please describe the bug, where it occured and any error information if provided! Ex: -bug PedestriaBot -flip not working. Error 2.")
         .then(msg => {
-            msg.delete(10000)
+            msg.delete(10000);
         });
 
-        db.add("BugNumber", 1)
+        db.add("BugNumber", 1);
 
         const Bugmsg = new discord.RichEmbed()
             .setColor("0x20B2AA")
@@ -34,7 +35,7 @@ class BugCommand extends Commando.Command
             .addField('User:', 
             `${message.author}`)
             .addField("Bug Number:", db.get("BugNumber"))
-            .addField('Bug: ', reason)
+            .addField('Bug:', reason)
             .setFooter("Thank you for sending the Bug Report! Developers will try and fix the issue as soon as possible! Sincerely, Pedestria Team")
         let logchannel = message.guild.channels.find('name', 'bug-reports');
         message.channel.send(`Successfully sent your bug report ${message.author}!`)

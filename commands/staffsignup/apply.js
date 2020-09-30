@@ -1,7 +1,7 @@
 const Commando = require("discord.js-commando");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js")
+const BotData = require("../../data.js");
 
 class ApplyCommand extends Commando.Command
 {
@@ -17,19 +17,15 @@ class ApplyCommand extends Commando.Command
 
     async run(message, args)
     {
-        {
-            if (db.get('closedrequests')== 1)return message.reply('Im sorry, Application requests are closed')
-        }
-        {
-            if(message.member.hasPermission("MANAGE_MESSAGES"))return message.reply('Sorry, You are already staff! ;)')
-        }
-        if (db.get(`{reputation}_${message.author.id}`) > 1) return message.reply(' I am sorry, '+message.author+" You have over one rep point which means untill you can get it to one rep point or less you can't apply for staff!")
+        if (db.get('closedrequests')== 1)return message.reply('Im sorry, Application requests are closed');
+        if(message.member.hasPermission("MANAGE_MESSAGES"))return message.reply('Sorry, You are already staff! ;)');
+        if (db.get(`{reputation}_${message.author.id}`) > 1) return message.reply(' I am sorry, '+message.author+" You have over one rep point which means untill you can get it to one rep point or less you can't apply for staff!");
         message.reply('Successfully sent Application request!')
         .then(msg => {
-            msg.delete(10000)
+            msg.delete(10000);
         });
-        {
-            const applymsg = new discord.RichEmbed()
+
+        const applymsg = new discord.RichEmbed()
             .setColor("0xde9a12")
             .setTimestamp()
             .setFooter('Hi Their! This bot is in BETA. If you find any bugs report them in #report-a-bug')
@@ -47,8 +43,7 @@ class ApplyCommand extends Commando.Command
             9. Have you read/follow all the rules?
             `)
             .addField("Submitting answers:", 'To send answers do, -answers 1.Mr.Pizza 2. MyEpicDiscordName#2222 and so on.')
-            message.member.sendEmbed(applymsg);
-        }
+        message.member.sendEmbed(applymsg);
     }
 }
 
