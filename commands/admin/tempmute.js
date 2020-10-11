@@ -21,7 +21,7 @@ class TempMuteCommand extends Commando.Command
         {
             message.channel.send(":no_entry_sign: You do NOT have the permission to perform this command! :no_entry_sign:")
             .then(msg => {
-                msg.delete(10000)
+                msg.delete(10000);
             })
             return;
         }
@@ -30,7 +30,7 @@ class TempMuteCommand extends Commando.Command
         {
             message.channel.send(":warning: Sorry, I couldn't find that user")
             .then(msg => {
-                msg.delete(10000)
+                msg.delete(10000);
             });
             return;
         }
@@ -82,7 +82,7 @@ class TempMuteCommand extends Commando.Command
         let MemberRole = message.guild.roles.find(r => r.name === "Member");
         member.removeRole(MemberRole);
 
-        setInterval(() => {
+        setInterval(() => {//BUG If the bot turns off, resets, or has something happen, It will either not complete the mute or unmute early
             if (db.get(`{CurrentlyMuted}_${message.mentions.users.first().id}`)== 1){
                 let member = message.mentions.members.first();
                 let MemberRole = message.guild.roles.find(r => r.name === "Member");

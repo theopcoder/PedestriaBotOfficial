@@ -91,7 +91,7 @@ Notes:
 4. Commands, features, and other things will be added and removed in future updates.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Release Version: 1.2.0
-Release Name: 1.2.0 Bug Fixes and Improvements 
+Release Name: 1.2.0 Bug Fixes and Improvements
 Release Date: 9/29/2020
 Release Description: This is a basic update with a few new features and bug fixes/changes. Quick.db was also updated to the latest version.
 
@@ -134,6 +134,38 @@ Dependency Updates:
 1. Quick.db was updated from 7.1.1 to 7.1.2
 
 Notes: Quick.db was updated and some commands had some code clean up
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Release Version: 1.2.1
+Release Name: 1.2.1 Update
+Release Date: 10/11/2020
+Release Description: A small update with a bug fix and some changes alongside code cleanup
+
+Changes: 
+1. Dead chat pings now go off every 6 hours
+2. Updated -pay command message
+3. Doing -info will now display the guilds icon
+4. Updated -settings to show a red x or a green check depending on the setting status
+
+Bug Fixes:
+1. Fixed -pay command allowing you to pay your self.
+
+Notes: This update also contains code cleanup.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Release Version: 
+Release Name: 
+Release Date: 
+Release Description: 
+
+New Commands/Features:
+1. 
+
+Changes: 
+1. 
+
+Bug Fixes:
+1. 
+
+Notes: 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Release Version: 
 Release Name: 

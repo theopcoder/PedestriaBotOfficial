@@ -18,20 +18,20 @@ bot.registry.registerGroup("support", 'Support');
 bot.registry.registerDefaults();
 bot.registry.registerCommandsIn(__dirname + '/commands');
 
+const TOKEN = key;
+bot.login(TOKEN);
+
 bot.on('ready', function(){
     bot.user.setActivity("play.pedestriamc.com");//Use to be bot.user.setGame
     console.log(`Successfully signed into, ${bot.user.tag}`);
     console.log(`Running Version: ${Version}`);
 });
-
-const TOKEN = key;
-bot.login(TOKEN);
 //---------------------------------------------------------------------------------------------------------------------
 
 //Settings check | Default bot settings
-if (db.get("DeadChatMessage")== null)db.add("DeadChatMessage", 1);
-if (db.get("closedrequests")== null)db.add("closedrequests", 0);
-if (db.get("AutoModeration")== null)db.add("AutoModeration", 1);
+if (db.get("DeadChatMessage")=== null)db.add("DeadChatMessage", 1);
+if (db.get("closedrequests")=== null)db.add("closedrequests", 0);
+if (db.get("AutoModeration")=== null)db.add("AutoModeration", 1);
 if (db.get("MLS")== null)db.add("MLS", 1);
 
 //Welcome message for new members
@@ -59,11 +59,12 @@ bot.on('message', function(message){
     }
     if (message.content == "4321"){
         if (message.author.bot)return;
-        message.reply("Are you sure about that?")
+        message.reply("Are you sure about that?");
     }
     if (message.content == "pizza"){
         if (message.author.bot)return;
         message.reply("Can I have a slice of pizza? Please?");
+        message.reply(BotData)
     }
     //Code for Modules
     if (db.get(`ping`)== 1){
@@ -78,11 +79,11 @@ bot.on('message', function(message){
         return;
     }else{
             //Chat Filter
-    var profanities =                                                                                                                                                                                           ["fish", "bitch", "fuck", "shit", "sex", "porn"];
-    let msg = message.content.toLowerCase();
-    for (x = 0; x < profanities.length; x++){
-        if (msg.includes(profanities[x])){
-            message.delete()
+            var profanities =                                                                                                                                                                                           ["bitch", "fuck", "shit", "sex", "porn"];
+            let msg = message.content.toLowerCase();
+            for (x = 0; x < profanities.length; x++){
+            if (msg.includes(profanities[x])){
+            message.delete();
             db.add(`{AMPSChatFilter}_${message.author.id}`, 1);
             const ChatFilterMessage = new discord.RichEmbed()
                 .setColor("0xFFFF00")
@@ -119,7 +120,7 @@ bot.on('message', function(message){
 
 //Dead Chat Messages (DCM)
 bot.on('ready', () => {
-    setInterval(() => {
+    setInterval(() => {//BUG dcp goes off earlier then timed schedule causing multiple pings in the 6 hour waiting time
         if (db.get("DeadChatMessage")== 0)return;
         var PingChannel = bot.channels.get('704802753565949992');
         var DeadChatQuestion = Math.floor(Math.random() * 5);
@@ -137,8 +138,8 @@ bot.on('ready', () => {
 
         db.add("ping", 1);
         PingChannel.send(`<@&705577160328347658>`);
-    }, 1000 * 60 * 60 * 3);
-});//1000(1 Second) * 60(60 Seconds) * 60(60 Minutes) * 3(3 Hours). The DCM goes off every 3 hours
+    }, 1000 * 60 * 60 * 6);
+});//1000(1 Second) * 60(60 Seconds) * 60(60 Minutes) * 6(6 Hours). The DCM goes off every 3 hours
 
 //Message Level System (MLS)
 bot.on('message', function(message){

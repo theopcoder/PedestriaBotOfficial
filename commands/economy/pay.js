@@ -18,22 +18,26 @@ class PayCommand extends Commando.Command
     async run(message, args)
     {
         if (message.guild === null){
-            message.reply(DMMessage)
+            message.reply(DMMessage);
             return;
         }
         let PayedUser = message.guild.member(message.mentions.users.first());
         if(!PayedUser){
             message.channel.send(":warning: Sorry, I couldn't find that user")
             .then(msg => {
-                msg.delete(10000)
+                msg.delete(10000);
             });
+            return;
+        }
+        if (message.mentions.users.first() == message.author){
+            message.reply("I'm sorry, you can't pay your self!");
             return;
         }
         let words = args.split(' ');
         let payment = words.slice(1).join(' ');
         if (!payment) return message.reply(`:warning: How much money do you want to give to ${message.mentions.users.first()}?`)
         .then(msg => {
-            msg.delete(10000)
+            msg.delete(10000);
         });
         if (isNaN(words[1])){
             message.reply("There where invalid charectors for the payment! Please make sure the payment is only numbers!")
@@ -49,7 +53,7 @@ class PayCommand extends Commando.Command
 
         db.subtract(`{money}_${message.author.id}`, payment);
         db.add(`{money}_${message.mentions.users.first().id}`, payment);
-        message.channel.send(`Successfully took **$${payment}** from your account and payed ${message.mentions.users.first()} **$${payment}**! You now have **$${bal-payment}**.`);
+        message.reply(`Successfully payed ${message.mentions.users.first().username} **$${payment}!** Your balance is now **$${bal-payment}.**`);
     }
 }
 

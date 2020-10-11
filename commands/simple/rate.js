@@ -21,6 +21,15 @@ class RateCommand extends Commando.Command
         let reason = words.slice(0).join(' ');
         if (!reason)return message.reply('Please supply something to rate! EXP: -rate This command');
 
+        if (message.mentions.users.first() == "<@453719594708762636>"){
+            message.reply(`I rate my amazing bot developer, ${reason} a 10/10 :grin:`);
+            return;
+        }
+        if (message.mentions.users.first() == "<@295000306180292619>"){
+            message.reply(`I rate the O mighty Pedestria server owner, ${reason} a 10/10 :grin:`);
+            return;
+        }
+
         var chance = Math.floor(Math.random() * 11);
         if (chance == 0)
         {

@@ -25,12 +25,12 @@ class MirrorCommand extends Commando.Command
             const MentionedPFP = new discord.RichEmbed()
                 .setColor("RANDOM")
                 .setThumbnail(users.displayAvatarURL)
-            message.channel.sendEmbed(MentionedPFP)
+            message.channel.sendEmbed(MentionedPFP);
         }else{
             const AuthorPFP = new discord.RichEmbed()
                 .setColor("RANDOM")
                 .setThumbnail(message.author.avatarURL)
-            message.channel.sendEmbed(AuthorPFP)
+            message.channel.sendEmbed(AuthorPFP);
         }
     }
 }

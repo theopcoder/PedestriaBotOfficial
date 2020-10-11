@@ -17,7 +17,7 @@ class AnswerCommand extends Commando.Command
 
     async run(message, args)
     {
-        message.delete()
+        message.delete();
         if (db.get('closedrequests')== 0)return message.reply('Im sorry, Application requests are closed');
         if (message.member.hasPermission("MANAGE_MESSAGES"))
         {

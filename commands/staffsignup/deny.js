@@ -37,7 +37,7 @@ class DenyCommand extends Commando.Command
         const denymsg = new discord.RichEmbed()
             .setColor("0x0341fc")
             .setTimestamp()
-            .setFooter('Hi Their! This bot is in BETA. If you find any bugs report them in #report-a-bug')
+            //.setFooter('Hi Their! This bot is in BETA. If you find any bugs report them in #report-a-bug')
             .addField("Try again next time!")
             .addField("You're request was Denied because, "+reason)
         message.mentions.users.first().sendEmbed(denymsg);

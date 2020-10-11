@@ -18,7 +18,7 @@ class GambleCommand extends Commando.Command
     async run(message, args)
     {
         if (message.guild === null){
-            message.reply(DMMessage)
+            message.reply(DMMessage);
             return;
         }
         let words = args.split(' ');
@@ -29,7 +29,7 @@ class GambleCommand extends Commando.Command
         if (isNaN(args[0])){
             message.reply("There where invalid charectors for the bet! Please make sure the bet is only numbers! Thank you!")
             .then(msg => {
-                msg.delete(10000)
+                msg.delete(10000);
             });
             return;
         }

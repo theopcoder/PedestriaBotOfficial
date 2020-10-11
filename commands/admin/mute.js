@@ -21,8 +21,8 @@ class MuteCommand extends Commando.Command
         {
             message.channel.send(":no_entry_sign: You do NOT have the permission to perform this command! :no_entry_sign:")
             .then(msg => {
-                msg.delete(10000)
-            })
+                msg.delete(10000);
+            });
             return;
         }
         let MutedUser = message.guild.member(message.mentions.users.first());
@@ -30,7 +30,7 @@ class MuteCommand extends Commando.Command
         {
             message.channel.send(":warning: Sorry, I couldn't find that user")
             .then(msg => {
-                msg.delete(10000)
+                msg.delete(10000);
             });
             return;
         }
@@ -43,7 +43,7 @@ class MuteCommand extends Commando.Command
         if (db.get(`{CurrentlyMuted}_${message.mentions.users.first().id}`)== 1){
             message.reply(`:warning: ${message.mentions.users.first().username} is already muted!`)
             .then(msg => {
-                msg.delete(10000)
+                msg.delete(10000);
             });
             return;
         }

@@ -17,13 +17,13 @@ class AcceptCommand extends Commando.Command
 
     async run(message, args)
     {
-        message.delete()
+        message.delete();
         if(!message.member.hasPermission("ADMINISTRATOR"))
         {
             message.channel.send(":warning: You do NOT have the permission to perform this command! :warning:")
             .then(msg => {
-                msg.delete(10000)
-            })
+                msg.delete(10000);
+            });
             return;
         }
         let AcceptedUser = message.guild.member(message.mentions.users.first());
@@ -31,8 +31,8 @@ class AcceptCommand extends Commando.Command
         {
             message.channel.send("Sorry, I couldn't find that user")
             .then(msg => {
-                msg.delete(10000)
-            })
+                msg.delete(10000);
+            });
             return;
         }
         let words = args.split(' ');
@@ -46,7 +46,7 @@ class AcceptCommand extends Commando.Command
         const acceptmsg = new discord.RichEmbed()
             .setColor("0x008000")
             .setTimestamp()
-            .setFooter('Hi their! This bot is in BETA. If you find any bugs report them in #report-a-bug')
+            //.setFooter('Hi their! This bot is in BETA. If you find any bugs report them in #report-a-bug')
             .addField("Congrats!")
             .addField("You're application request was accpted because, ", reason)
         message.mentions.users.first().sendEmbed(acceptmsg);

@@ -20,7 +20,8 @@ class InfoCommand extends Commando.Command
         const PedestriaInfo = new discord.RichEmbed()
             .setColor("0x20B2AA")
             .setTimestamp()
-            .setFooter("This is some information about Pedestra! Missing something? Tell us in #suggestions!")
+            .setThumbnail(message.guild.iconURL)
+            .setFooter(`This is some information about ${message.guild.name}! Missing something? Tell us in #suggestions!`)
             .setTitle('Pedestria Information')
             .addField("Information: ", 
             `
@@ -32,7 +33,7 @@ class InfoCommand extends Commando.Command
             .addField("Bot Info:", 
             `
                 **Developer:** theopcoder
-                **Version:**  ${Version}
+                **Version:** ${Version}
                 **GitHub repository:** https://github.com/theopcoder/PedestriaBotOfficial
             `)
         message.channel.sendEmbed(PedestriaInfo);

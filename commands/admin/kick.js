@@ -21,7 +21,7 @@ class KickCommand extends Commando.Command
         {
             message.channel.send(":no_entry_sign: You do NOT have the permission to perform this command! :no_entry_sign:")
             .then(msg => {
-                msg.delete(10000)
+                msg.delete(10000);
             });
             return;
         }
@@ -30,23 +30,22 @@ class KickCommand extends Commando.Command
         {
             message.channel.send(":warning: Sorry, I couldn't find that user")
             .then(msg => {
-                msg.delete(10000)
+                msg.delete(10000);
             });
             return;
         }
         if (KickedUser.hasPermission("MANAGE_MESSAGES"))
         {
-            message.reply(":no_entry_sign: Sorry, you can't kick a staff member! :no_entry_sign:")
+            message.reply(":no_entry_sign: Sorry, you can't kick a staff member! :no_entry_sign:");
             return;
         }
         let words = args.split(' ');
         let reason = words.slice(1).join(' ');
-        {
-            if (!reason) return message.reply(':warning: Please supply a reason for the kick!')
-            .then(msg => {
-                msg.delete(10000)
-            });
-        }
+        if (!reason) return message.reply(':warning: Please supply a reason for the kick!')
+        .then(msg => {
+            msg.delete(10000);
+        });
+
         message.mentions.members.first().send(`You have been kicked from ${message.guild.name} because, ${reason}.`);
         message.guild.member(KickedUser).kick(reason)
         //.then(console.log)

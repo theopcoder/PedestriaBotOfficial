@@ -37,7 +37,7 @@ class StatsCommand extends Commando.Command
             `)
             .addField("Balance:", `$${Money}`)
             .addField(`Other Offences:`, `Warnings: ${WarnP} | Mutes: ${MuteP} | Kicks: ${KickP} | Bans: ${BanP}`)
-        message.channel.sendEmbed(UserStats)
+        message.channel.sendEmbed(UserStats);
     }
 }
 

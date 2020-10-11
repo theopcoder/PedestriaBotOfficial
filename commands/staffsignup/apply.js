@@ -28,7 +28,7 @@ class ApplyCommand extends Commando.Command
         const applymsg = new discord.RichEmbed()
             .setColor("0xde9a12")
             .setTimestamp()
-            .setFooter('Hi Their! This bot is in BETA. If you find any bugs report them in #report-a-bug')
+            //.setFooter('Hi Their! This bot is in BETA. If you find any bugs report them in #report-a-bug')
             .setTitle("Application Requests.")
             .addField('Questions: ',
             `

@@ -21,7 +21,7 @@ class UnmuteCommand extends Commando.Command
         {
             message.channel.send(":no_entry_sign: You do NOT have the permission to perform this command! :no_entry_sign:")
             .then(msg => {
-                msg.delete(10000)
+                msg.delete(10000);
             });
             return;
         }
@@ -30,13 +30,13 @@ class UnmuteCommand extends Commando.Command
         {
             message.channel.send(":warning: Sorry, I couldn't find that user")
             .then(msg => {
-                msg.delete(10000)
+                msg.delete(10000);
             });
             return;
         }
         if (UnmutedUser.hasPermission("MANAGE_MESSAGES"))
         {
-            message.reply(":no_entry_sign: Sorry, you can't unmute a staff member! :no_entry_sign:")
+            message.reply(":no_entry_sign: Sorry, you can't unmute a staff member! :no_entry_sign:");
             return;
         }
         let UserNotMutedMessage = message.reply(`${message.mentions.users.first().username} isn't muted!`);
@@ -46,7 +46,7 @@ class UnmuteCommand extends Commando.Command
         let reason = words.slice(1).join(' ');
         if (!reason) return message.reply(':warning: Please supply a reason for the unmute!')
         .then(msg => {
-            msg.delete(10000)
+            msg.delete(10000);
         });
 
         db.subtract(`{CurrentlyMuted}_${message.mentions.users.first().id}`, 1);

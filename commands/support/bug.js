@@ -38,8 +38,8 @@ class BugCommand extends Commando.Command
             .addField('Bug:', reason)
             .setFooter("Thank you for sending the Bug Report! Developers will try and fix the issue as soon as possible! Sincerely, Pedestria Team")
         let logchannel = message.guild.channels.find('name', 'bug-reports');
-        message.channel.send(`Successfully sent your bug report ${message.author}!`)
         logchannel.send(Bugmsg);
+        message.channel.send(`Successfully sent your bug report ${message.author}!`);
     }
 }
 

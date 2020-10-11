@@ -21,7 +21,7 @@ class BanCommand extends Commando.Command
         {
             message.channel.send(":no_entry_sign: You do NOT have the permission to perform this command! :no_entry_sign:")
             .then(msg => {
-                msg.delete(10000)
+                msg.delete(10000);
             });
             return;
         }
@@ -30,7 +30,7 @@ class BanCommand extends Commando.Command
         {
             message.channel.send(":warning: Sorry, I couldn't find that user")
             .then(msg => {
-                msg.delete(10000)
+                msg.delete(10000);
             });
             return;
         }
@@ -43,7 +43,7 @@ class BanCommand extends Commando.Command
         let reason = words.slice(1).join(' ');
         if (!reason) return message.reply(':warning: Please supply a reason for the ban!')
         .then(msg => {
-            msg.delete(10000)
+            msg.delete(10000);
         });
 
         message.mentions.members.first().send("You have been banned from "+message.guild.name+" because, "+reason+".");

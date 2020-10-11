@@ -21,7 +21,7 @@ class SettingsCommand extends Commando.Command
         {
             message.channel.send(":no_entry_sign: You do NOT have the permission to perform this command! :no_entry_sign:")
             .then(msg => {
-                msg.delete(10000)
+                msg.delete(10000);
             });
             return;
         }
@@ -82,9 +82,9 @@ class SettingsCommand extends Commando.Command
             return;
         }
         if (db.get("MLS")== 1){
-            var MLS = "On";
+            var MLS = ":white_check_mark: On";
         }else{
-            MLS = "Off";
+            MLS = ":x: Off";
         }
 
         //Application requests settings
@@ -115,9 +115,9 @@ class SettingsCommand extends Commando.Command
             return;
         }
         if (db.get("closedrequests")== 1){
-            var AR = "On";
+            var AR = ":white_check_mark: On";
         }else{
-            AR = "Off";
+            AR = ":x: Off";
         }
 
         //Dead chat settings
@@ -148,9 +148,9 @@ class SettingsCommand extends Commando.Command
             return;
         }
         if (db.get("DeadChatMessage")== 1){
-            var DCP = "On";
+            var DCP = ":white_check_mark: On";
         }else{
-            DCP = "Off";
+            DCP = ":x: Off";
         }
 
         //Auto Moderation
@@ -181,9 +181,9 @@ class SettingsCommand extends Commando.Command
             return;
         }
         if (db.get("AutoModeration")== 1){
-            var AM = "On";
+            var AM = ":white_check_mark: On";
         }else{
-            AM = "Off";
+            AM = ":x: Off";
         }
 
         //Settings message
