@@ -103,7 +103,7 @@ class TempMuteCommand extends Commando.Command
                         **Times Bypassed Mute:** ${TimesBypassMuted}
                         **Reason:** ${words[1]} hour mute is over.
                     `)
-                let logchannel = message.guild.channels.find('name', 'logs');
+                let logchannel = message.guild.channels.find('name', 'pedestriabot-logs');
                 logchannel.send(UnmuteMSG);
 
                 message.mentions.members.first().send(`You have been unmuted on ${message.guild.name} because, Times up.`);
@@ -139,7 +139,7 @@ class TempMuteCommand extends Commando.Command
                 **Total Offences:** ${RepP}
                 **Other Offences:** Warnings: ${WarnP} | Mutes: ${MuteP} | Kicks: ${KickP} | Bans: ${BanP}
             `)
-        let logchannel = message.guild.channels.find('name', 'logs');
+        let logchannel = message.guild.channels.find('name', 'pedestriabot-logs');
         return logchannel.send(TempMutemsg);
     }
 }

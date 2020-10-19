@@ -38,18 +38,6 @@ class SuggestCommand extends Commando.Command
             embedMessage.react("✅");
             embedMessage.react("❌");
         });
-
-        const UserSuggestmsg = new discord.RichEmbed()
-            .setColor("0x20B2AA")
-            .setTimestamp()
-            .setThumbnail(message.author.avatarURL)
-            .setTitle("Suggestion:")
-            .setDescription(`
-            ${reason}
-
-            Thanks for your suggestion ${message.author.username}! We hope it gets added! Sincerely, Pedestria Team
-            `)
-        message.member.sendEmbed(UserSuggestmsg);
     }
 }
 

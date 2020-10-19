@@ -151,19 +151,19 @@ Bug Fixes:
 
 Notes: This update also contains code cleanup.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Release Version: 
-Release Name: 
-Release Date: 
-Release Description: 
-
-New Commands/Features:
-1. 
+Release Version: 1.2.2
+Release Name: 1.2.2 Bug Fixes
+Release Date: 10/18/2020
+Release Description: Fixes a couple of bugs
 
 Changes: 
-1. 
+1. Updated chat filter list
+2. Doing -suggest will no longer send you a confirmation message in DM's
 
 Bug Fixes:
-1. 
+1. Fixed -store
+2. Admin commands will now be logged to the correct channel
+3. Saying pizza will no longer respnd with two messages with the secont one being an empty message
 
 Notes: 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

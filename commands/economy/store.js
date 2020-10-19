@@ -15,22 +15,19 @@ class StoreCommand extends Commando.Command
         });
     }
 
-    //TODO finish command in the an update
     async run(message, args)
     {
-        let Money = db.get(`{money}_${message.mentions.users.first().id}`); if (Money == null)Money = "0";
+        let Money = db.get(`{money}_${message.author.id}`); if (Money == null)Money = "0";
 
         const Store = new discord.RichEmbed()
             .setColor(0x668d3c)
-            .setThumbnail(users.displayAvatarURL)
+            .setThumbnail(message.author.displayAvatarURL)
             .setTitle("Store")
             .addField("Balance:", `$${Money}`)
             .addField("Items:", `
-                Null
+                There is nothing for sale yet!
             `)
-            .addField("WARNING:", "This command is not done yet! This command will be worked on in future updates!")
         message.channel.sendEmbed(Store);
-        message.reply(Error3);
     }
 }
 

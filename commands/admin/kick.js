@@ -83,7 +83,7 @@ class KickCommand extends Commando.Command
                 **Total Offences:** ${RepP}
                 **Other Offences:** Warnings: ${WarnP} | Mutes: ${MuteP} | Kicks: ${KickP} | Bans: ${BanP}
             `)
-        let logchannel = message.guild.channels.find('name', 'logs');
+        let logchannel = message.guild.channels.find('name', 'pedestriabot-logs');
         return logchannel.send(Kickmsg);
     }
 }

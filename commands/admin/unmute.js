@@ -78,7 +78,7 @@ class UnmuteCommand extends Commando.Command
                 **Times Bypassed Mute:** ${TimesBypassMuted}
                 **Reason:** ${reason}
             `)
-        let logchannel = message.guild.channels.find('name', 'logs');
+        let logchannel = message.guild.channels.find('name', 'pedestriabot-logs');
         db.delete(`{MuteBypass}_${message.mentions.users.first().id}`);
         return logchannel.send(UnmuteMSG);
 

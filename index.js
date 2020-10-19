@@ -29,15 +29,15 @@ bot.on('ready', function(){
 //---------------------------------------------------------------------------------------------------------------------
 
 //Settings check | Default bot settings
-if (db.get("DeadChatMessage")=== null)db.add("DeadChatMessage", 1);
-if (db.get("closedrequests")=== null)db.add("closedrequests", 0);
-if (db.get("AutoModeration")=== null)db.add("AutoModeration", 1);
+if (db.get("DeadChatMessage")== null)db.add("DeadChatMessage", 1);
+if (db.get("closedrequests")== null)db.add("closedrequests", 0);
+if (db.get("AutoModeration")== null)db.add("AutoModeration", 1);
 if (db.get("MLS")== null)db.add("MLS", 1);
 
 //Welcome message for new members
 bot.on('guildMemberAdd', member => {
     const Welcomemsg = new discord.RichEmbed()
-        .setColor("0x90ee90")
+        .setColor("0x90ee90")//TODO show user pfp on new members join message
         .setTimestamp()
         .setTitle(`Welcome to ${member.guild.name}, ${member.user.tag}!`)
         .addField("Information:", 
@@ -64,7 +64,6 @@ bot.on('message', function(message){
     if (message.content == "pizza"){
         if (message.author.bot)return;
         message.reply("Can I have a slice of pizza? Please?");
-        message.reply(BotData)
     }
     //Code for Modules
     if (db.get(`ping`)== 1){
@@ -79,7 +78,7 @@ bot.on('message', function(message){
         return;
     }else{
             //Chat Filter
-            var profanities =                                                                                                                                                                                           ["bitch", "fuck", "shit", "sex", "porn"];
+            var profanities =                                                                                                                                                                                           ["bitch", "fuck", "shit", "sex", "porn", "dick", "penis", "scum", "cum"];
             let msg = message.content.toLowerCase();
             for (x = 0; x < profanities.length; x++){
             if (msg.includes(profanities[x])){
