@@ -122,12 +122,16 @@ bot.on('ready', () => {
     setInterval(() => {//BUG dcp goes off earlier then timed schedule causing multiple pings in the 6 hour waiting time
         if (db.get("DeadChatMessage")== 0)return;
         var PingChannel = bot.channels.get('704802753565949992');
-        var DeadChatQuestion = Math.floor(Math.random() * 5);
+        var DeadChatQuestion = Math.floor(Math.random() * 9);
         if (DeadChatQuestion == 0){DCQuestion = "Which is better? Java or Bedrock Minecraft?"};
         if (DeadChatQuestion == 1){DCQuestion = "Do you have a pre built or custom pc?"};
         if (DeadChatQuestion == 2){DCQuestion = "What's your favorite food?"};
         if (DeadChatQuestion == 3){DCQuestion = "Iphone or Android?"};
         if (DeadChatQuestion == 4){DCQuestion = "Do you have pets?"};
+        if (DeadChatQuestion == 5){DCQuestion = "Whats your favorite console?"};
+        if (DeadChatQuestion == 6){DCQuestion = "Survival or Creative?"};
+        if (DeadChatQuestion == 7){DCQuestion = "Windows, Mac or Linux?"};
+        if (DeadChatQuestion == 8){DCQuestion = "Airplane or Car?"};
         const DeadChatMessagePing = new discord.RichEmbed()
             .setTimestamp()
             .setColor("RANDOM")
