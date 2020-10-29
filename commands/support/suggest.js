@@ -34,8 +34,9 @@ class SuggestCommand extends Commando.Command
             .addField('Sugestion', reason)
             .setFooter("Click the green check to like the idea or the red x if you don't like the idea!")
         let logchannel = message.guild.channels.find('name', 'suggestions'); 
-        logchannel.send(Suggestmsg).then(embedMessage => {
+        logchannel.send(Suggestmsg).then(embedMessage => {:
             embedMessage.react("✅");
+            embedMessage.react("🤷");
             embedMessage.react("❌");
         });
     }
