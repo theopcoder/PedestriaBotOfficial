@@ -36,6 +36,7 @@ class SuggestCommand extends Commando.Command
         let logchannel = message.guild.channels.find('name', 'suggestions'); 
         logchannel.send(Suggestmsg).then(embedMessage => {
             embedMessage.react("✅");
+            embedMessage.react("🤷");
             embedMessage.react("❌");
         });
     }
