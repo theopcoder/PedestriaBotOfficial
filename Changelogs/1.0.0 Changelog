@@ -167,6 +167,38 @@ Bug Fixes:
 
 Notes: 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Release Version: 1.2.3 Merge pull request #1 from Wiicart/patch-1 
+Release Name: Update index.js
+Release Date: 10/25/2020
+Release Description: Small update to the dead chat pings
+
+Changes:
+1. Updated the dead chat pings to have more questions
+
+Notes: 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Release Version: 1.2.4
+Release Name: Merge pull request #2 from Wiicart/patch-2
+Release Date: 10/30/2020
+Release Description: Updated -suggest command
+
+Changes: 
+1. Updated -suggest command. Now has a shrugging emoji
+
+Notes: 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Release Version: 1.2.5
+Release Name: 1.2.5 Changelog update
+Release Date: 10/31/2020
+Release Description: Updated the Changelog file to show the previous updates that wheren't recorded alongside a few command/feature changes.
+
+Changes: 
+1. Updated 1.0.0 Changelog file to show the previous to updates (1.2.3 & 1.2.4)
+2. Updated -pay command confirmation message to embed
+3. Welcome messages now show the user PFP
+
+Notes: 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Release Version: 
 Release Name: 
 Release Date: 

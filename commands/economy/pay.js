@@ -53,7 +53,14 @@ class PayCommand extends Commando.Command
 
         db.subtract(`{money}_${message.author.id}`, payment);
         db.add(`{money}_${message.mentions.users.first().id}`, payment);
-        message.reply(`Successfully payed ${message.mentions.users.first().username} **$${payment}!** Your balance is now **$${bal-payment}.**`);
+        let user = message.mentions.users.first();
+        const test = new discord.RichEmbed()
+            .setTimestamp()
+            .setThumbnail(user.displayAvatarURL)
+            .setColor("#85bb65")
+            .setTitle("Successful Payment")
+            .addField(`${message.author.username}`, `Successfully payed ${PayedUser} **$${payment}** :money_with_wings:`)
+        message.channel.send(test);
     }
 }
 

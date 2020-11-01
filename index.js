@@ -37,17 +37,17 @@ if (db.get("MLS")== null)db.add("MLS", 1);
 //Welcome message for new members
 bot.on('guildMemberAdd', member => {
     const Welcomemsg = new discord.RichEmbed()
-        .setColor("0x90ee90")//TODO show user pfp on new members join message
+        .setColor("0x90ee90")
         .setTimestamp()
+        .setThumbnail(member.user.displayAvatarURL)
         .setTitle(`Welcome to ${member.guild.name}, ${member.user.tag}!`)
-        .addField("Information:", 
-        `
-        :shopping_cart: https://store.pedestriamc.com/
-        :globe_with_meridians: https://www.pedestriamc.com/
-        :satellite: play.pedestriamc.com
+        .addField("Information:", `
+            :shopping_cart: https://store.pedestriamc.com/
+            :globe_with_meridians: https://www.pedestriamc.com/
+            :satellite: play.pedestriamc.com
         `)
         .addField("Welcome", "We hope you enjoy your stay! Make sure to read <#703833697153187840> and, <#704893263177580544>! Also, don't forget to check out our awesome Minecraft server! Sincerely, Pedestria Team")
-    let logchannel = member.guild.channels.get('704876411177140364'); 
+    let logchannel = member.guild.channels.get('704876411177140364');
     return logchannel.send(Welcomemsg);
 });
 

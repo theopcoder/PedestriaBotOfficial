@@ -1,6 +1,6 @@
 var BotData = [
-    Version = "1.2.2",
-    VN = "Bug Fixes",//VN stands for Version Name
+    Version = "1.2.5",
+    VN = "Changelog Update",//VN stands for Version Name
 ];
 
 var DevPromt = [
