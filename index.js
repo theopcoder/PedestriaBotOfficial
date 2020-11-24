@@ -77,22 +77,22 @@ bot.on('message', function(message){
     if (db.get("AutoModeration")== 0){
         return;
     }else{
-            //Chat Filter
-            var profanities =                                                                                                                                                                                           ["bitch", "fuck", "shit", "sex", "porn", "dick", "penis", "scum", "cum"];
-            let msg = message.content.toLowerCase();
-            for (x = 0; x < profanities.length; x++){
+        //TODO add a whitelist channel area
+        //Chat Filter
+        var profanities =                                                                                                                                                                                           ["bitch", "fuck", "shit", "sex", "porn", "dick", "penis", "scum", "cum"];
+        let msg = message.content.toLowerCase();
+        for (x = 0; x < profanities.length; x++){
             if (msg.includes(profanities[x])){
-            message.delete();
-            db.add(`{AMPSChatFilter}_${message.author.id}`, 1);
-            const ChatFilterMessage = new discord.RichEmbed()
+                message.delete();
+                db.add(`{AMPSChatFilter}_${message.author.id}`, 1);
+                const ChatFilterMessage = new discord.RichEmbed()
                 .setColor("0xFFFF00")
                 .setTimestamp()
                 .setThumbnail(message.author.avatarURL)
                 .setAuthor(message.author.tag, message.author.avatarURL)
                 .setTitle("Auto Moderation: Chat Filter")
                 .setDescription(message.author+", Cursing is **NOT** allowed on this server!")
-            message.channel.sendEmbed(ChatFilterMessage)
-            .then(msg => {
+            message.channel.sendEmbed(ChatFilterMessage).then(msg => {
                 msg.delete(15000);
             });
         }
@@ -113,7 +113,7 @@ bot.on('message', function(message){
             .addField("User:", message.author)
             .addField("Times Bypassed Mute:", db.get(`{MuteBypass}_${message.author.id}`))
         message.channel.sendEmbed(MuteBypassmsg);
-    }
+        }
     }
 });
 
@@ -122,7 +122,7 @@ bot.on('ready', () => {
     setInterval(() => {//BUG dcp goes off earlier then timed schedule causing multiple pings in the 6 hour waiting time
         if (db.get("DeadChatMessage")== 0)return;
         var PingChannel = bot.channels.get('704802753565949992');
-        var DeadChatQuestion = Math.floor(Math.random() * 9);
+        var DeadChatQuestion = Math.round(Math.random() * 16);
         if (DeadChatQuestion == 0){DCQuestion = "Which is better? Java or Bedrock Minecraft?"};
         if (DeadChatQuestion == 1){DCQuestion = "Do you have a pre built or custom pc?"};
         if (DeadChatQuestion == 2){DCQuestion = "What's your favorite food?"};
@@ -132,6 +132,14 @@ bot.on('ready', () => {
         if (DeadChatQuestion == 6){DCQuestion = "Survival or Creative?"};
         if (DeadChatQuestion == 7){DCQuestion = "Windows, Mac or Linux?"};
         if (DeadChatQuestion == 8){DCQuestion = "Airplane or Car?"};
+        if (DeadChatQuestion == 9){DCQuestion = "Whats your favorite activity?"};
+        if (DeadChatQuestion == 10){DCQuestion = "Should animals have rights"};
+        if (DeadChatQuestion == 11){DCQuestion = "Should the government remove student load dept?"};
+        if (DeadChatQuestion == 12){DCQuestion = "Discussion! Healthcare"};
+        if (DeadChatQuestion == 13){DCQuestion = "Does pineapple belong on pizza?"};
+        if (DeadChatQuestion == 14){DCQuestion = "Are you a communist?"};
+        if (DeadChatQuestion == 15){DCQuestion = "Are dogs communist?"};
+
         const DeadChatMessagePing = new discord.RichEmbed()
             .setTimestamp()
             .setColor("RANDOM")
@@ -141,7 +149,8 @@ bot.on('ready', () => {
 
         db.add("ping", 1);
         PingChannel.send(`<@&705577160328347658>`);
-    }, 1000 * 60 * 60 * 6);
+    }, //1000 * 60 * 60 * 6);
+    5);
 });//1000(1 Second) * 60(60 Seconds) * 60(60 Minutes) * 6(6 Hours). The DCM goes off every 3 hours
 
 //Message Level System (MLS)

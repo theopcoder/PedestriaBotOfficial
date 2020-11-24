@@ -1,6 +1,6 @@
 {
   "name": "pedestriabotofficial",
-  "version": "1.0.0",
+  "version": "1.2.6",
   "description": "A custom discord bot for Pedestria discord server.",
   "main": "index.js",
   "scripts": {
