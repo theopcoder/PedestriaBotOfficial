@@ -77,15 +77,14 @@ bot.on('message', function(message){
     if (db.get("AutoModeration")== 0){
         return;
     }else{
-        //TODO add a whitelist channel area
         //Chat Filter
         var profanities =                                                                                                                                                                                           ["bitch", "fuck", "shit", "sex", "porn", "dick", "penis", "scum", "cum"];
         let msg = message.content.toLowerCase();
         for (x = 0; x < profanities.length; x++){
             if (msg.includes(profanities[x])){
-                message.delete();
-                db.add(`{AMPSChatFilter}_${message.author.id}`, 1);
-                const ChatFilterMessage = new discord.RichEmbed()
+            message.delete();
+            db.add(`{AMPSChatFilter}_${message.author.id}`, 1);
+            const ChatFilterMessage = new discord.RichEmbed()
                 .setColor("0xFFFF00")
                 .setTimestamp()
                 .setThumbnail(message.author.avatarURL)
@@ -149,8 +148,7 @@ bot.on('ready', () => {
 
         db.add("ping", 1);
         PingChannel.send(`<@&705577160328347658>`);
-    }, //1000 * 60 * 60 * 6);
-    5);
+    }, 1000 * 60 * 60 * 6);
 });//1000(1 Second) * 60(60 Seconds) * 60(60 Minutes) * 6(6 Hours). The DCM goes off every 3 hours
 
 //Message Level System (MLS)
