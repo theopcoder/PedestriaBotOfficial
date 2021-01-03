@@ -1,45 +1,48 @@
-const Commando = require("discord.js-commando");
+const { Command } = require('discord.js-commando');
+const BotData = require("../../BotData.js");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js");
 
-class SuggestCommand extends Commando.Command
-{
-    constructor(client)
-    {
-        super(client,{
-            name: "suggest",
-            group: "support",
-            memberName: 'suggest',
-            description: 'This will send your suggestion in #suggestions channel!'
-        });
-    }
+module.exports = class SuggestCommand extends Command {
+	constructor(client) {
+		super(client, {
+			name: 'suggest',
+			group: 'support',
+			memberName: 'suggest',
+			description: `Allows you to send suggestions!`,
+		});
+	}
 
-    async run(message, args)
-    {
+	run(message, args) {
+        if (message.guild === null){
+            message.reply(DMMessage);
+            return;
+        }
         message.delete();
         let words = args.split(' ');
         let reason = words.slice(0).join(' ');
-        if (!reason) return message.reply("Please say your suggestion!")
-        .then(msg => {
-            msg.delete(10000);
+        if (!reason)return message.reply(":warning: Incomplete command! What's your suggestion?").then(message => {
+            message.delete({timeout: 10000});
         });
 
-        const Suggestmsg = new discord.RichEmbed()
-            .setColor("0x20B2AA")
+        const SuggestionMessage = new discord.MessageEmbed()
+            .setColor("#20B2AA")
             .setTimestamp()
-            .setThumbnail(message.author.avatarURL)
+            .setThumbnail(message.author.avatarURL())
             .setTitle('Suggestion')
-            .addField('User:', `${message.author}`)
-            .addField('Sugestion', reason)
-            .setFooter("Click the green check to like the idea or the red x if you don't like the idea!")
-        let logchannel = message.guild.channels.find('name', 'suggestions'); 
-        logchannel.send(Suggestmsg).then(embedMessage => {
-            embedMessage.react("✅");
-            embedMessage.react("🤷");
-            embedMessage.react("❌");
+            .setDescription(`
+                **User:** ${message.author}
+                **Suggestion:** ${reason}
+            `)
+        let SuggestionChannel = message.guild.channels.cache.get(SuggestionChannelID);
+        SuggestionChannel.send(SuggestionMessage).then(MessageEmbed => {
+            MessageEmbed.react("✅");
+            MessageEmbed.react("🤷");
+            MessageEmbed.react("❌");
         });
-    }
-}
 
-module.exports = SuggestCommand;
+        SuggestionChannel.send(`<@&${SuggestionPingRoleID}>, New suggestion!`).then(message => {
+            message.delete();
+        });
+	}
+};

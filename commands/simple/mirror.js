@@ -1,38 +1,32 @@
-const Commando = require("discord.js-commando");
+const { Command } = require('discord.js-commando');
+const BotData = require("../../BotData.js");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js");
 
-class MirrorCommand extends Commando.Command
-{
-    constructor(client)
-    {
-        super(client,{
-            name: "mirror",
-            group: "simple",
-            memberName: 'mirror',
-            description: 'Shows you your pfp!'
-        });
-    }
+module.exports = class MirrorCommand extends Command {
+	constructor(client) {
+		super(client, {
+			name: 'mirror',
+			group: 'simple',
+			memberName: 'mirror',
+			description: 'Shows you your pfp!',
+		});
+	}
 
-    async run(message, args)
-    {
-        let MirrorUser = message.guild.member(message.mentions.users.first());
-        let users = message.mentions.users.first();
+	run(message, args) {
+        let MirrorUser = message.mentions.users.first();
 
         if (MirrorUser)
         {
-            const MentionedPFP = new discord.RichEmbed()
+            const MentionedPFP = new discord.MessageEmbed()
                 .setColor("RANDOM")
-                .setThumbnail(users.displayAvatarURL)
-            message.channel.sendEmbed(MentionedPFP);
+                .setThumbnail(MirrorUser.displayAvatarURL())
+            message.channel.send(MentionedPFP);
         }else{
-            const AuthorPFP = new discord.RichEmbed()
+            const AuthorPFP = new discord.MessageEmbed()
                 .setColor("RANDOM")
-                .setThumbnail(message.author.avatarURL)
-            message.channel.sendEmbed(AuthorPFP);
+                .setThumbnail(message.author.displayAvatarURL())
+            message.channel.send(AuthorPFP);
         }
-    }
-}
-
-module.exports = MirrorCommand;
+	}
+};

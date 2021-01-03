@@ -1,44 +1,60 @@
-const Commando = require("discord.js-commando");
+const { Command } = require('discord.js-commando');
+const BotData = require("../../BotData.js");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js");
 
-class PurgeCommand extends Commando.Command
-{
-    constructor(client)
-    {
-        super(client,{
-            name: "purge",
-            group: "admin",
-            memberName: 'purge',
-            description: 'Deletes a specified amount of messages.'
-        });
-    }
+module.exports = class PurgeCommand extends Command {
+	constructor(client) {
+		super(client, {
+			name: 'purge',
+			group: 'admin',
+			memberName: 'purge',
+			description: 'Bulk deletes a group of messages!',
+		});
+	}
 
-    async run(message, args)
-    {
-        if(!message.member.hasPermission("MANAGE_MESSAGES"))
-        {
-            message.channel.send(":no_entry_sign: You do NOT have the permission to perform this command! :no_entry_sign:")
-            .then(msg => {
-                msg.delete(10000);
-            });
+	run(message, args) {
+		if (message.guild === null){
+            message.reply(DMMessage);
             return;
         }
+		if(!message.member.hasPermission("MANAGE_MESSAGES"))
+        {
+            message.channel.send(PermissionError).then(message => {
+				message.delete({timeout: 10000});
+			});
+            return;
+		}
         let words = args.split(' ');
-        let reason = words.slice(0).join(' ');
-        if (!reason) return message.reply('Please specify the amount of messages you want to delete! Make sure its between 2-99!')
-        .then(msg => {
-            msg.delete(10000);
-        });
-        if (reason == "1")return message.reply("Please use 2 or higher!")
-        .then(msg => {
-            msg.delete(10000);
-        });
-        let messagecount = parseInt(reason);
-        message.channel.fetchMessages({ limit: messagecount })
-        .then(messages => message.channel.bulkDelete(messages));
-    }
-}
+		let DeletedMessage = words.slice(0).join(' ');
+		if (isNaN(args[0])){//Bug decimals break it!
+			message.reply("You can only use numbers for this command!");
+			return;
+		}
+		if (!DeletedMessage){
+			message.reply("Incomplete command! Example: -purge 5");
+			return;
+		}
+		if (DeletedMessage == "1"){
+			message.reply("You must purge 2 or more messages!");
+			return;
+		}
+		if (DeletedMessage > 100){
+			message.reply("You must purge 100 or less messages!");
+			return;
+		}
+		message.channel.bulkDelete(words[0]);
 
-module.exports = PurgeCommand;
+		const PurgeLogMessage = new discord.MessageEmbed()
+			.setTimestamp()
+			.setColor("#187ddb")
+			.setThumbnail(message.author.displayAvatarURL())
+			.setTitle("Bulk Message Deleted")
+			.setDescription(`
+				**User:** ${message.author}
+				**Amount:** ${args[0]}
+			`)
+		let LogChannel = message.guild.channels.cache.get(PurgeLogChannelID);
+		LogChannel.send(PurgeLogMessage);
+	}
+};

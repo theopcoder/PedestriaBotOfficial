@@ -1,16 +1,15 @@
-# PedestriaBotOfficial
-A custom discord bot for Pedestria discord server.
+# PedestriaBotUpdated:
+A custom Discord bot for the Pedestria Discord server.  
 
-Author: theopcoder
+# Information:
+Author: theopcoder  
+Version: 2.0.0
 
-# Dependencies used:
-
-[Discord.js-commando]  
-[Discord.js]  
-[Quick.db]  
+**Contributors:**
+1. Wiicart wiicart  
+2. MelonicOverlord MelonMan  
 
 # Helpful recourses:
-
 [Discord.js-commando Documentation] https://discord.js.org/#/docs/commando/master/general/welcome  
 [Discord.js Documentation] https://discord.js.org/#/docs/main/stable/general/welcome  
-[Quick.db Documentation] https://quickdb.js.org/docs.html   
+[Quick.db Documentation] https://quickdb.js.org/docs.html

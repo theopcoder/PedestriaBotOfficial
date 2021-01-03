@@ -1,34 +1,22 @@
-const Commando = require("discord.js-commando");
+const { Command } = require('discord.js-commando');
+const BotData = require("../../BotData.js");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js");
 
-class RateCommand extends Commando.Command
-{
-    constructor(client) 
-    {
-        super(client,{
-            name: "rate", 
-            group: "simple",
-            memberName: 'rate',
-            description: 'Rates the thing you say from 0-10!'
-        });
-    }
+module.exports = class RateCommand extends Command {
+	constructor(client) {
+		super(client, {
+			name: 'rate',
+			group: 'simple',
+			memberName: 'rate',
+			description: 'Rates what you say on a scale of 0-10!',
+		});
+	}
 
-    async run(message, args)
-    {
+	run(message, args) {
         let words = args.split(' ');
         let reason = words.slice(0).join(' ');
-        if (!reason)return message.reply('Please supply something to rate! EXP: -rate This command');
-
-        if (message.mentions.users.first() == "<@453719594708762636>"){
-            message.reply(`I rate my amazing bot developer, ${reason} a 10/10 :grin:`);
-            return;
-        }
-        if (message.mentions.users.first() == "<@295000306180292619>"){
-            message.reply(`I rate the O mighty Pedestria server owner, ${reason} a 10/10 :grin:`);
-            return;
-        }
+        if (!reason)return message.reply('Please supply something to rate! EXP: -rate pizza');
 
         var chance = Math.floor(Math.random() * 11);
         if (chance == 0)
@@ -75,7 +63,5 @@ class RateCommand extends Commando.Command
         {
             message.reply("I rate, "+reason+' a 10/10 :grin: ');
         }
-    }
-}
-
-module.exports = RateCommand;
+	}
+};

@@ -1,0 +1,64 @@
+2.0.0 Changelog
+
+New Commands/Features:
+1. Added deleted messages module
+2. Added edited messages module
+3. Added -diagnostics command
+4. added -unban command
+5. Added -transfer
+6. Doing an admin command on a user now saves the reason to the json.sqlite file
+7. Commands that send messages to specific channels can now be configured in BotData.js
+8. There is now bot configuration in BotData.js
+9. Added power commands
+10. Added -performance command
+11. Added -history command to view a users history
+12. Added -rps (rock paper scissors)
+13. Added Discord Invite Protection in the Auto Moderation
+
+Changes:
+1. Updated -8ball command description
+2. Updated -rank command ui
+3. Updated -rate command description and ui
+4. Updated -stats command ui
+5. If you mention a user while performing the -stats command, it will now return a error
+6. Message embeds now have a consistant ui
+7. Updated Level Up Message ui
+8. Removed the user confirmation message for suggestions
+9. Updated -purge command messages
+10. XP is now randomized
+11. -kick now logs the reason for the kick in the audit logs
+12. Admin commands will now have more check messages auto delete, like incorrect permission messages
+13. Updated the new member message
+14. -purge now sends a log message
+
+Bug Fixes:
+1. Fixed doing the -rank command im DM's throwing an error message. It now returns a custom error message from BotData.js
+2. Fixed -suggest reacting with X then check mark
+3. Fixed bug in -purge command
+4. Fixed bug in -ban where the user is not sent a message why they where ban
+5. Fixed issue where the Mute Bypass Protection message didn't show the users pfp sometimes
+
+Improvements:
+1. Improved bot stability
+2. Updated old code
+3. Quality improvements
+
+Notes: In this update, I decided to remove the staff sign up commands due to the commands not being needed any more. They may return in future updates
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Release Version: 
+Release Name: 
+Release Date: 
+Release Description: 
+
+New Commands/Features:
+1. 
+
+Changes: 
+1. 
+
+Bug Fixes:
+1. 
+
+Notes: 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

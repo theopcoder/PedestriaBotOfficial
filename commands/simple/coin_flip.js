@@ -1,32 +1,24 @@
-const Commando = require("discord.js-commando");
+const { Command } = require('discord.js-commando');
+const BotData = require("../../BotData.js");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js");
 
-class CoinFlipCommand extends Commando.Command
-{
-    constructor(client)
-    {
-        super(client,{
-            name: "flip",
-            group: "simple",
-            memberName: 'flip',
-            description: 'Flips a coin!'
-        });
-    }
+module.exports = class FlipCommand extends Command {
+	constructor(client) {
+		super(client, {
+			name: 'flip',
+			group: 'simple',
+			memberName: 'flip',
+			description: 'Flips a coin!',
+		});
+	}
 
-    async run(message, args)
-    {
+	run(message, args) {
         var chance = Math.floor(Math.random() * 2);
-        if (chance == 0)
-        {
+        if (chance == 0){
             message.reply("Your coin landed on Heads!");
-        }
-        else
-        {
+        }else{
             message.reply("Your coin landed on Tails!");
         }
-    }
-}
-
-module.exports = CoinFlipCommand;
+	}
+};

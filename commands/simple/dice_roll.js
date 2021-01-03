@@ -1,25 +1,20 @@
-const Commando = require("discord.js-commando");
+const { Command } = require('discord.js-commando');
+const BotData = require("../../BotData.js");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js");
 
-class RollCommand extends Commando.Command
-{
-    constructor(client)
-    {
-        super(client,{
-            name: "roll",
-            group: "simple",
-            memberName: 'roll',
-            description: 'Rolls a 6 sided dice.'
-        });
-    }
+module.exports = class DiceRollCommand extends Command {
+	constructor(client) {
+		super(client, {
+			name: 'roll',
+			group: 'simple',
+			memberName: 'roll',
+			description: 'Rolls a 6 sided dice!',
+		});
+	}
 
-    async run(message, args)
-    {
+	run(message, args) {
         var diceRoll = Math.floor(Math.random() * 6) + 1;
-        message.reply("Your Dice landed on " +diceRoll);
-    }
-}
-
-module.exports = RollCommand;
+        message.reply(`Your Dice landed on ${diceRoll}`);
+	}
+};

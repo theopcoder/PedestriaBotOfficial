@@ -1,147 +1,163 @@
-const Commando = require("discord.js-commando");
+const { Command } = require('discord.js-commando');
+const BotData = require("../../BotData.js");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js");
 
-class TempMuteCommand extends Commando.Command
-{
-    constructor(client)
-    {
-        super(client,{
-            name: "tempmute",
-            group: "admin",
-            memberName: 'tempmute',
-            description: 'Temporarily mutes a user.'
-        });
-    }
+module.exports = class TempMuteCommand extends Command {
+	constructor(client) {
+		super(client, {
+			name: 'tempmute',
+			group: 'admin',
+			memberName: 'tempmute',
+			description: 'Temporarily mutes a user!',
+		});
+	}
 
-    async run(message, args)
-    {
-        if(!message.member.hasPermission("MANAGE_MESSAGES"))
-        {
-            message.channel.send(":no_entry_sign: You do NOT have the permission to perform this command! :no_entry_sign:")
-            .then(msg => {
-                msg.delete(10000);
-            })
+	run(message, args) {
+		if (message.guild === null){
+            message.reply(DMMessage);
             return;
-        }
-        let TempMutedUser = message.guild.member(message.mentions.users.first());
-        if(!TempMutedUser)
-        {
-            message.channel.send(":warning: Sorry, I couldn't find that user")
-            .then(msg => {
-                msg.delete(10000);
-            });
+		}
+		if (!message.member.hasPermission("MANAGE_MESSAGES")){
+			const PermissionErrorMessage = new discord.MessageEmbed()
+				.setColor("#FF0000")
+				.setDescription(`${PermissionError}`)
+			message.channel.send(PermissionErrorMessage);
+			return;
+		}
+		let TempMutedUser = message.guild.member(message.mentions.users.first());
+        if(!TempMutedUser){
+			const NullUserMessage = new discord.MessageEmbed()
+				.setColor()
+				.setDescription(NullUser)
+			message.channel.send(NullUserMessage).then(message => {
+				message.delete({timeout: 10000});
+			});
+			return;
+		}
+		if (TempMutedUser.hasPermission("MANAGE_MESSAGES")){
+			const StaffUserMessage = new discord.MessageEmbed()
+				.setColor("#FF0000")
+				.setDescription(StaffUser)
+			message.channel.send(StaffUserMessage).then(message => {
+				message.delete({timeout: 10000})
+			});
             return;
-        }
-        if (TempMutedUser.hasPermission("MANAGE_MESSAGES"))
-        {
-            message.reply(":no_entry_sign: Sorry, you can't mute a staff member! :no_entry_sign:");
-            return;
-        }
+		}
+		if (db.get(`${message.mentions.users.first().id}.admin.CurrentlyMuted`)== 1){
+			const UserAlreadyMutedMessage = new discord.MessageEmbed()
+				.setColor("	#FF0000")
+				.setDescription(UserAlreadyMuted)
+			return message.channel.send(UserAlreadyMutedMessage);
+		}
+		let words = args.split(' ');
+		let time = words.slice(1).join(' ');
+		if(!time){
+			const NoTimeWarning = new discord.MessageEmbed()
+				.setColor()
+				.setDescription(`:warning: How many hours do you want to mute ${message.mentions.users.first().username}?`)
+			message.channel.send(NoTimeWarning).then(message => {
+				message.delete({timeout: 10000});
+			});
+			return;
+		}
+		let reason = words.slice(2).join(' ');
+        if (!reason){
+			const NoReasonWarning = new discord.MessageEmbed()
+				.setColor()
+				.setDescription(`:warning: Please supply a reason for the temporary mute!`)
+			message.channel.send(NoReasonWarning).then(message => {
+                message.delete({timeout: 10000});
+			});
+			return;
+		}
 
-        if (db.get(`{CurrentlyMuted}_${message.mentions.users.first().id}`)== 1){
-            message.reply(`:warning: ${message.mentions.users.first().username} is already muted!`)
-            .then(msg => {
-                msg.delete(10000)
-            });
-            return;
-        }
-        
-        let words = args.split(' ');
-        let time = words.slice(1).join(' ');
-        let reason = words.slice(2).join(' ');
-        if(!time)return message.reply(`:warning: How many hours do you want to mute ${message.mentions.users.first().username}?`)
-        .then(msg => {
-            msg.delete(10000);
-        });
+		db.add(`${message.mentions.users.first().id}.admin.Mutes`, 1);
+		db.add(`${message.mentions.users.first().id}.admin.Violations`, 1);
+		db.add(`${message.mentions.users.first().id}.admin.CurrentlyMuted`, 1);
+		var MuteViolationNumber = db.add(`{MuteViolationNumber}_${message.mentions.users.first().id}`, 1);
+		db.push(`{MuteReason}_${message.mentions.users.first().id}`, `**TempMute ${MuteViolationNumber}:** [Mod: ${message.author} | Time: ${new Date().toLocaleString()}] ${words.slice(1).join(' ')}`);
+		let Violations = db.get(`${message.mentions.users.first().id}.admin.Violations`); if (Violations == null)Violations = "0";
+		let Warnings = db.get(`${message.mentions.users.first().id}.admin.Warnings`); if (Warnings == null)Warnings = "0";
+		let Mutes = db.get(`${message.mentions.users.first().id}.admin.Mutes`); if (Mutes == null)Mutes = "0";
+		let Kicks = db.get(`${message.mentions.users.first().id}.admin.Kicks`); if (Kicks == null)Kicks = "0";
+		let Bans = db.get(`${message.mentions.users.first().id}.admin.Bans`); if (Bans == null)Bans = "0";
+		let users = message.mentions.users.first();
 
-        if (!isNaN(args[1])){
-            message.reply("Please make sure to only use numbers!");
-            return;
-        }
+		let MuteRole = message.guild.roles.cache.get(MuteRoleID);
+		TempMutedUser.roles.add(MuteRole);
+		let MemberRole = message.guild.roles.cache.get(NewMemberRoleID);
+		MutedUser.roles.remove(MemberRole).then(function(){
+			TempMutedUser.send(`You have been temporarily muted on ${message.guild.name} because, ${reason}.`);
+		});
 
-        if (!reason)return message.reply(':warning: Please supply a reason for the temp mute!')
-        .then(msg => {
-            msg.delete(10000);
-        });
+		const ChatTempMuteMessage = new discord.MessageEmbed()
+			.setColor("0xFFA500")
+			.setTimestamp()
+			.setThumbnail(users.displayAvatarURL())
+			.setTitle("Temporary Mute")
+			.setDescription(`
+				**Moderator:** ${message.author}
+				**User:** ${TempMutedUser}
+				**Time:** ${words[1]} hours
+				**Reason:** ${reason}
+			`)
+		message.channel.send(ChatTempMuteMessage);
 
-        db.add(`{CurrentlyMuted}_${message.mentions.users.first().id}`, 1);
-        db.add(`{reputation}_${message.mentions.members.first().id}`, 1);
-        db.add(`{mutep}_${message.mentions.members.first().id}`, 1);
-        let RepP = db.get(`{reputation}_${message.mentions.users.first().id}`); if (RepP == null)RepP = "0";
-        let WarnP = db.get(`{warnp}_${message.mentions.users.first().id}`); if (WarnP == null)WarnP = "0";
-        let MuteP = db.get(`{mutep}_${message.mentions.users.first().id}`); if (MuteP == null)MuteP = "0";
-        let KickP = db.get(`{kickp}_${message.mentions.users.first().id}`); if (KickP == null)KickP = "0";
-        let BanP = db.get(`{banp}_${message.mentions.users.first().id}`); if (BanP == null)BanP = "0";
-        let users = message.mentions.users.first();
+		const TempMuteLogMessage = new discord.MessageEmbed()
+			.setColor("0xFFA500")
+			.setTimestamp()
+			.setThumbnail(users.displayAvatarURL())
+			.setTitle("Temporary Mute")
+			.setDescription(`
+				**Moderator:** ${message.author}
+				**TempMuted User:** ${TempMutedUser}
+				**User ID:** ${message.mentions.users.first().id}
+				**Time:** ${words[1]} hours
+				**Reason:** ${reason}
+				**Total Offences:** ${Violations}
+				**Other Offences:** Warnings: ${Warnings} | Mutes: ${Mutes} | Kicks: ${Kicks} | Bans: ${Bans}
+			`)
+		let LogChannel = message.guild.channels.cache.get(LogChannelID);
+		LogChannel.send(TempMuteLogMessage);
 
-        let member = message.mentions.members.first();
-        let role = message.guild.roles.find(r => r.name === "Muted");
-        member.addRole(role);
-        let MemberRole = message.guild.roles.find(r => r.name === "Member");
-        member.removeRole(MemberRole);
-
-        setInterval(() => {//BUG If the bot turns off, resets, or has something happen, It will either not complete the mute or unmute early
-            if (db.get(`{CurrentlyMuted}_${message.mentions.users.first().id}`)== 1){
-                let member = message.mentions.members.first();
-                let MemberRole = message.guild.roles.find(r => r.name === "Member");
-                member.addRole(MemberRole);
-                let MutedRole = message.guild.roles.find(r => r.name === "Muted");
-                member.removeRole(MutedRole);
-                let TimesBypassMuted = db.get(`{MyteBypass}_${message.mentions.users.first().id}`); if(TimesBypassMuted == null)TimesBypassMuted = "0";
-
-                const UnmuteMSG = new discord.RichEmbed()
-                    .setTimestamp()
-                    .setColor()
-                    .setThumbnail(users.displayAvatarURL)
-                    .setTitle("Unmute:")
-                    .setDescription(`
-                        **Moderator:** <@635572455439597569>
-                        **Unmuted User:** ${TempMutedUser}
-                        **User ID:** ${message.mentions.users.first().id}
-                        **Times Bypassed Mute:** ${TimesBypassMuted}
-                        **Reason:** ${words[1]} hour mute is over.
-                    `)
-                let logchannel = message.guild.channels.find('name', 'pedestriabot-logs');
-                logchannel.send(UnmuteMSG);
-
-                message.mentions.members.first().send(`You have been unmuted on ${message.guild.name} because, Times up.`);
-                db.subtract(`{CurrentlyMuted}_${message.mentions.users.first().id}`, 1);
-                db.delete(`{MuteBypass}_${message.mentions.users.first().id}`);
-                return;
-            }else{
-                return;
-            }
-        }, words[1] * 1000 * 60);
-
-        const TempMuteChatmsg = new discord.RichEmbed()
-            .setColor("0x000000")
-            .setTimestamp()
-            .setThumbnail(users.displayAvatarURL)
-            .addField("Moderator:", message.author)
-            .addField("Temp Muted User:", message.mentions.users.first())
-            .addField("Reason:", reason)
-            .addField("Time:", `${words[1]} hours`)
-            .setFooter("Successfully logged the temp mute!")
-        message.channel.sendEmbed(TempMuteChatmsg);
-
-        const TempMutemsg = new discord.RichEmbed()
-            .setColor("0x000000")
-            .setTimestamp()
-            .setThumbnail(users.displayAvatarURL)
-            .setTitle("Temp Mute:")
-            .setDescription(`
-                **Moderator:** ${message.author}
-                **Temp Muted User:** ${TempMutedUser}
-                **User ID:** ${message.mentions.users.first().id}
-                **Reason:** ${reason}
-                **Total Offences:** ${RepP}
-                **Other Offences:** Warnings: ${WarnP} | Mutes: ${MuteP} | Kicks: ${KickP} | Bans: ${BanP}
-            `)
-        let logchannel = message.guild.channels.find('name', 'pedestriabot-logs');
-        return logchannel.send(TempMutemsg);
-    }
-}
-
-module.exports = TempMuteCommand;
+		setTimeout(() => {
+			db.subtract(`${message.mentions.users.first().id}.admin.CurrentlyMuted`, 1);
+			let TimesBypassedMute = db.get(`${message.mentions.users.first().id}.admin.TimesBypassedMute`); if (TimesBypassedMute == null)TimesBypassedMute = "0";
+			db.delete(`${message.mentions.users.first().id}.admin.TimesBypassedMute`);
+			let MuteRole = message.guild.roles.cache.get(MuteRoleID);
+			TempMutedUser.roles.remove(MuteRole);
+			let MemberRole = message.guild.roles.cache.get(NewMemberRoleID);
+			MutedUser.roles.remove(MemberRole).then(function(){
+				TempMutedUser.send(`You have been unmuted on ${message.guild.name} because, ${reason}.`);
+			});
+	
+			const ChatUnmuteMessage = new discord.MessageEmbed()
+				.setColor("#33ab63")
+				.setTimestamp()
+				.setThumbnail(users.displayAvatarURL())
+				.setTitle("Unmute")
+				.setDescription(`
+					**Moderator:** <@635572455439597569>
+					**User:** ${TempMutedUser}
+					**Reason:** ${reason}
+				`)
+			message.channel.send(ChatUnmuteMessage);
+	
+			const UnmuteLogMessage = new discord.MessageEmbed()
+				.setColor("#33ab63")
+				.setTimestamp()
+				.setThumbnail(users.displayAvatarURL())
+				.setTitle("Unmute")
+				.setDescription(`
+					**Moderator:** <@635572455439597569>
+					**TempMuted User:** ${TempMutedUser}
+					**User ID:** ${message.mentions.users.first().id}
+					**Mute Evasions:** ${TimesBypassedMute}
+					**Reason:** ${reason}
+				`)
+			let LogChannel = message.guild.channels.cache.get(LogChannelID);
+			LogChannel.send(UnmuteLogMessage);
+		}, 1000 * 60 * 60 * words[1]);
+	}
+};

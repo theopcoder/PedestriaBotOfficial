@@ -1,46 +1,43 @@
-const Commando = require("discord.js-commando");
+const { Command } = require('discord.js-commando');
+const BotData = require("../../BotData.js");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js");
 
-class BugCommand extends Commando.Command
-{
-    constructor(client)
-    {
-        super(client,{
-            name: "bug",
-            group: "support",
-            memberName: 'bug',
-            description: 'Send a bug report to #bug-reports'
-        });
-    }
+module.exports = class BugCommand extends Command {
+	constructor(client) {
+		super(client, {
+			name: 'bug',
+			group: 'support',
+			memberName: 'bug',
+			description: `Create a bug report!`,
+		});
+	}
 
-    async run(message, args)
-    {
-        message.delete();
+	run(message, args) {
+		if (message.guild === null){
+            message.reply(DMMessage);
+            return;
+        }
+		message.delete();
         let words = args.split(' ');
         let reason = words.slice(0).join(' ');
-
-        if (!reason)return message.reply("Please describe the bug, where it occured and any error information if provided! Ex: -bug PedestriaBot -flip not working. Error 2.")
-        .then(msg => {
-            msg.delete(10000);
+        if (!reason) return message.reply(":warning: Incomplete command! What's the bug report?").then(message => {
+            message.delete({timeout: 10000});
         });
+		db.add("BugNumber", 1);
 
-        db.add("BugNumber", 1);
-
-        const Bugmsg = new discord.RichEmbed()
-            .setColor("0x20B2AA")
-            .setTimestamp()
-            .setTitle('Bug Report')
-            .addField('User:', 
-            `${message.author}`)
-            .addField("Bug Number:", db.get("BugNumber"))
-            .addField('Bug:', reason)
-            .setFooter("Thank you for sending the Bug Report! Developers will try and fix the issue as soon as possible! Sincerely, Pedestria Team")
-        let logchannel = message.guild.channels.find('name', 'bug-reports');
-        logchannel.send(Bugmsg);
-        message.channel.send(`Successfully sent your bug report ${message.author}!`);
-    }
-}
-
-module.exports = BugCommand;
+		const BugMessage = new discord.MessageEmbed()
+			.setColor("#20B2AA")
+			.setTimestamp()
+            .setThumbnail(message.author.avatarURL())
+			.setTitle("Bug Report")
+			.setDescription(`
+				**User:** ${message.author}
+				**Bug Number:** ${db.get("BugNumber")}
+				**Bug:** ${reason}
+			`)
+		let BugReportChannel = message.guild.channels.cache.get(BugReportChannelID);
+		BugReportChannel.send(BugMessage);
+		message.channel.send(`Successfully sent your bug report ${message.author}!`);
+	}
+};

@@ -1,25 +1,22 @@
-const Commando = require("discord.js-commando");
+const { Command } = require('discord.js-commando');
+const BotData = require("../../BotData.js");
 const discord = require("discord.js");
 const db = require("quick.db");
-const BotData = require("../../data.js");
 
-class MagicBallCommand extends Commando.Command
-{
-    constructor(client)
-    {
-        super(client,{
-            name: "8ball",
-            group: "simple",
-            memberName: '8ball',
-            description: 'A 8ball command ready to answer questions!'
-        });
-    }
+module.exports = class FlipCommand extends Command {
+	constructor(client) {
+		super(client, {
+			name: '8ball',
+			group: 'simple',
+			memberName: '8ball',
+			description: 'A magic 8 ball!',
+		});
+	}
 
-    async run(message, args)
-    {
+	run(message, args) {
         let words = args.split(' ');
         let reason = words.slice(0).join(' ');
-        if (!reason) return message.reply('Please say your message! EX: -8ball Is this command cool?');
+        if (!reason) return message.reply('Incomplete command! EX: -8ball Is this command cool?');
         
         var chance = Math.floor(Math.random() * 20);
         if (chance == 0)
@@ -102,7 +99,5 @@ class MagicBallCommand extends Commando.Command
         {
             message.reply("● Very doubtful.");
         }
-    }
-}
-
-module.exports = MagicBallCommand;
+	}
+};
