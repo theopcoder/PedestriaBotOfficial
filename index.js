@@ -244,14 +244,14 @@ bot.on('ready', () => {
             if (DeadChatQuestion == 2){DCPQuestion = "As a child, what did you wish to be when you grew up?"};
             if (DeadChatQuestion == 3){DCPQuestion = "Are we seeing signs of evolution in our species?"};
             if (DeadChatQuestion == 4){DCPQuestion = "What are you currently working on in Survival?"};
-	        if (DeadChatQuestion == 5){DCPQuestion = "Why is science so important to modern society?"};
+	    if (DeadChatQuestion == 5){DCPQuestion = "Why is science so important to modern society?"};
             if (DeadChatQuestion == 6){DCPQuestion = "What are you currently working on in WarLands?"};
             if (DeadChatQuestion == 7){DCPQuestion = "What is your favorite form of transportation?"};
             if (DeadChatQuestion == 8){DCPQuestion = "What's the worst thing you ever did as a kid?"};
             if (DeadChatQuestion == 9){DCPQuestion = "What trait do you like most about yourself?"};
             if (DeadChatQuestion == 10){DCPQuestion = "What is your favorite version of Minecraft?"};
             if (DeadChatQuestion == 11){DCPQuestion = "Is time relative to a person or universal?"};
-	        if (DeadChatQuestion == 12){DCPQuestion = "What song always puts you in a good mood?"};
+	    if (DeadChatQuestion == 12){DCPQuestion = "What song always puts you in a good mood?"};
             if (DeadChatQuestion == 13){DCPQuestion = "What's the weirdest quirk you find funny?"};
             if (DeadChatQuestion == 14){DCPQuestion = "Survival, Creative or Hardcore Minecraft?"};
             if (DeadChatQuestion == 15){DCPQuestion = "What do you like to do on the weekends?"};
