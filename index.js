@@ -62,6 +62,7 @@ bot.on('guildMemberAdd', member => {
 bot.on('message', function(message){
     //Delete DeadChatPing message
     if (db.get("ping")== 1){
+        db.subtract("ping", 1);
         message.delete();
         return;
     }
