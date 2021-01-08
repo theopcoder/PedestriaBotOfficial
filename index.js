@@ -1,6 +1,7 @@
 const { CommandoClient } = require("discord.js-commando"); //Refer to https://discord.js.org/#/docs/commando/master/general/welcome for help.
+const BadWords = require("./BadWords.js");//Imports the curse words for the Chat Filter Module.
 const BotData = require("./BotData.js");//Imports custom BotData information for the bot.
-const discord = require("discord.js"); //Refer to https://discord.js.org/#/docs/main/12.3.1/general/welcome for help.
+const discord = require("discord.js"); //Refer to https://discord.js.org/#/docs/main/stable/general/welcome for help.
 const token = require("./Token.js"); //Imports the token key for the bot to launch.
 const db = require("quick.db"); //Refer to https://quickdb.js.org/overview/docs for help.
 const path = require("path");
@@ -60,12 +61,6 @@ bot.on('guildMemberAdd', member => {
 
 //Message Responses
 bot.on('message', function(message){
-    //Delete DeadChatPing message
-    if (db.get("ping")== 1){
-        db.subtract("ping", 1);
-        message.delete();
-        return;
-    }
     //Auto Data Transfer
     if (db.get(`${message.author.id}.DataTransferComplete`)== null){
         if(message.author.bot)return;
@@ -163,7 +158,6 @@ bot.on('message', function(message){
         }
         //Chat Filter
         if (ChatFilterSetting == "1"){
-            var profanities =                                                                                                                                                                                           ["bitch", "fuck", "shit", "sex", "porn", "dick", "penis", "faggot", "cum", "arse", "ass", "bastard", "bollocks", "bugger", "bullshit", "nigga", "nigger", "crap", "piss", "shitass", "whore", "slut", "prostitute", "motherfucker", "frigger", "prick", "dick", "cuck", "wank", "wanker", "shag"];
             let msg = message.content.toLowerCase();
             for (x = 0; x < profanities.length; x++){
                 if (msg.includes(profanities[x])){
@@ -208,17 +202,25 @@ bot.on('messageDelete', async (message) => {
     }else{
         if (message.guild === null)return;
         if (DeletedMessagesSetting == "1"){
-            let logs = await message.guild.fetchAuditLogs({type: 72});
-            let entry = logs.entries.first();
-    
+            const entry = await message.guild.fetchAuditLogs({type: 'MESSAGE_DELETE'}).then(audit => audit.entries.first());
+            let user = ""
+            if (entry.extra.channel.id === message.channel.id
+            && (entry.target.id === message.author.id)
+            && (entry.createdTimestamp > (Date.now() - 5000))
+            && (entry.extra.count >= 1)) {
+              user = entry.executor
+            }else{ 
+              user = message.author;
+            }
+
             const DeletedMessageLog = new discord.MessageEmbed()
                 .setTimestamp()
                 .setColor("#fc3c3c")
-                .setThumbnail(entry.executor.displayAvatarURL())
+                .setThumbnail(user.displayAvatarURL())
                 .setAuthor(message.author.tag, message.author.displayAvatarURL())
                 .setTitle("Deleted Message")
                 .setDescription(`
-                    **Executor:** ${entry.executor}
+                    **Executor:** ${user}
                     **Author:** ${message.author}
                     **Channel:** ${message.channel}
                     **Message:** ${message.content}
@@ -244,15 +246,15 @@ bot.on('ready', () => {
             if (DeadChatQuestion == 1){DCPQuestion = "What movie or book character do you most identify with?"};
             if (DeadChatQuestion == 2){DCPQuestion = "As a child, what did you wish to be when you grew up?"};
             if (DeadChatQuestion == 3){DCPQuestion = "Are we seeing signs of evolution in our species?"};
-            if (DeadChatQuestion == 4){DCPQuestion = "What are you currently working on in Survival?"};
-	    if (DeadChatQuestion == 5){DCPQuestion = "Why is science so important to modern society?"};
-            if (DeadChatQuestion == 6){DCPQuestion = "What are you currently working on in WarLands?"};
-            if (DeadChatQuestion == 7){DCPQuestion = "What is your favorite form of transportation?"};
-            if (DeadChatQuestion == 8){DCPQuestion = "What's the worst thing you ever did as a kid?"};
-            if (DeadChatQuestion == 9){DCPQuestion = "What trait do you like most about yourself?"};
+            if (DeadChatQuestion == 4){DCPQuestion = "What's a trait do you like most about yourself?"};
+            if (DeadChatQuestion == 5){DCPQuestion = "What are you currently working on in Survival?"};
+	        if (DeadChatQuestion == 6){DCPQuestion = "Why is science so important to modern society?"};
+            if (DeadChatQuestion == 7){DCPQuestion = "What are you currently working on in WarLands?"};
+            if (DeadChatQuestion == 8){DCPQuestion = "What is your favorite form of transportation?"};
+            if (DeadChatQuestion == 9){DCPQuestion = "What's the worst thing you ever did as a kid?"};
             if (DeadChatQuestion == 10){DCPQuestion = "What is your favorite version of Minecraft?"};
             if (DeadChatQuestion == 11){DCPQuestion = "Is time relative to a person or universal?"};
-	    if (DeadChatQuestion == 12){DCPQuestion = "What song always puts you in a good mood?"};
+	        if (DeadChatQuestion == 12){DCPQuestion = "What song always puts you in a good mood?"};
             if (DeadChatQuestion == 13){DCPQuestion = "What's the weirdest quirk you find funny?"};
             if (DeadChatQuestion == 14){DCPQuestion = "Survival, Creative or Hardcore Minecraft?"};
             if (DeadChatQuestion == 15){DCPQuestion = "What do you like to do on the weekends?"};
@@ -275,12 +277,16 @@ bot.on('ready', () => {
             const DeadChatPing = new discord.MessageEmbed()
                 .setTimestamp()
                 .setColor("RANDOM")
+                .setThumbnail("https://cdn.discordapp.com/attachments/796914300568207380/796914371166601216/DCP_Question.PNG")
                 .setTitle("Dead Chat Ping!")
                 .addField(DCPQuestion, `<@&${DCPPingRoleID}>`)
             PingChannel.send(DeadChatPing);
 
-            db.add("ping", 1);
-            PingChannel.send(`<@&${DCPPingRoleID}>`);
+            function DCP(message){
+                PingChannel.send(`Dead Chat Ping! <@&${DCPPingRoleID}>`).then(() => {
+                    message.delete();
+                });
+            }
         }
     }, 1000 * 60 * 60 * DCPTime);
 });

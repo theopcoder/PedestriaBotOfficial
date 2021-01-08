@@ -25,7 +25,7 @@ module.exports = class RankCommand extends Command {
             let users = message.mentions.users.first();
 
             const MentionedUserRank = new discord.MessageEmbed()
-                .setColor(0x668d3c)
+                .setColor("#34b7eb")
                 .setThumbnail(users.displayAvatarURL())
                 .setTitle("Rank")
                 .setDescription(`
@@ -39,7 +39,7 @@ module.exports = class RankCommand extends Command {
             let XP = db.get(`${message.author.id}.basic.xp`); if (XP == null)XP = "0";
             
             const UserRank = new discord.MessageEmbed()
-                .setColor(0x668d3c)
+                .setColor("#34b7eb")
                 .setThumbnail(message.author.displayAvatarURL())
                 .setTitle("Rank")
                 .setDescription(`

@@ -19,8 +19,7 @@ module.exports = class BalanceCommand extends Command {
             return;
 		}
 		let BalUser = message.guild.member(message.mentions.users.first());
-        if (BalUser)
-        {
+        if (BalUser){
             let BalMentions = db.get(`${message.mentions.users.first().id}.basic.money`); if (BalMentions == null)BalMentions = "0";
 			let users = message.mentions.users.first();
 			

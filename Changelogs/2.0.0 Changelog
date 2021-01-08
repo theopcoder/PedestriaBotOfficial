@@ -57,6 +57,44 @@ Bug Fixes:
 
 Notes: 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Release Version: 2.1.0
+Release Name: 2.1.0 Bot Updates
+Release Date: 1/7/2021
+Release Description: Fixes some bugs and adds some new features
+
+New Commands/Features:
+1. The chat filter now has a dedicated file called BadWords.js for curse words
+2. Added -transactions to view a transactions history
+
+Changes: 
+1. Changed -rank commands color from green to a light blue
+2. Added a custom image to the DeadChatPing
+3. Updated some reference links for the packages in index.js
+
+Bug Fixes:
+1. Fixed chat filter bug
+2. Fixed -pay
+3. Fixed -gamble not giving you the prize if you win
+4. Dead chat pings now message.delete instead of relying on using quick.db to delete the message
+
+Notes: 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Release Version: 
+Release Name: 
+Release Date: 
+Release Description: 
+
+New Commands/Features:
+1. 
+
+Changes: 
+1. 
+
+Bug Fixes:
+1. 
+
+Notes: 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Release Version: 
 Release Name: 
 Release Date: 
