@@ -79,19 +79,14 @@ Bug Fixes:
 
 Notes: 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Release Version: 
-Release Name: 
-Release Date: 
-Release Description: 
-
-New Commands/Features:
-1. 
+Release Version: 2.1.1
+Release Name: 2.1.1 Micro Update
+Release Date: 1/11/2021
+Release Description: A micro update to add a small feature and fix a small grammar mistake
 
 Changes: 
-1. 
-
-Bug Fixes:
-1. 
+1. Updated README.md to say PedestriaBotOfficial instead of PedestriaBotUpdated
+2. -gamble now logs the command in -transactions
 
 Notes: 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-# PedestriaBotUpdated:
+# PedestriaBotOfficial:
 A custom Discord bot for the Pedestria Discord server.  
 
 # Information:
