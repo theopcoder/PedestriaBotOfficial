@@ -90,6 +90,16 @@ Changes:
 
 Notes: 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Release Version: 2.1.2
+Release Name: 2.1.2 Grammar Fix
+Release Date: 1/15/2021
+Release Description: Fixes small grammar mistake and a few spacing issues
+
+Changes: 
+1. Fixed a few grammar mistakes and some spacing issues in BotData.js
+
+Notes: 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Release Version: 
 Release Name: 
 Release Date: 
