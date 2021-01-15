@@ -1,6 +1,6 @@
 var BotData = [
-    Version = "2.1.0",
-    VN = "2.1.0 Bot Updates",//VN stands for Version Name
+    Version = "2.1.2",
+    VN = "2.1.2 Grammar Fix",//VN stands for Version Name
     Developer = "TheMLGDude#2177 | theopcoder",
     DeveloperDiscord = "TheMLGDude#2177",
     DeveloperGitHub = "theopcoder",
@@ -19,12 +19,12 @@ var Errors = [
     Error5 = "**:no_entry_sign: Error 5:** You do NOT have the permission to perform this command/feature! :no_entry_sign:",
     Error7 = "**:warning: Error 7:** ```There was no description given! Please give a description or argument!```",
     StaffUser = ":no_entry_sign: Sorry, you can't perform this command on a staff member!",
-    PermissionError = ":no_entry_sign: You don't have the  correct permission!",
+    PermissionError = ":no_entry_sign: You don't have the correct permission!",
     UserAlreadyUnmuted = ":warning: That user is already unmuted!",
     DMMessage = ":warning: You can't use this command in DM's!",
     UserAlreadyUnBanned = ":warning: That user isn't banned! ",
     UserAlreadyMuted = ":warning: That user is already muted!",
-    NullUser = ":warning: Sorry, I couldn't find that user",
+    NullUser = ":warning: Sorry, I couldn't find that user!",
     Error1 = "**:warning: Error 1:** You have no xp!",
 ];
 
