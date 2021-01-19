@@ -128,7 +128,7 @@ bot.on('message', function(message){
     }
     if (message.content == "rubricx qewbz"){
         if (message.author.bot)return;
-        message.reply("My friend can solve that in like 2 seconds!);")
+        message.reply("My friend can solve that in like 2 seconds!");
     }
 });
 
