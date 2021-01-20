@@ -1,5 +1,5 @@
 # PedestriaBotOfficial:
-[![Latest Release](https://img.shields.io/github/v/release/theopcoder/PedestriaBotOfficial?style=for-the-badge&include_prereleases)] ![Discord](https://img.shields.io/badge/Discord-TheMLGDude%232177-green?style=for-the-badge)
+![Latest Release](https://img.shields.io/github/v/release/theopcoder/PedestriaBotOfficial?style=for-the-badge&include_prereleases) ![Discord](https://img.shields.io/badge/Discord-TheMLGDude%232177-green?style=for-the-badge)
 
 A custom Discord bot for the Pedestria Discord server.  
 
