@@ -44,6 +44,7 @@ var BotConfiguration = [
     //--------------------------------------------------
     //Admin Configuration-------------------------------
     DeletedMessageLogChannelID = "740270992269639731",
+    MCWorldsAlertChannelID = "800152630617178132",
     PurgeLogChannelID = "740270992269639731",
     LogChannelID = "740270992269639731",
     MuteRoleID = "790134169412829204",
