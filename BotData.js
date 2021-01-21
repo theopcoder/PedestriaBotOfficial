@@ -1,6 +1,6 @@
 var BotData = [
-    Version = "2.1.2",
-    VN = "2.1.2 Grammar Fix",//VN stands for Version Name
+    Version = "2.1.3",
+    VN = "2.1.3 Feature Update",//VN stands for Version Name
     Developer = "TheMLGDude#2177 | theopcoder",
     DeveloperDiscord = "TheMLGDude#2177",
     DeveloperGitHub = "theopcoder",
@@ -32,8 +32,7 @@ var BotConfiguration = [
     //--------------------------------------------------
     //Bot Configuration---------------------------------
     BotPrefix = "-",
-    ActivityMessage = "play.pedestriamc.com | Happy 2021!",
-    StaffApplicationsSetting = "0",
+    ActivityMessage = "play.pedestriamc.com | The Official WIki for PedestriaMC Network is now released!",
     AutoModerationSetting = "1",
     DeadChatPingSetting = "1",
     LevelUpsSetting = "1",
@@ -82,7 +81,6 @@ var BotConfiguration = [
 
 //BotPrefix: This is the prefix for commmands. Example -settings or !settings
 //ActivityMessage: This is the message displayed under the bots name on Discord
-//StaffApplicationSetting: This is where you can change the default setting for Staff Applications. 0 = off | 1 = on | There are no staff application points at this time!
 //AutoModerationSetting: This is where you can change the default setting for Auto Modertation. 0 = off | 1 = on
 //DeadChatPingSetting: This is where you can change the default setting for Dead Chat Pings. 0 = off | 1 = on
 //LevelUpsSetting: This is where you can change the default setting for Level Ups. 0 = off | 1 = on
