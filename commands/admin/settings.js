@@ -41,9 +41,8 @@ module.exports = class SettingsCommand extends Command {
                 .addField("Feature Available: ", 
                 `These are features you are able to turn off! The names in parentheses are nicknames
                     1. Message Level System (mls)
-                    2. Application requests (ar)
-                    3. Auto Moderation (am)
-                    4. Dead Chat Pings (dcp)
+                    2. Auto Moderation (am)
+                    3. Dead Chat Pings (dcp)
                 `)
                 .addField("Turn On features: ", 
                 `
@@ -88,37 +87,6 @@ module.exports = class SettingsCommand extends Command {
             var MLS = ":white_check_mark: On";
         }else{
             MLS = ":x: Off";
-        }
-
-        //Application requests settings
-        if (reason == "ar on"){
-            if (db.get("StaffApplicationsSetting")== 1)return message.reply("Sorry, Application Requests are already on!");
-            db.add("StaffApplicationsSetting", 1);
-
-            const ApplicationRequestsOnMSG = new discord.MessageEmbed()
-                .setTimestamp()
-                .setColor("#008000")
-                .setThumbnail("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSHOE6W5TPcNNcN3q4IOLbjm9GkWgxtsG8JUQ&usqp=CAU")//I do not own this image. I found this image on google.com. Click the link to head to the picture!
-                .setTitle("Turned On: Application Requests")
-            message.channel.send(ApplicationRequestsOnMSG);
-            return;
-        }
-        if (reason == "ar off"){
-            if (db.get("StaffApplicationsSetting")== 0)return message.reply("Sorry, Application Requests are already off!");
-            db.subtract("StaffApplicationsSetting", 1);
-
-            const ApplicationRequestsOffMSG = new discord.MessageEmbed()
-                .setTimestamp()
-                .setColor("#FF0000")
-                .setThumbnail("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRTnJvyL87Y_UNJSonX5e-H6-KCfmleTU2zmQ&usqp=CAU")//I do not own this image. I found this image on google.com. Click the link to head to the picture!
-                .setTitle("Turned Off: Application Requests")
-            message.channel.send(ApplicationRequestsOffMSG);
-            return;
-        }
-        if (db.get("StaffApplicationsSetting")== 1){
-            var AR = ":white_check_mark: On";
-        }else{
-            AR = ":x: Off";
         }
 
         //Dead chat settings
@@ -190,7 +158,6 @@ module.exports = class SettingsCommand extends Command {
             .setThumbnail('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTvypYAFynUpTRITuiYvJstD17LjWB2zIzfLA&usqp=CAU')//I do not own this image. The image is from google.com. Click the link for the image
             .setTitle("Bot Settings")
             .addField("Message Level System: ", MLS)
-            .addField("Application Requests: ", AR)
             .addField("AutoModeration:", AM)
             .addField("DeadChatPings:", DCP)
         message.channel.send(BotSettings);

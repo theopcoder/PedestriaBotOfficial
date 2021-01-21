@@ -33,7 +33,6 @@ bot.on('ready', function(){
 });
 
 //Default Bot Settings | Don't touch!
-if (db.get("StaffApplicationsSetting")== null)db.add("StaffApplicationsSetting", StaffApplicationsSetting);
 if (db.get("AutoModerationSetting")== null)db.add("AutoModerationSetting", AutoModerationSetting);
 if (db.get("DeadChatPingSetting")== null)db.add("DeadChatPingSetting", DeadChatPingSetting);
 if (db.get("LevelUpsSetting")== null)db.add("LevelUpsSetting", LevelUpsSetting);
@@ -49,6 +48,7 @@ bot.on('guildMemberAdd', member => {
         .addField("Information:", `
             :shopping_cart: https://store.pedestriamc.com/
             :globe_with_meridians: https://www.pedestriamc.com/
+            :information_source: https://wiki.pedestriamc.com/
             :satellite: play.pedestriamc.com
         `)
         .addField("Welcome", "Don't forget to read <#703833697153187840> and <#704893263177580544>! Have fun!")
@@ -125,6 +125,10 @@ bot.on('message', function(message){
     if (message.content == "pizza"){
         if (message.author.bot)return;
         message.reply("Can I have a slice of pizza? Please?");
+    }
+    if (message.content == "rubricx qewbz"){
+        if (message.author.bot)return;
+        message.reply("My friend can solve that in like 2 seconds!");
     }
 });
 
