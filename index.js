@@ -165,6 +165,22 @@ bot.on('message', function(message){
             let msg = message.content.toLowerCase();
             for (x = 0; x < profanities.length; x++){
                 if (msg.includes(profanities[x])){
+                    if (message.guild.id == SecondDiscordServerID){
+                        const McWorldsChatFilter = new discord.MessageEmbed()
+                            .setTimestamp()
+                            .setColor("0xFFFF00")
+                            .setThumbnail(message.author.displayAvatarURL())
+                            .setAuthor(message.author.tag, message.author.displayAvatarURL())
+                            .setTitle("Chat Filter")
+                            .setDescription(`
+                                :warning: Someone cursed in the Minecraft worlds!
+                                **Channel:** ${message.channel}
+                                **Message:** ${message.content}
+                            `)
+                        let MCWorldsAlertChannel = message.guild.channels.cache.get(MCWorldsAlertChannelID);
+                        MCWorldsAlertChannel.send(McWorldsChatFilter);
+                        return;
+                    }
                     message.delete();
                     db.add(`{AMPSChatFilter}_${message.author.id}`, 1);
                     const ChatFilterMessage = new discord.MessageEmbed()
@@ -196,6 +212,12 @@ bot.on('message', function(message){
         }else{
             return;
         }
+        //Link Checker
+        /*if (LinkCheckerSetting == "1"){
+            console.log("Not Done Yet");
+        }else{
+            return;
+        }*/
     }
 });
 
@@ -211,7 +233,7 @@ bot.on('messageDelete', async (message) => {
             if (entry.extra.channel.id === message.channel.id
             && (entry.target.id === message.author.id)
             && (entry.createdTimestamp > (Date.now() - 5000))
-            && (entry.extra.count >= 1)) {
+            && (entry.extra.count >= 1)){
               user = entry.executor
             }else{ 
               user = message.author;
