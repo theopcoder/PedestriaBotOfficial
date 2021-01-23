@@ -1,6 +1,6 @@
 var BotData = [
-    Version = "2.1.2",
-    VN = "2.1.2 Grammar Fix",//VN stands for Version Name
+    Version = "2.1.3",
+    VN = "2.1.3 Feature Update",//VN stands for Version Name
     Developer = "TheMLGDude#2177 | theopcoder",
     DeveloperDiscord = "TheMLGDude#2177",
     DeveloperGitHub = "theopcoder",
@@ -12,12 +12,13 @@ var DevPromt = [
 ];
 
 var Errors = [
-    Error6 = "**:warning: Error 6:** ```Invalid description or argument detected! Try making sure the command is being performed right and try again!```",
-    Error4 = "**:warning: Error 4:** ```This command/feature has not yet been implemented yet! Please check back in the next bot update! Thank you!```",
-    Error2 = "**:shield: Error 2:** Outdated bot version! Please update to the new Bot Version for the latest features, commands and security fixes!",
-    Error3 = "**:warning: Error 3:** ```Sorry, this command/feature hasn't been implemented yet! Check back in future updates!```",
+    Error6 = "**:warning: Error 6:** ```Invalid description or argument detected! Try making sure the command is being performed right and try again! If you are sure you have, please contact the bot owner!```",
+    Error4 = "**:warning: Error 4:** ```This command/feature has not yet been implemented yet! Please check back in the next bot update! Thank you! If you are sure it has been implemented, please contact the bot owner!```",
+    Error2 = "**:shield: Error 2:** This is an outdated bot version! Please update to the new Bot Version for the latest features, commands and security fixes! If you think this is a mistake, please contact the bot owner.",
+    Error3 = "**:warning: Error 3:** ```Sorry, this command/feature hasn't been implemented yet! Check back in future updates! If you think it already has been, please contact the bot owner.```",
     Error5 = "**:no_entry_sign: Error 5:** You do NOT have the permission to perform this command/feature! :no_entry_sign:",
-    Error7 = "**:warning: Error 7:** ```There was no description given! Please give a description or argument!```",
+    Error5 = "**:no_entry_sign: Error 5:** You do NOT have the permission to perform this command/feature! :no_entry_sign:",
+    Error7 = "**:warning: Error 7:** ```There was no description given! Please give a description or argument! If you did give a valid argument, please contact the bot owner, as it may be a bug!```",
     StaffUser = ":no_entry_sign: Sorry, you can't perform this command on a staff member!",
     PermissionError = ":no_entry_sign: You don't have the correct permission!",
     UserAlreadyUnmuted = ":warning: That user is already unmuted!",
@@ -43,6 +44,7 @@ var BotConfiguration = [
     //--------------------------------------------------
     //Admin Configuration-------------------------------
     DeletedMessageLogChannelID = "740270992269639731",
+    MCWorldsAlertChannelID = "800152630617178132",
     PurgeLogChannelID = "740270992269639731",
     LogChannelID = "740270992269639731",
     MuteRoleID = "790134169412829204",
@@ -98,7 +100,9 @@ var BotConfiguration = [
 //##Admin Configuration
 
 
+//DeletedMessageLogChannelID2: The channel ID to log deleted messages on the secont Discord server
 //DeletedMessageLogChannelID: The channel ID to log deleted messages
+//MCWorldsAlertChannelID: The channel ID to alert staff when someone curses in the Minecraft server
 //PurgeLogChannelID: The channel ID to log message purges
 //LogChannelID: The channel ID to log admin commands like bans, kicks, mutes, etc
 //MuteRoleID: The role ID to apply to mute a user

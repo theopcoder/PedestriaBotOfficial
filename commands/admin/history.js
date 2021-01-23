@@ -38,10 +38,10 @@ module.exports = class HistoryCommand extends Command {
 			return;
 		}
 
-		let WarnHistory = db.get(`{WarnReason}_${message.mentions.users.first().id}`); if (WarnHistory == null)WarnHistory = "Nothing";
-		let MuteHistory = db.get(`{MuteReason}_${message.mentions.users.first().id}`); if (MuteHistory == null)MuteHistory = "Nothing";
-		let KickHistory = db.get(`{KickReason}_${message.mentions.users.first().id}`); if (KickHistory == null)KickHistory = "Nothing";
-		let BanHistory = db.get(`{BanReason}_${message.mentions.users.first().id}`); if (BanHistory == null)BanHistory = "Nothing";
+		let WarnHistory = db.get(`{WarnReason}_${message.mentions.users.first().id}`); if (WarnHistory == null)WarnHistory = "No Logged Data For Warnings";
+		let MuteHistory = db.get(`{MuteReason}_${message.mentions.users.first().id}`); if (MuteHistory == null)MuteHistory = "No Logged Data For Mutes";
+		let KickHistory = db.get(`{KickReason}_${message.mentions.users.first().id}`); if (KickHistory == null)KickHistory = "No Logged Data For Kicks";
+		let BanHistory = db.get(`{BanReason}_${message.mentions.users.first().id}`); if (BanHistory == null)BanHistory = "No Logged Data For Bans";
 		let Violations = db.get(`${message.mentions.users.first().id}.admin.Violations`); if (Violations == null)Violations = "0";
 		let Warnings = db.get(`${message.mentions.users.first().id}.admin.Warnings`); if (Warnings == null)Warnings = "0";
 		let Mutes = db.get(`${message.mentions.users.first().id}.admin.Mutes`); if (Mutes == null)Mutes = "0";
