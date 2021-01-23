@@ -46,7 +46,7 @@ Improvements:
 
 Notes: In this update, I decided to remove the staff sign up commands due to the commands not being needed any more. They may return in future updates
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Release Version: 2.0.1
 Release Name: 2.0.1 HotFix
 Release Date: 1-3-2020
@@ -56,7 +56,7 @@ Bug Fixes:
 1. Fixed the DeadChatPing not letting people talk in chats and going in a delete message loop
 
 Notes: 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Release Version: 2.1.0
 Release Name: 2.1.0 Bot Updates
 Release Date: 1/7/2021
@@ -78,7 +78,7 @@ Bug Fixes:
 4. Dead chat pings now message.delete instead of relying on using quick.db to delete the message
 
 Notes: 
------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Release Version: 2.1.1
 Release Name: 2.1.1 Micro Update
 Release Date: 1/11/2021
@@ -89,7 +89,7 @@ Changes:
 2. -gamble now logs the command in -transactions
 
 Notes: 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Release Version: 2.1.2
 Release Name: 2.1.2 Grammar Fix
 Release Date: 1/15/2021
@@ -99,13 +99,18 @@ Changes:
 1. Fixed a few grammar mistakes and some spacing issues in BotData.js
 
 Notes: 
+<<<<<<< HEAD
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+=======
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+>>>>>>> 04ea8a3cb8e01a001eda0067d5e59dc8d6b7de92
 Release Version: 2.1.3
 Release Name: 2.1.3 README Badges
 Release Date: 1/20/2021
 Release Description: Adds some readme badges to add information
 
 New Commands/Features:
+<<<<<<< HEAD
 1. 
 
 Changes: 
@@ -116,6 +121,35 @@ Bug Fixes:
 
 Notes: 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+=======
+1. Updated a few files to remove deprecated commands and update some information.
+
+Changes: 
+1. Added Discord and Version badges to README.md
+2. Removed all things related to the staff sign up commands
+3. Updated the ActivityMessage in the BotData.js file
+4. Updated the new member join message
+5. Updated the contributors in the README.md file
+
+Notes: 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Release Version: 2.2.0
+Release Name: 
+Release Date: 
+Release Description: 
+
+New Commands/Features:
+1. When someone curses in the Minecraft server, the bot will now alert staff
+
+Changes: 
+1. Updated -history from saying nothing to No Logged Data For <Action>
+2. Updated Contributers in the README.md file
+
+Bug Fixes:
+1. Fixed -stats showing Currently Muted as undefined
+2. Fixed -stats not showing data for admin commands
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+>>>>>>> 04ea8a3cb8e01a001eda0067d5e59dc8d6b7de92
 Release Version: 
 Release Name: 
 Release Date: 
@@ -124,11 +158,10 @@ Release Description:
 New Commands/Features:
 1. 
 
-Changes: 
+Changes:
 1. 
 
 Bug Fixes:
 1. 
 
 Notes: 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

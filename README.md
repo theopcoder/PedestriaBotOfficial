@@ -8,8 +8,9 @@ Author: theopcoder
 Version: 2.0.0
 
 **Contributors:**
-1. Wiicart wiicart  
-2. MelonicOverlord MelonMan  
+1. Wiicart (wiicart)  
+2. MelonicOverlord (MelonMan)  
+3. Lukas-Batema (Lukas Batema)  
 
 # Helpful recourses:
 [Discord.js-commando Documentation] https://discord.js.org/#/docs/commando/master/general/welcome  
