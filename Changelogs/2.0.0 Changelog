@@ -99,11 +99,7 @@ Changes:
 1. Fixed a few grammar mistakes and some spacing issues in BotData.js
 
 Notes: 
-<<<<<<< HEAD
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-=======
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
->>>>>>> 04ea8a3cb8e01a001eda0067d5e59dc8d6b7de92
 Release Version: 2.1.3
 Release Name: 2.1.3 README Badges
 Release Date: 1/20/2021
@@ -111,13 +107,18 @@ Release Description: Adds some readme badges to add information
 
 New Commands/Features:
 <<<<<<< HEAD
+<<<<<<< HEAD
 1. 
+=======
+1. Updated a few files to remove deprecated commands and update some information.
+>>>>>>> 37022a02ee5137ae991a73b5a2c6abb240464cc0
 
 Changes: 
 1. Added Discord and Version badges to README.md
-
-Bug Fixes:
-1. 
+2. Removed all things related to the staff sign up commands
+3. Updated the ActivityMessage in the BotData.js file
+4. Updated the new member join message
+5. Updated the contributors in the README.md file
 
 Notes: 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
