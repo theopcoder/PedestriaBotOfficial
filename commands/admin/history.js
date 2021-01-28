@@ -14,39 +14,39 @@ module.exports = class HistoryCommand extends Command {
 	}
 
 	run(message, args) {
-		if (message.guild === null){
-            message.reply(DMMessage);
-            return;
+		if (message.guild === null) {
+			message.reply(DMMessage);
+			return;
 		}
-		if (!message.member.hasPermission("MANAGE_MESSAGES")){
+		if (!message.member.hasPermission("MANAGE_MESSAGES")) {
 			const PermissionErrorMessage = new discord.MessageEmbed()
 				.setColor("#FF0000")
-				.setDescription(`${PermissionError}`)
+				.setDescription(`${PermissionError2}`)
 			message.channel.send(PermissionErrorMessage).then(message => {
-				message.delete({timeout: 10000})
+				message.delete({ timeout: 10000 })
 			});
 			return;
 		}
 		let HistoryUser = message.guild.member(message.mentions.users.first());
-        if(!HistoryUser) {
+		if (!HistoryUser) {
 			const NullUserMessage = new discord.MessageEmbed()
 				.setColor()
 				.setDescription(NullUser)
 			message.channel.send(NullUserMessage).then(message => {
-				message.delete({timeout: 10000});
+				message.delete({ timeout: 10000 });
 			});
 			return;
 		}
 
-		let WarnHistory = db.get(`{WarnReason}_${message.mentions.users.first().id}`); if (WarnHistory == null)WarnHistory = "No Logged Data For Warnings";
-		let MuteHistory = db.get(`{MuteReason}_${message.mentions.users.first().id}`); if (MuteHistory == null)MuteHistory = "No Logged Data For Mutes";
-		let KickHistory = db.get(`{KickReason}_${message.mentions.users.first().id}`); if (KickHistory == null)KickHistory = "No Logged Data For Kicks";
-		let BanHistory = db.get(`{BanReason}_${message.mentions.users.first().id}`); if (BanHistory == null)BanHistory = "No Logged Data For Bans";
-		let Violations = db.get(`${message.mentions.users.first().id}.admin.Violations`); if (Violations == null)Violations = "0";
-		let Warnings = db.get(`${message.mentions.users.first().id}.admin.Warnings`); if (Warnings == null)Warnings = "0";
-		let Mutes = db.get(`${message.mentions.users.first().id}.admin.Mutes`); if (Mutes == null)Mutes = "0";
-		let Kicks = db.get(`${message.mentions.users.first().id}.admin.Kicks`); if (Kicks == null)Kicks = "0";
-		let Bans = db.get(`${message.mentions.users.first().id}.admin.Bans`); if (Bans == null)Bans = "0";
+		let WarnHistory = db.get(`{WarnReason}_${message.mentions.users.first().id}`); if (WarnHistory == null) WarnHistory = "No Logged Data For Warnings";
+		let MuteHistory = db.get(`{MuteReason}_${message.mentions.users.first().id}`); if (MuteHistory == null) MuteHistory = "No Logged Data For Mutes";
+		let KickHistory = db.get(`{KickReason}_${message.mentions.users.first().id}`); if (KickHistory == null) KickHistory = "No Logged Data For Kicks";
+		let BanHistory = db.get(`{BanReason}_${message.mentions.users.first().id}`); if (BanHistory == null) BanHistory = "No Logged Data For Bans";
+		let Violations = db.get(`${message.mentions.users.first().id}.admin.Violations`); if (Violations == null) Violations = "0";
+		let Warnings = db.get(`${message.mentions.users.first().id}.admin.Warnings`); if (Warnings == null) Warnings = "0";
+		let Mutes = db.get(`${message.mentions.users.first().id}.admin.Mutes`); if (Mutes == null) Mutes = "0";
+		let Kicks = db.get(`${message.mentions.users.first().id}.admin.Kicks`); if (Kicks == null) Kicks = "0";
+		let Bans = db.get(`${message.mentions.users.first().id}.admin.Bans`); if (Bans == null) Bans = "0";
 		let users = message.mentions.users.first();
 
 		const UserHistory = new discord.MessageEmbed()

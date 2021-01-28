@@ -12,15 +12,20 @@ var DevPromt = [
 ];
 
 var Errors = [
-    Error6 = "**:warning: Error 6:** ```Invalid description or argument detected! Try making sure the command is being performed right and try again! If you are sure you have, please contact the bot owner!```",
-    Error4 = "**:warning: Error 4:** ```This command/feature has not yet been implemented yet! Please check back in the next bot update! Thank you! If you are sure it has been implemented, please contact the bot owner!```",
-    Error2 = "**:shield: Error 2:** This is an outdated bot version! Please update to the new Bot Version for the latest features, commands and security fixes! If you think this is a mistake, please contact the bot owner.",
-    Error3 = "**:warning: Error 3:** ```Sorry, this command/feature hasn't been implemented yet! Check back in future updates! If you think it already has been, please contact the bot owner.```",
-    Error5 = "**:no_entry_sign: Error 5:** You do NOT have the permission to perform this command/feature! :no_entry_sign:",
-    Error5 = "**:no_entry_sign: Error 5:** You do NOT have the permission to perform this command/feature! :no_entry_sign:",
-    Error7 = "**:warning: Error 7:** ```There was no description given! Please give a description or argument! If you did give a valid argument, please contact the bot owner, as it may be a bug!```",
+    // Error6
+    ArgumentError = "**:warning: Argument Error:** ```Invalid description or argument detected! Try making sure the command is being performed right and try again! If you are sure you have, please contact the bot owner!```",
+    // Error4
+    ImplementError1 = "**:warning: Implement Error 1:** ```This command/feature has not yet been implemented yet! Please check back in the next bot update! Thank you! If you are sure it has been implemented, please contact the bot owner!```",
+    // Error2
+    UpdateError = "**:shield: Update Error:** This is an outdated bot version! Please update to the new Bot Version for the latest features, commands and security fixes! If you think this is a mistake, please contact the bot owner.",
+    // Error3
+    ImplementError2 = "**:warning: Implement Error 2:** ```Sorry, this command/feature hasn't been implemented yet! Check back in future updates! If you think it already has been, please contact the bot owner.```",
+    // Error5
+    PermissionError1 = "**:no_entry_sign: Permission Error 1:** You do NOT have the permission to perform this command/feature! :no_entry_sign:",
+    // Error7
+    DescriptionError = "**:warning: Description Error:** ```There was no description given! Please give a description or argument! If you did give a valid argument, please contact the bot owner, as it may be a bug!```",
     StaffUser = ":no_entry_sign: Sorry, you can't perform this command on a staff member!",
-    PermissionError = ":no_entry_sign: You don't have the correct permission!",
+    PermissionError2 = ":no_entry_sign: You don't have the correct permission!",
     UserAlreadyUnmuted = ":warning: That user is already unmuted!",
     DMMessage = ":warning: You can't use this command in DM's!",
     UserAlreadyUnBanned = ":warning: That user isn't banned! ",

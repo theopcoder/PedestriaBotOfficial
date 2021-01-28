@@ -14,46 +14,46 @@ module.exports = class KickCommand extends Command {
 	}
 
 	run(message, args) {
-		if (message.guild === null){
-            message.reply(DMMessage);
-            return;
+		if (message.guild === null) {
+			message.reply(DMMessage);
+			return;
 		}
-		if (!message.member.hasPermission("KICK_MEMBERS")){
+		if (!message.member.hasPermission("KICK_MEMBERS")) {
 			const PermissionErrorMessage = new discord.MessageEmbed()
 				.setColor("#FF0000")
-				.setDescription(`${PermissionError}`)
+				.setDescription(`${PermissionError2}`)
 			message.channel.send(PermissionErrorMessage).then(message => {
-				message.delete({timeout: 10000})
+				message.delete({ timeout: 10000 })
 			});
 			return;
 		}
 		let KickedUser = message.guild.member(message.mentions.users.first());
-        if(!KickedUser) {
+		if (!KickedUser) {
 			const NullUserMessage = new discord.MessageEmbed()
 				.setColor()
 				.setDescription(NullUser)
 			message.channel.send(NullUserMessage).then(message => {
-				message.delete({timeout: 10000});
+				message.delete({ timeout: 10000 });
 			});
 			return;
 		}
-		if (KickedUser.hasPermission("MANAGE_MESSAGES")){
+		if (KickedUser.hasPermission("MANAGE_MESSAGES")) {
 			const StaffUserMessage = new discord.MessageEmbed()
 				.setColor("#FF0000")
 				.setDescription(StaffUser)
 			message.channel.send(StaffUserMessage).then(message => {
-				message.delete({timeout: 10000})
+				message.delete({ timeout: 10000 })
 			});
-            return;
+			return;
 		}
 		let words = args.split(' ');
 		let reason = words.slice(1).join(' ');
-        if (!reason){
+		if (!reason) {
 			const NoReasonWarning = new discord.MessageEmbed()
 				.setColor()
 				.setDescription(`:warning: Please supply a reason for the kick!`)
 			message.channel.send(NoReasonWarning).then(message => {
-                message.delete({timeout: 10000});
+				message.delete({ timeout: 10000 });
 			});
 			return;
 		}
@@ -62,11 +62,11 @@ module.exports = class KickCommand extends Command {
 		db.add(`${message.mentions.users.first().id}.admin.Violations`, 1);
 		var KickViolationNumber = db.add(`{KickViolationNumber}_${message.mentions.users.first().id}`, 1);
 		db.push(`{KickReason}_${message.mentions.users.first().id}`, `**Kick ${KickViolationNumber}:** [Mod: ${message.author} | Time: ${new Date().toLocaleString()}] ${words.slice(1).join(' ')}`);
-		let Violations = db.get(`${message.mentions.users.first().id}.admin.Violations`); if (Violations == null)Violations = "0";
-		let Warnings = db.get(`${message.mentions.users.first().id}.admin.Warnings`); if (Warnings == null)Warnings = "0";
-		let Mutes = db.get(`${message.mentions.users.first().id}.admin.Mutes`); if (Mutes == null)Mutes = "0";
-		let Kicks = db.get(`${message.mentions.users.first().id}.admin.Kicks`); if (Kicks == null)Kicks = "0";
-		let Bans = db.get(`${message.mentions.users.first().id}.admin.Bans`); if (Bans == null)Bans = "0";
+		let Violations = db.get(`${message.mentions.users.first().id}.admin.Violations`); if (Violations == null) Violations = "0";
+		let Warnings = db.get(`${message.mentions.users.first().id}.admin.Warnings`); if (Warnings == null) Warnings = "0";
+		let Mutes = db.get(`${message.mentions.users.first().id}.admin.Mutes`); if (Mutes == null) Mutes = "0";
+		let Kicks = db.get(`${message.mentions.users.first().id}.admin.Kicks`); if (Kicks == null) Kicks = "0";
+		let Bans = db.get(`${message.mentions.users.first().id}.admin.Bans`); if (Bans == null) Bans = "0";
 		let users = message.mentions.users.first();
 
 		KickedUser.send(`You have been kicked from ${message.guild.name} because, ${reason}. Reinvite Link: https://discord.gg/wKVu2Cq`).then(message => {

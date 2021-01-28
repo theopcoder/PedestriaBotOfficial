@@ -14,45 +14,45 @@ module.exports = class UnbanCommand extends Command {
 	}
 
 	run(message, args) {
-		if (message.guild === null){
-            message.reply(DMMessage);
-            return;
+		if (message.guild === null) {
+			message.reply(DMMessage);
+			return;
 		}
-		if (!message.member.hasPermission("BAN_MEMBERS")){
+		if (!message.member.hasPermission("BAN_MEMBERS")) {
 			const PermissionErrorMessage = new discord.MessageEmbed()
 				.setColor("#FF0000")
-				.setDescription(`${PermissionError}`)
+				.setDescription(`${PermissionError2}`)
 			message.channel.send(PermissionErrorMessage).then(message => {
-				message.delete({timeout: 10000})
+				message.delete({ timeout: 10000 })
 			});
 			return;
 		}
 		let words = args.split(' ');
 		let reason = words.slice(1).join(' ');
-        if(!words[0]){
+		if (!words[0]) {
 			const NullUserMessage = new discord.MessageEmbed()
 				.setColor()
 				.setDescription(NullUser)
 			message.channel.send(NullUserMessage).then(message => {
-				message.delete({timeout: 10000});
+				message.delete({ timeout: 10000 });
 			});
 			return;
 		}
-		if (isNaN(words[0])){
+		if (isNaN(words[0])) {
 			const NullUserMessage = new discord.MessageEmbed()
 				.setColor()
 				.setDescription("Please use a user ID!")
 			message.channel.send(NullUserMessage).then(message => {
-				message.delete({timeout: 10000});
+				message.delete({ timeout: 10000 });
 			});
 			return;
 		}
-        if (!reason){
+		if (!reason) {
 			const NoReasonWarning = new discord.MessageEmbed()
 				.setColor()
 				.setDescription(`:warning: Please supply a reason for the unban!`)
 			message.channel.send(NoReasonWarning).then(message => {
-                message.delete({timeout: 10000});
+				message.delete({ timeout: 10000 });
 			});
 			return;
 		}
