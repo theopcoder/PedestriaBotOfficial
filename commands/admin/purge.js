@@ -14,32 +14,31 @@ module.exports = class PurgeCommand extends Command {
 	}
 
 	run(message, args) {
-		if (message.guild === null){
-            message.reply(DMMessage);
-            return;
-        }
-		if(!message.member.hasPermission("MANAGE_MESSAGES"))
-        {
-            message.channel.send(PermissionError).then(message => {
-				message.delete({timeout: 10000});
-			});
-            return;
+		if (message.guild === null) {
+			message.reply(DMMessage);
+			return;
 		}
-        let words = args.split(' ');
+		if (!message.member.hasPermission("MANAGE_MESSAGES")) {
+			message.channel.send(PermissionError2).then(message => {
+				message.delete({ timeout: 10000 });
+			});
+			return;
+		}
+		let words = args.split(' ');
 		let DeletedMessage = words.slice(0).join(' ');
-		if (isNaN(args[0])){//Bug decimals break it!
+		if (isNaN(args[0])) {//Bug decimals break it!
 			message.reply("You can only use numbers for this command!");
 			return;
 		}
-		if (!DeletedMessage){
+		if (!DeletedMessage) {
 			message.reply("Incomplete command! Example: -purge 5");
 			return;
 		}
-		if (DeletedMessage == "1"){
+		if (DeletedMessage == "1") {
 			message.reply("You must purge 2 or more messages!");
 			return;
 		}
-		if (DeletedMessage > 100){
+		if (DeletedMessage > 100) {
 			message.reply("You must purge 100 or less messages!");
 			return;
 		}

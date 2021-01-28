@@ -14,19 +14,19 @@ module.exports = class PerformanceCommand extends Command {
 	}
 
 	run(message, args) {
-		if (!message.member.hasPermission("MANAGE_MESSAGES")){
+		if (!message.member.hasPermission("MANAGE_MESSAGES")) {
 			const PermissionErrorMessage = new discord.MessageEmbed()
 				.setColor("#FF0000")
-				.setDescription(`${PermissionError}`)
+				.setDescription(`${PermissionError2}`)
 			message.channel.send(PermissionErrorMessage).then(message => {
-				message.delete({timeout: 10000})
+				message.delete({ timeout: 10000 })
 			});
 			return;
 		}
 
 		var os = require('os');
-		var usedMemory = os.totalmem() -os.freemem(), totalMemory = os.totalmem();
-		var  getpercentage = ((usedMemory/totalMemory) * 100).toFixed(2) + '%'
+		var usedMemory = os.totalmem() - os.freemem(), totalMemory = os.totalmem();
+		var getpercentage = ((usedMemory / totalMemory) * 100).toFixed(2) + '%'
 
 		const PerformanceMessage = new discord.MessageEmbed()
 			.setTimestamp()
@@ -34,7 +34,7 @@ module.exports = class PerformanceCommand extends Command {
 			.setTitle("Bot Performance")
 			.setDescription(`
 				**Used RAM:** ${getpercentage}
-				**RAM:** ${(usedMemory/ Math.pow(1024, 3)).toFixed(2)}
+				**RAM:** ${(usedMemory / Math.pow(1024, 3)).toFixed(2)}
 				**Ping:** ${Date.now() - message.createdTimestamp} ms
 			`)
 		message.channel.send(PerformanceMessage);

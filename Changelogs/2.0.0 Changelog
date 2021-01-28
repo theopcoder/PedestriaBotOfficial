@@ -128,6 +128,8 @@ New Commands/Features:
 Changes: 
 1. Updated -history from saying nothing to No Logged Data For <Action>
 2. Updated Contributers in the README.md file
+3. Updated Error Names
+4. Fixed spelling errores
 
 Bug Fixes:
 1. Fixed -stats showing Currently Muted as undefined

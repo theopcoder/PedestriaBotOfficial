@@ -4,53 +4,52 @@ const discord = require("discord.js");
 const db = require("quick.db");
 
 module.exports = class SettingsCommand extends Command {
-	constructor(client) {
-		super(client, {
-			name: 'settings',
-			group: 'admin',
-			memberName: 'settings',
-			description: 'Configure the bot settings.',
-		});
-	}
+    constructor(client) {
+        super(client, {
+            name: 'settings',
+            group: 'admin',
+            memberName: 'settings',
+            description: 'Configure the bot settings.',
+        });
+    }
 
-	run(message, args) {
-        if (message.guild === null){
+    run(message, args) {
+        if (message.guild === null) {
             message.reply(DMMessage);
             return;
-		}
-		if(!message.member.hasPermission("ADMINISTRATOR")){
-			const PermissionErrorMessage = new discord.MessageEmbed()
-				.setColor("#FF0000")
-				.setDescription(`${PermissionError}`)
-			message.channel.send(PermissionErrorMessage).then(message => {
-				message.delete({timeout: 10000})
-			});
-			return;
+        }
+        if (!message.member.hasPermission("ADMINISTRATOR")) {
+            const PermissionErrorMessage = new discord.MessageEmbed()
+                .setColor("#FF0000")
+                .setDescription(`${PermissionError2}`)
+            message.channel.send(PermissionErrorMessage).then(message => {
+                message.delete({ timeout: 10000 })
+            });
+            return;
         }
         let words = args.split(' ');
         let reason = words.slice(0).join(' ');
 
         if (!reason) message.channel.send("Do you need help turning a feature on/off? Do -settings help to get started!");
-        if (reason == "help")
-        {
+        if (reason == "help") {
             const BotSettingsHelp = new discord.MessageEmbed()
                 .setColor("0xFFA500")
                 .setTimestamp()
                 .setThumbnail('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTvypYAFynUpTRITuiYvJstD17LjWB2zIzfLA&usqp=CAU')//I do not own this image. The image is from google.com. Click the link for the image
                 .setTitle("Bot Settings Help")
-                .addField("Feature Available: ", 
-                `These are features you are able to turn off! The names in parentheses are nicknames
+                .addField("Feature Available: ",
+                    `These are features you are able to turn off! The names in parentheses are nicknames
                     1. Message Level System (mls)
                     2. Auto Moderation (am)
                     3. Dead Chat Pings (dcp)
                 `)
-                .addField("Turn On features: ", 
-                `
+                .addField("Turn On features: ",
+                    `
                     To turn a feature on, do -settings (Settings name above) on
                     Example: -settings mls on
                 `)
-                .addField("Turn Off features: ", 
-                `
+                .addField("Turn Off features: ",
+                    `
                     To turn a feature off, do -settings (Settings name above) off
                     Example: -settings mls off
                 `)
@@ -59,9 +58,8 @@ module.exports = class SettingsCommand extends Command {
         }
 
         //MLS(Message Level System) Settings
-        if (reason == "mls on")
-        {
-            if (db.get("LevelUpsSetting")== 1)return message.reply("Sorry, the Message Level System is already on!");
+        if (reason == "mls on") {
+            if (db.get("LevelUpsSetting") == 1) return message.reply("Sorry, the Message Level System is already on!");
             db.add("LevelUpsSetting", 1);
             const MessageLevelSystemOnMSG = new discord.MessageEmbed()
                 .setTimestamp()
@@ -71,9 +69,8 @@ module.exports = class SettingsCommand extends Command {
             message.channel.send(MessageLevelSystemOnMSG);
             return;
         }
-        if (reason == "mls off")
-        {
-            if (db.get("LevelUpsSetting")== 0)return message.reply("Sorry, the Message Level System is already off!");
+        if (reason == "mls off") {
+            if (db.get("LevelUpsSetting") == 0) return message.reply("Sorry, the Message Level System is already off!");
             db.subtract("LevelUpsSetting", 1);
             const MessageLevelSystemOffMSG = new discord.MessageEmbed()
                 .setTimestamp()
@@ -83,15 +80,15 @@ module.exports = class SettingsCommand extends Command {
             message.channel.send(MessageLevelSystemOffMSG);
             return;
         }
-        if (db.get("LevelUpsSetting")== 1){
+        if (db.get("LevelUpsSetting") == 1) {
             var MLS = ":white_check_mark: On";
-        }else{
+        } else {
             MLS = ":x: Off";
         }
 
         //Dead chat settings
-        if (reason == "dcp on"){
-            if (db.get("DeadChatPingSetting")== 1)return message.reply("Sorry, Dead Chat Pings are already on!");
+        if (reason == "dcp on") {
+            if (db.get("DeadChatPingSetting") == 1) return message.reply("Sorry, Dead Chat Pings are already on!");
             db.add("DeadChatPingSetting", 1);
 
             const DeadChatPingOnMSG = new discord.MessageEmbed()
@@ -102,8 +99,8 @@ module.exports = class SettingsCommand extends Command {
             message.channel.send(DeadChatPingOnMSG);
             return;
         }
-        if (reason == "dcp off"){
-            if (db.get("DeadChatPingSetting")== 0)return message.reply("Sorry, Dead Chat Pings are already off!");
+        if (reason == "dcp off") {
+            if (db.get("DeadChatPingSetting") == 0) return message.reply("Sorry, Dead Chat Pings are already off!");
             db.subtract("DeadChatPingSetting", 1);
 
             const DeadChatPingOffMSG = new discord.MessageEmbed()
@@ -114,15 +111,15 @@ module.exports = class SettingsCommand extends Command {
             message.channel.send(DeadChatPingOffMSG);
             return;
         }
-        if (db.get("DeadChatPingSetting")== 1){
+        if (db.get("DeadChatPingSetting") == 1) {
             var DCP = ":white_check_mark: On";
-        }else{
+        } else {
             DCP = ":x: Off";
         }
 
         //Auto Moderation
-        if (reason == "am on"){
-            if (db.get("AutoModerationSetting")== 1)return message.reply("Sorry, Auto Moderation are already on!");
+        if (reason == "am on") {
+            if (db.get("AutoModerationSetting") == 1) return message.reply("Sorry, Auto Moderation are already on!");
             db.add("AutoModerationSetting", 1);
 
             const AutoModerationOnMSG = new discord.MessageEmbed()
@@ -133,8 +130,8 @@ module.exports = class SettingsCommand extends Command {
             message.channel.send(AutoModerationOnMSG);
             return;
         }
-        if (reason == "am off"){
-            if (db.get("AutoModerationSetting")== 0)return message.reply("Sorry, Auto Moderation are already off!");
+        if (reason == "am off") {
+            if (db.get("AutoModerationSetting") == 0) return message.reply("Sorry, Auto Moderation are already off!");
             db.subtract("AutoModerationSetting", 1);
 
             const AutoModerationOffMSG = new discord.MessageEmbed()
@@ -145,9 +142,9 @@ module.exports = class SettingsCommand extends Command {
             message.channel.send(AutoModerationOffMSG);
             return;
         }
-        if (db.get("AutoModerationSetting")== 1){
+        if (db.get("AutoModerationSetting") == 1) {
             var AM = ":white_check_mark: On";
-        }else{
+        } else {
             AM = ":x: Off";
         }
 
@@ -161,5 +158,5 @@ module.exports = class SettingsCommand extends Command {
             .addField("AutoModeration:", AM)
             .addField("DeadChatPings:", DCP)
         message.channel.send(BotSettings);
-	}
+    }
 };

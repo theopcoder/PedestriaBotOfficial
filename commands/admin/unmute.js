@@ -14,55 +14,55 @@ module.exports = class UnmuteCommand extends Command {
 	}
 
 	run(message, args) {
-		if (message.guild === null){
-            message.reply(DMMessage);
-            return;
+		if (message.guild === null) {
+			message.reply(DMMessage);
+			return;
 		}
-		if (!message.member.hasPermission("MANAGE_MESSAGES")){
+		if (!message.member.hasPermission("MANAGE_MESSAGES")) {
 			const PermissionErrorMessage = new discord.MessageEmbed()
 				.setColor("#FF0000")
-				.setDescription(`${PermissionError}`)
+				.setDescription(`${PermissionError2}`)
 			message.channel.send(PermissionErrorMessage).then(message => {
-				message.delete({timeout: 10000})
+				message.delete({ timeout: 10000 })
 			});
 			return;
 		}
 		let UnmutedUser = message.guild.member(message.mentions.users.first());
-        if(!UnmutedUser){
+		if (!UnmutedUser) {
 			const NullUserMessage = new discord.MessageEmbed()
 				.setColor()
 				.setDescription(NullUser)
 			message.channel.send(NullUserMessage).then(message => {
-				message.delete({timeout: 10000});
+				message.delete({ timeout: 10000 });
 			});
 			return;
 		}
-		if (UnmutedUser.hasPermission("MANAGE_MESSAGES")){
+		if (UnmutedUser.hasPermission("MANAGE_MESSAGES")) {
 			const StaffUserMessage = new discord.MessageEmbed()
 				.setColor("#FF0000")
 				.setDescription(StaffUser)
 			message.channel.send(StaffUserMessage).then(message => {
-				message.delete({timeout: 10000})
+				message.delete({ timeout: 10000 })
 			});
-            return;
+			return;
 		}
 		const UserAlreadyUnmutedMessage = new discord.MessageEmbed()
 			.setColor("	#FF0000")
 			.setDescription(UserAlreadyUnmuted)
-		if (db.get(`${message.mentions.users.first().id}.admin.CurrentlyMuted`)== null){
+		if (db.get(`${message.mentions.users.first().id}.admin.CurrentlyMuted`) == null) {
 			return message.channel.send(UserAlreadyUnmutedMessage);
 		}
-		if (db.get(`${message.mentions.users.first().id}.admin.CurrentlyMuted`)== 0){
+		if (db.get(`${message.mentions.users.first().id}.admin.CurrentlyMuted`) == 0) {
 			return message.channel.send(UserAlreadyUnmutedMessage);
 		}
 		let words = args.split(' ');
 		let reason = words.slice(1).join(' ');
-        if (!reason){
+		if (!reason) {
 			const NoReasonWarning = new discord.MessageEmbed()
 				.setColor()
 				.setDescription(`:warning: Please supply a reason for the unmute!`)
 			message.channel.send(NoReasonWarning).then(message => {
-                message.delete({timeout: 10000});
+				message.delete({ timeout: 10000 });
 			});
 			return;
 		}
@@ -75,10 +75,10 @@ module.exports = class UnmuteCommand extends Command {
 		let MuteRole = message.guild.roles.cache.get(MuteRoleID);
 		UnmutedUser.roles.remove(MuteRole);
 		let MemberRole = message.guild.roles.cache.get(NewMemberRoleID);
-		UnmutedUser.roles.add(MemberRole).then(function(){
+		UnmutedUser.roles.add(MemberRole).then(function () {
 			UnmutedUser.send(`You have been unmuted on ${message.guild.name} because, ${reason}.`);
 		});
-		let TimesBypassedMute = db.get(`${message.mentions.users.first().id}.admin.TimesBypassedMute`); if (TimesBypassedMute == null)TimesBypassedMute = "0";
+		let TimesBypassedMute = db.get(`${message.mentions.users.first().id}.admin.TimesBypassedMute`); if (TimesBypassedMute == null) TimesBypassedMute = "0";
 		db.delete(`${message.mentions.users.first().id}.admin.TimesBypassedMute`);
 
 		const ChatUnmuteMessage = new discord.MessageEmbed()

@@ -11,10 +11,10 @@ module.exports = class SurvivalGameCommand extends Command {
 			memberName: 'survival',
 			description: 'A built in survival game!',
 		});
-    }
-    //TODO Finish survival game command
+	}
+	//TODO Finish survival game command
 
 	run(message, args) {
-		message.reply(Error4);
+		message.reply(ImplementError1);
 	}
 };
