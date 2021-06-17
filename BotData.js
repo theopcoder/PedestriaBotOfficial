@@ -33,7 +33,7 @@ var BotConfiguration = [
     //--------------------------------------------------
     //Bot Configuration---------------------------------
     BotPrefix = "-",
-    ActivityMessage = "play.pedestriamc.com | The Official WIki for PedestriaMC Network is now released!",
+    ActivityMessage = "play.pedestriamc.com | The Official Wiki for PedestriaMC Network is now released!",
     AutoModerationSetting = "1",
     DeadChatPingSetting = "1",
     LevelUpsSetting = "1",
