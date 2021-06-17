@@ -33,7 +33,7 @@ var BotConfiguration = [
     //--------------------------------------------------
     //Bot Configuration---------------------------------
     BotPrefix = "-",
-    ActivityMessage = "play.pedestriamc.com | The Official WIki for PedestriaMC Network is now released!",
+    ActivityMessage = "play.pedestriamc.com | The Official Wiki for PedestriaMC Network is now released!",
     AutoModerationSetting = "1",
     DeadChatPingSetting = "1",
     LevelUpsSetting = "1",
@@ -74,6 +74,10 @@ var BotConfiguration = [
     BugReportChannelID = "703833715738017822",
     TicketCategoryID = "767029093379473438",
     PollChannelID = "778680906856661054",
+    //--------------------------------------------------
+    //Outdated Bot Configuration---------------------
+    StaffGeneralID = "799862796065308693",
+    StaffPingRoleID = "747186171750252645",
 ];
 
 //---------------Configuration Help---------------//
