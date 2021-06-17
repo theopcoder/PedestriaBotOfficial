@@ -103,7 +103,7 @@ bot.on('message', function(message){
         const LevelUpMessage = new discord.MessageEmbed()
             .setColor('0x0000FF')
             .setTimestamp()
-            .setThumbnail(message.author.avatarURL())
+            .setThumbnail(message.author.displayAvatarURL())
             .setTitle(":tada: Level Up!")
             .setDescription(`
                 **User:** ${message.author}
@@ -155,7 +155,9 @@ bot.on('message', function(message){
                         **User:** ${message.author}
                         **Time Bypassed Mute:** ${db.get(`${message.author.id}.admin.TimesBypassedMute`)}
                     `)
-                message.channel.send(MuteBypassMessage);
+                message.channel.send(MuteBypassMessage).then(message => {
+                    message.delete({timeout: 15000});
+                });
             }
         }else{
             return;
@@ -212,12 +214,6 @@ bot.on('message', function(message){
         }else{
             return;
         }
-        //Link Checker
-        /*if (LinkCheckerSetting == "1"){
-            console.log("Not Done Yet");
-        }else{
-            return;
-        }*/
     }
 });
 

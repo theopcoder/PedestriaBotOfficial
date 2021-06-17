@@ -44,5 +44,9 @@ module.exports = class SuggestCommand extends Command {
         SuggestionChannel.send(`<@&${SuggestionPingRoleID}>, New suggestion!`).then(message => {
             message.delete();
         });
+
+        message.reply("Successfully sent your suggestion!").then(message => {
+            message.delete({timeout: 10000});
+        });
 	}
 };

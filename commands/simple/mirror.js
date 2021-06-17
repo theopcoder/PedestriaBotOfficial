@@ -14,19 +14,16 @@ module.exports = class MirrorCommand extends Command {
 	}
 
 	run(message, args) {
-        let MirrorUser = message.mentions.users.first();
-
-        if (MirrorUser)
-        {
-            const MentionedPFP = new discord.MessageEmbed()
+        if (message.mentions.users.first()){
+            const MentionUsersPFP = new discord.MessageEmbed()
                 .setColor("RANDOM")
-                .setThumbnail(MirrorUser.displayAvatarURL())
-            message.channel.send(MentionedPFP);
+                .setThumbnail(message.mentions.users.first().displayAvatarURL())
+            message.channel.send(MentionUsersPFP);
         }else{
-            const AuthorPFP = new discord.MessageEmbed()
+            const YourPFP = new discord.MessageEmbed()
                 .setColor("RANDOM")
                 .setThumbnail(message.author.displayAvatarURL())
-            message.channel.send(AuthorPFP);
+            message.channel.send(YourPFP);
         }
 	}
 };

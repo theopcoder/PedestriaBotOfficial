@@ -35,7 +35,7 @@ module.exports = class GambleCommand extends Command {
         if (Extra)return message.reply("Incorect command usage/arguments! Example: -gamble 1500");
         if (bet < 1000)return message.channel.send(`I'm sorry ${message.author}, you have to bet **$1000** or more to use this command!`);
         if (bet > bal)return message.channel.send(`I'm sorry ${message.author}, You don't have enough money to make a $**${bet}** bet. You only have $**${bal}**!`);
-        db.add(`GlobalMoneyConfirmationID`, 1);//TODO Finish this piece
+        db.add(`GlobalMoneyConfirmationID`, 1);
 		let GetConfirmationID = db.get(`GlobalMoneyConfirmationID`);
 		db.push(`{ConfirmationMessage}_${message.author.id}`, `\n**PaymentID:** #${GetConfirmationID}\n**Date:** ${new Date().toLocaleString()}\n**Payment Type:** Gamble\n**Amount:** $${bet}\n`);
         db.subtract(`${message.author.id}.basic.money`, bet);

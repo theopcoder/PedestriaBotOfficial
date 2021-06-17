@@ -5,7 +5,8 @@ A custom Discord bot for the Pedestria Discord server.
 
 # Information:
 Author: theopcoder  
-Version: 2.0.0
+Version: 2.2.1
+Website: https://theopcoder.github.io/PedestriaBotOfficial/
 
 **Contributors:**
 1. Wiicart (wiicart)  

@@ -133,6 +133,26 @@ Bug Fixes:
 1. Fixed -stats showing Currently Muted as undefined
 2. Fixed -stats not showing data for admin commands
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Release Version: 2.2.1
+Release Name: 2.2.1 Update
+Release Date: 6/17/2021
+Release Description: A small update with some changes and a bug fix
+
+New Commands/Features:
+1. 
+
+Changes:
+1. Mute bypass messages will now automatically be deleted after 15 seconds
+2. Suggestions now send a message confirming it was sent
+3. A few changes to -mirror
+4. README.md now contains the link to the github website for this project
+5. Mute Bypasses will now automatically delete the warning message to prevent flooding
+
+Bug Fixes:
+1. Fixed a bug where level ups may not always correctly show a users PFP
+
+Notes: 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Release Version: 
 Release Name: 
 Release Date: 

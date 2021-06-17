@@ -1,6 +1,6 @@
 var BotData = [
-    Version = "2.1.3",
-    VN = "2.1.3 Feature Update",//VN stands for Version Name
+    Version = "2.2.1",
+    VN = "2.2.1 Update",//VN stands for Version Name
     Developer = "TheMLGDude#2177 | theopcoder",
     DeveloperDiscord = "TheMLGDude#2177",
     DeveloperGitHub = "theopcoder",
@@ -39,12 +39,13 @@ var BotConfiguration = [
     LevelUpsSetting = "1",
     //--------------------------------------------------
     //Channel Configuration-----------------------------
+    SecondDiscordServerID = "802273533497573437",
     WelcomeChannelID = "704876411177140364",
     NewMemberRoleID = "738879347468795967",
     //--------------------------------------------------
     //Admin Configuration-------------------------------
     DeletedMessageLogChannelID = "740270992269639731",
-    MCWorldsAlertChannelID = "800152630617178132",
+    MCWorldsAlertChannelID = "804830735114174464",
     PurgeLogChannelID = "740270992269639731",
     LogChannelID = "740270992269639731",
     MuteRoleID = "790134169412829204",
@@ -56,7 +57,7 @@ var BotConfiguration = [
     ChatFilterSetting = "1",
     //--------------------------------------------------
     //Level Up Configuration----------------------------
-    LevelUpChannelID = "746451871794724904",
+    LevelUpChannelID = "799862796065308693",
     LevelUpMoney = "200",
     MaxRandomXP = "5",
     MaxXP = "200",
@@ -69,7 +70,7 @@ var BotConfiguration = [
     //Support Channel Configuration---------------------
     TicketStaffPingRoleID = "747186171750252645",
     SuggestionPingRoleID = "789569674932912178",
-    SuggestionChannelID = "738874224281649242",
+    SuggestionChannelID = "799862897563795457",
     TicketLogChannelID = "767032869473878066",
     BugReportChannelID = "703833715738017822",
     TicketCategoryID = "767029093379473438",
