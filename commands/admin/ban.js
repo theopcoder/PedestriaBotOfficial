@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const discord = require("discord.js");
 const db = require("quick.db");
 
@@ -69,9 +69,10 @@ module.exports = class BanCommand extends Command {
 		let Bans = db.get(`${message.mentions.users.first().id}.admin.Bans`); if (Bans == null)Bans = "0";
 		let users = message.mentions.users.first();
 
-		BannedUser.send(`You have been ban from ${message.guild.name} because, ${reason}.`).then(message => {
-			BannedUser.ban({reason: reason});
-		});
+		BannedUser.send(`You have been ban from ${message.guild.name} because, ${reason}.`).catch(err => 
+			console.log(`Could not message banned user!`)
+		);
+        BannedUser.ban({reason: reason});
 
 		const ChatBanMessage = new discord.MessageEmbed()
 			.setColor("FF0000")

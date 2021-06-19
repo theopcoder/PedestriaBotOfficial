@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const discord = require("discord.js");
 const db = require("quick.db");
 
@@ -69,9 +69,10 @@ module.exports = class KickCommand extends Command {
 		let Bans = db.get(`${message.mentions.users.first().id}.admin.Bans`); if (Bans == null)Bans = "0";
 		let users = message.mentions.users.first();
 
-		KickedUser.send(`You have been kicked from ${message.guild.name} because, ${reason}. Reinvite Link: https://discord.gg/wKVu2Cq`).then(message => {
-			KickedUser.kick(reason);
-		});
+		KickedUser.send(`You have been kicked from ${message.guild.name} because, ${reason}. Reinvite Link: https://discord.gg/wKVu2Cq`).catch(err => 
+			console.log(`Could not message kicked user!`)
+		);
+		KickedUser.kick(reason);
 
 		const ChatKickMessage = new discord.MessageEmbed()
 			.setColor("#6a0dad")

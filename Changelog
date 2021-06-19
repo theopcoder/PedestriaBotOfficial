@@ -1,0 +1,53 @@
+Release Name: 2.3.0 Fix Up
+Release Date: 06/19/2021
+Release Version: 2.3.0
+Release BuildID: 2021.06.19.2.3.0
+Release Description: The bot had a lot of changes and has been updated with new features and many fixes and changes!
+
+New Features
+1. Added -afk
+2. Added -rickroll
+3. Added -spelling
+4. Added -temperature
+5. Added -topic
+
+Changes
+1. Put BotData information into new file called System
+2. BotConfiguration has been moved from BotData to a new file called BotConfiguration.js
+3. -bug Bug Number is now in the title instead of the message
+4. -info Now shows the BuildID and the people have an emoji
+5. Updated -poll look and added a confirmation message when the poll is sent
+6. -suggest now has a suggestion counter in the title and no longer requires a suggestion ping role
+7. -power command will now log who restarted or shutdown the bot
+8. When the bot turns on, the successfull login console message will be in green
+9. You can now change the bot status in the BotConfiguration file
+10. Welcome messages now only show the username and not the 4 digit number
+11. Completely redid -settings command
+12. Updated -purge confirmation message
+13. Mute bypass protection got a new design and is now logged
+14. Chat filter protection got a new design and is now logged
+15. Discord Invite Checker got a new design and is now logged
+16. -tempmute was merged into -mute and has had a big redesign
+17. Updated BotConfiguration settings and Configuration Help
+
+Bug Fixes
+1. Fixed -poll not showing your first word when performing the command
+2. Fixed -purge breaking when using decimal numbers or adding a second argument
+3. Fixed bug when you ban a user and can't be messaged, it no longer shows a big error message in console
+4. Fixed bug when you kick a user and can't be messaged, it no longer shows a big error message in console
+5. Fixed Dead Chat Pings not pinging
+6. -mute no longer makes an error message when user wasn't DM'ed successfull
+7. -unmute no longer makes an error message when user wasn't DM'ed successfull
+8. -pf now has a DM Error message
+8. -power now has a DM Error message
+8. -settings now has a DM Error message
+
+Other
+1. Added chalk dependency
+2. Removed -diagnostics
+3. Removed -transfer
+4. Removed the automatic data transfer
+5. Added ms dependency
+
+Notes: New dependencys where added and some where updated.
+====================================

@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const discord = require("discord.js");
 const db = require("quick.db");
 
@@ -76,7 +76,9 @@ module.exports = class UnmuteCommand extends Command {
 		UnmutedUser.roles.remove(MuteRole);
 		let MemberRole = message.guild.roles.cache.get(NewMemberRoleID);
 		UnmutedUser.roles.add(MemberRole).then(function(){
-			UnmutedUser.send(`You have been unmuted on ${message.guild.name} because, ${reason}.`);
+			UnmutedUser.send(`You have been unmuted on ${message.guild.name} because, ${reason}.`).catch(err => 
+                console.log(`Could not message unmuted user!`)
+            );
 		});
 		let TimesBypassedMute = db.get(`${message.mentions.users.first().id}.admin.TimesBypassedMute`); if (TimesBypassedMute == null)TimesBypassedMute = "0";
 		db.delete(`${message.mentions.users.first().id}.admin.TimesBypassedMute`);

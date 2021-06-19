@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const discord = require("discord.js");
 const db = require("quick.db");
 
@@ -7,7 +7,7 @@ module.exports = class RankCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'rank',
-			group: 'simple',
+			group: 'fun',
 			memberName: 'rank',
 			description: 'Shows you your chat level!',
 		});

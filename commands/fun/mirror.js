@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const discord = require("discord.js");
 const db = require("quick.db");
 
@@ -7,7 +7,7 @@ module.exports = class MirrorCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'mirror',
-			group: 'simple',
+			group: 'fun',
 			memberName: 'mirror',
 			description: 'Shows you your pfp!',
 		});

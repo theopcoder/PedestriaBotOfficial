@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const discord = require("discord.js");
 const db = require("quick.db");
 
@@ -30,10 +30,9 @@ module.exports = class BugCommand extends Command {
 			.setColor("#20B2AA")
 			.setTimestamp()
             .setThumbnail(message.author.avatarURL())
-			.setTitle("Bug Report")
+			.setTitle(`Bug Report #${db.get("BugNumber")}`)
 			.setDescription(`
 				**User:** ${message.author}
-				**Bug Number:** ${db.get("BugNumber")}
 				**Bug:** ${reason}
 			`)
 		let BugReportChannel = message.guild.channels.cache.get(BugReportChannelID);

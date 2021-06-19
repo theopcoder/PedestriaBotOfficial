@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const discord = require("discord.js");
 const db = require("quick.db");
 
@@ -7,7 +7,7 @@ module.exports = class DiceRollCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'roll',
-			group: 'simple',
+			group: 'fun',
 			memberName: 'roll',
 			description: 'Rolls a 6 sided dice!',
 		});

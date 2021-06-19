@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const discord = require("discord.js");
 const db = require("quick.db");
 
@@ -24,12 +24,13 @@ module.exports = class SuggestCommand extends Command {
         if (!reason)return message.reply(":warning: Incomplete command! What's your suggestion?").then(message => {
             message.delete({timeout: 10000});
         });
+        db.add("SuggestionNumber", 1);
 
         const SuggestionMessage = new discord.MessageEmbed()
             .setColor("#20B2AA")
             .setTimestamp()
             .setThumbnail(message.author.avatarURL())
-            .setTitle('Suggestion')
+            .setTitle(`Suggestion #${db.get("SuggestionNumber")}`)
             .setDescription(`
                 **User:** ${message.author}
                 **Suggestion:** ${reason}
@@ -41,9 +42,13 @@ module.exports = class SuggestCommand extends Command {
             MessageEmbed.react("❌");
         });
 
-        SuggestionChannel.send(`<@&${SuggestionPingRoleID}>, New suggestion!`).then(message => {
-            message.delete();
-        });
+        if (SuggestionPingRoleID == null){
+            return;
+        }else{
+            SuggestionChannel.send(`<@&${SuggestionPingRoleID}>, New suggestion!`).then(message => {
+                message.delete();
+            });
+        }
 
         message.reply("Successfully sent your suggestion!").then(message => {
             message.delete({timeout: 10000});

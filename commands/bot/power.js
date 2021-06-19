@@ -1,15 +1,16 @@
-const { Command, CommandoClient } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command, CommandoClient } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const token = require("../../Token.js");
 const discord = require("discord.js");
 const client = new CommandoClient();
 const db = require("quick.db");
+const chalk = require("chalk");
 
 module.exports = class PowerCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'power',
-			group: 'other',
+			group: 'bot',
 			memberName: 'power',
 			description: `Power commands for the bot.`,
 		});
@@ -31,11 +32,12 @@ module.exports = class PowerCommand extends Command {
         }
 		let words = args.split(' ');
 		let PowerAction = words.slice(0).join(' ');
-        if (!PowerAction) return message.reply(":warning: Do you want to restart or shutdown the bot?").then(message => {
+        if (!PowerAction) return message.reply(":warning: Do you want to restart or shutdown the bot? Ex: -power <restart or shutdown>").then(message => {
             message.delete({timeout: 10000});
         });
 
         if (PowerAction == "restart"){
+            console.log(chalk.red(`${message.author.tag} Restarted the bot!`));
             message.channel.send("Restarting Bot...");
             client.destroy().then(() => {
                 client.login(key);
@@ -43,9 +45,11 @@ module.exports = class PowerCommand extends Command {
             message.channel.send(`The bot is back online!`);
         }
         if (PowerAction == "shutdown"){
-            message.channel.send(`Shuttingdown bot...`).then(message => {
-                message.channel.send("The bot is now offline.");
-                process.exit();
+            console.log(chalk.red(`${message.author.tag} Shut down the bot!`));
+            message.channel.send(`Shutting down bot...`).then(message => {
+                message.channel.send("The bot is now offline.").then(() => {
+                    process.exit();
+                });
             });
         }
 	}

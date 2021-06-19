@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const discord = require("discord.js");
 const db = require("quick.db");
 
@@ -9,7 +9,7 @@ module.exports = class InfoCommand extends Command {
 			name: 'info',
 			group: 'support',
 			memberName: 'info',
-			description: `Gives you information about the Pedestria Discord server and Pedestria Bot Official`,
+			description: `Gives you information about the Pedestria Discord server and PedestriaBot Official!`,
 		});
 	}
 
@@ -27,14 +27,14 @@ module.exports = class InfoCommand extends Command {
                 :satellite: **Minecraft IP:** play.pedestriamc.com
                 :globe_with_meridians: **Website:** https://www.pedestriamc.com/
                 :shopping_cart: **Store:** https://store.pedestriamc.com/
-                Members: ${message.guild.memberCount}
+                :person_in_tuxedo: **Members:** ${message.guild.memberCount}
             `)
             .addField("Bot Info:", `
-                :technologist:**Developer:** theopcoder
+                :technologist:**Developer:** ${Developer}
                 :shield: **Version:** ${Version}
+                :gear: **BuildID** ${BuildID}
                 :desktop: **GitHub repository:** https://github.com/theopcoder/PedestriaBotOfficial
             `)
-            .setFooter(`Missing something? Tell us in #suggestions!`)
         message.channel.send(InfoMessage);
 	}
 };

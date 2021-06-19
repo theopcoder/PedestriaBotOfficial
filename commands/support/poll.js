@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const discord = require("discord.js");
 const db = require("quick.db");
 
@@ -9,7 +9,7 @@ module.exports = class PollCommand extends Command {
 			name: 'poll',
 			group: 'support',
 			memberName: 'poll',
-            description: `Creates a poll`,
+            description: `Creates a poll!`,
 		});
 	}
 
@@ -28,8 +28,8 @@ module.exports = class PollCommand extends Command {
 			return;
         }
         let words = args.split(' ');
-        let Poll = words.slice(1).join(' ');
-        
+        let Poll = words.slice(0).join(' ');
+
         const PollMessage = new discord.MessageEmbed()
             .setTimestamp()
             .setColor("#0000FF")
@@ -37,13 +37,16 @@ module.exports = class PollCommand extends Command {
             .setAuthor(message.author.tag, message.author.displayAvatarURL())
             .setTitle("Poll")
             .setDescription(`
-                User: ${message.author}
-                Poll: ${Poll}
+                ${Poll}
             `)
         let PollChannel = message.guild.channels.cache.get(PollChannelID);
         PollChannel.send(PollMessage).then(MessageEmbed => {
             MessageEmbed.react("✅");
             MessageEmbed.react("❌");
+        });
+        
+        message.reply("Successfully sent the poll!").then(message => {
+            message.delete({timeout: 10000});
         });
 	}
 };

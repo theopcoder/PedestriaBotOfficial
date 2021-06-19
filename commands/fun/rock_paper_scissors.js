@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const discord = require("discord.js");
 const db = require("quick.db");
 
@@ -7,7 +7,7 @@ module.exports = class RPSCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'rps',
-			group: 'simple',
+			group: 'fun',
 			memberName: 'rps',
 			description: 'Plays rock, paper, scissors!',
 		});
@@ -23,10 +23,10 @@ module.exports = class RPSCommand extends Command {
                 .setTitle("Rock Paper Scissor Rules-Options")
                 .setDescription(`
                     **Normal:**
-                        a. Command usage: -rps normal
+                        a. Command usage: -rps
                         b. This will let you play a normal round of rock, paper, scissors
                     **Lizards:**
-                        a. Command usage -rps
+                        a. Command usage -rps custom
                         b. No special words needed
                         c. This will allow you to play a customized version of rock paper scissors
                         d. Rules: Scissors cuts paper, paper covers rock, rock crushes lizard, lizard poisons Spock, Spock smashes scissors, scissors decapitates lizard, lizard eats paper, paper disproves Spock, Spock vaporizes rock, and as it always has, rock crushes scissors
@@ -34,18 +34,7 @@ module.exports = class RPSCommand extends Command {
                 `)
             message.channel.send(RPSRules);
         }
-        if (reason == "normal"){
-            var chance = Math.floor(Math.random() * 3);
-            if (chance == 0){
-                return message.reply("I got rock");
-            }
-            if(chance == 1){
-                return message.reply("I got paper");
-            }
-            if (chance == 2){
-                return message.reply("I got scissors");
-            }
-        }else{
+        if (reason == "custom"){
             var chance = Math.floor(Math.random() * 5);
             if (chance == 0){
                 return message.reply("I got rock");
@@ -61,6 +50,17 @@ module.exports = class RPSCommand extends Command {
             }
             if (chance == 4){
                 return message.reply("I got spock");
+            }
+        }else{
+            var chance = Math.floor(Math.random() * 3);
+            if (chance == 0){
+                return message.reply("I got rock");
+            }
+            if(chance == 1){
+                return message.reply("I got paper");
+            }
+            if (chance == 2){
+                return message.reply("I got scissors");
             }
         }
 	}

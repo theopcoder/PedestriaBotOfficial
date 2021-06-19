@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const discord = require("discord.js");
 const db = require("quick.db");
 
@@ -7,7 +7,7 @@ module.exports = class StatsCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: 'stats',
-			group: 'simple',
+			group: 'fun',
 			memberName: 'stats',
 			description: 'Shows you your stats!',
 		});
@@ -42,7 +42,7 @@ module.exports = class StatsCommand extends Command {
             let Bans = db.get(`${message.mentions.users.first().id}.admin.Bans`); if (Bans == null)Bans = "0";
             let XP = db.get(`${message.mentions.users.first().id}.basic.xp`); if (XP == null)XP = "0";
             let users = message.mentions.users.first();
-    
+
             const MentionedUserStats = new discord.MessageEmbed()
                 .setTimestamp()
                 .setColor("#ADD8E6")

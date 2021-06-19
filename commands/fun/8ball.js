@@ -1,13 +1,13 @@
-const { Command } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const discord = require("discord.js");
 const db = require("quick.db");
 
-module.exports = class FlipCommand extends Command {
+module.exports = class EightBallCommand extends Command {
 	constructor(client) {
 		super(client, {
 			name: '8ball',
-			group: 'simple',
+			group: 'fun',
 			memberName: '8ball',
 			description: 'A magic 8 ball!',
 		});
@@ -17,86 +17,66 @@ module.exports = class FlipCommand extends Command {
         let words = args.split(' ');
         let reason = words.slice(0).join(' ');
         if (!reason) return message.reply('Incomplete command! EX: -8ball Is this command cool?');
-        
         var chance = Math.floor(Math.random() * 20);
-        if (chance == 0)
-        {
+
+        if (chance == 0) {
             message.reply("● It is certain.");
         }
-        if (chance == 1)
-        {
+        if (chance == 1) {
             message.reply("● It is decidedly so.");
         }
-        if (chance == 2)
-        {
+        if (chance == 2) {
             message.reply("● Without a doubt.");
         }
-        if (chance == 3)
-        {
+        if (chance == 3) {
             message.reply("● Yes - definitely.");
         }
-        if (chance == 4)
-        {
+        if (chance == 4) {
             message.reply("● You may rely on it.");
         }
-        if (chance == 5)
-        {
+        if (chance == 5) {
             message.reply("● As I see it, yes.");
         }
-        if (chance == 6)
-        {
+        if (chance == 6) {
             message.reply("● Most likely.");
         }
-        if (chance == 7)
-        {
+        if (chance == 7) {
             message.reply("● Outlook good.");
         }
-        if (chance == 8)
-        {
+        if (chance == 8) {
             message.reply("● Yes.");
         }
-        if (chance == 9)
-        {
+        if (chance == 9) {
             message.reply("● Signs point to yes.");
         }
-        if (chance == 10)
-        {
+        if (chance == 10) {
             message.reply("● Reply hazy, try again.");
         }
-        if (chance == 11)
-        {
+        if (chance == 11) {
             message.reply("● Ask again later.");
         }
-        if (chance == 12)
-        {
+        if (chance == 12) {
             message.reply("● Better not tell you now.");
         }
-        if (chance == 13)
-        {
+        if (chance == 13) {
             message.reply("● Cannot predict now.");
         }
-        if (chance == 14)
-        {
+        if (chance == 14) {
             message.reply("● Concentrate and ask again");
         }
-        if (chance == 15)
-        {
+        if (chance == 15) {
             message.reply("● Don't count on it.");
         }
-        if (chance == 16)
-        {
+        if (chance == 16) {
             message.reply("● My reply is no.");
         }
-        if (chance == 17)
-        {
+        if (chance == 17) {
             message.reply("● My sources say no.");
         }
-        if (chance == 18)
-        {
+        if (chance == 18) {
             message.reply("● Outlook not so good.");
         }
-        if (chance == 19)
-        {
+        if (chance == 19) {
             message.reply("● Very doubtful.");
         }
 	}

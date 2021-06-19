@@ -1,5 +1,5 @@
-const { Command } = require('discord.js-commando');
-const BotData = require("../../BotData.js");
+const { Command } = require("discord.js-commando");
+const BotData = require("../../System.js");
 const discord = require("discord.js");
 const db = require("quick.db");
 
@@ -9,12 +9,12 @@ module.exports = class PurgeCommand extends Command {
 			name: 'purge',
 			group: 'admin',
 			memberName: 'purge',
-			description: 'Bulk deletes a group of messages!',
+			description: 'Remove a large amount of messages!',
 		});
 	}
 
 	run(message, args) {
-		if (message.guild === null){
+        if (message.guild === null){
             message.reply(DMMessage);
             return;
         }
@@ -27,15 +27,24 @@ module.exports = class PurgeCommand extends Command {
 		}
         let words = args.split(' ');
 		let DeletedMessage = words.slice(0).join(' ');
-		if (isNaN(args[0])){//Bug decimals break it!
+		let Extra = words.slice(1).join(' ');
+		if (isNaN(args[0])){
 			message.reply("You can only use numbers for this command!");
+			return;
+		}
+		if (words[0].includes(".")){
+			message.reply("You can't use decimal numbers!");
+			return;
+		}
+		if (Extra){
+			message.reply("You can't add a second argument! Example: -purge 5");
 			return;
 		}
 		if (!DeletedMessage){
 			message.reply("Incomplete command! Example: -purge 5");
 			return;
 		}
-		if (DeletedMessage == "1"){
+		if (DeletedMessage < 1){
 			message.reply("You must purge 2 or more messages!");
 			return;
 		}
@@ -49,12 +58,13 @@ module.exports = class PurgeCommand extends Command {
 			.setTimestamp()
 			.setColor("#187ddb")
 			.setThumbnail(message.author.displayAvatarURL())
-			.setTitle("Bulk Message Deleted")
+			.setTitle("Purged Messages")
 			.setDescription(`
+				**Channel:** ${message.channel}
 				**User:** ${message.author}
-				**Amount:** ${args[0]}
+				**Amount:** ${DeletedMessage}
 			`)
-		let LogChannel = message.guild.channels.cache.get(PurgeLogChannelID);
+		let LogChannel = message.guild.channels.cache.get(ModLogID);
 		LogChannel.send(PurgeLogMessage);
 	}
 };
