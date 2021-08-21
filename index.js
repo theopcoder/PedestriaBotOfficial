@@ -1,7 +1,7 @@
 const { CommandoClient } = require("discord.js-commando"); //Refer to https://discord.js.org/#/docs/commando/master/general/welcome for help.
 const BotConfiguration = require("./BotConfiguration.js"); //Imports the Bot Configuration settings
 const BadWords = require("./BadWords.js"); // Imports a word of words to block in chats
-const System = require("./System.js"); // Imports the bot's custom information and data
+const System = require("./System.js"); // Imports the bots custom information and data
 const discord = require("discord.js"); //Refer to https://discord.js.org/#/docs/main/stable/general/welcome for help.
 const token = require("./Token.js"); //Imports the token key for the bot to launch.
 const db = require("quick.db"); //Refer to https://quickdb.js.org/overview/docs for help.
@@ -90,7 +90,7 @@ bot.on('message', function(message){
                 **User:** ${message.author}
                 **Level:** ${db.get(`${message.author.id}.basic.level`)}
             `)
-            .setFooter(`You have recieved $${LevelUpMoney}! Nice job!`)
+            .setFooter(`You have received $${LevelUpMoney}! Nice job!`)
         let LevelUpChannel = message.guild.channels.cache.get(LevelUpChannelID);
         LevelUpChannel.send(LevelUpMessage);
     }
@@ -137,7 +137,7 @@ bot.on('message', function(message){
                     message.delete({timeout: 15000});
                 });
 
-                //Logged Resonse
+                //Logged Response
                 const MuteBypassMessageLog = new discord.MessageEmbed()
                     .setTimestamp()
                     .setColor("")//Keep Empty
@@ -274,7 +274,7 @@ bot.on('ready', () => {
     setInterval(() => {
         if (db.get(`settings.DeadChatPings`)== 1){
             var DeadChatQuestion = Math.round(Math.random() * 31);
-            if (DeadChatQuestion == 0){DCPQuestion = "What is the most valuable thing you currently have ingame?"};
+            if (DeadChatQuestion == 0){DCPQuestion = "What is the most valuable thing you currently have in game?"};
             if (DeadChatQuestion == 1){DCPQuestion = "What movie or book character do you most identify with?"};
             if (DeadChatQuestion == 2){DCPQuestion = "As a child, what did you wish to be when you grew up?"};
             if (DeadChatQuestion == 3){DCPQuestion = "Are we seeing signs of evolution in our species?"};
@@ -292,15 +292,15 @@ bot.on('ready', () => {
             if (DeadChatQuestion == 15){DCPQuestion = "What do you like to do on the weekends?"};
             if (DeadChatQuestion == 16){DCPQuestion = "Would you say you make friends easily?"};
             if (DeadChatQuestion == 17){DCPQuestion = "What do you like to do on a rainy day?"};
-            if (DeadChatQuestion == 18){DCPQuestion = "What's your favourite type of music?"};
-            if (DeadChatQuestion == 19){DCPQuestion = "What is your favourite Disney movie?"};
+            if (DeadChatQuestion == 18){DCPQuestion = "What's your favorite type of music?"};
+            if (DeadChatQuestion == 19){DCPQuestion = "What is your favorite Disney movie?"};
             if (DeadChatQuestion == 20){DCPQuestion = "What's your favorite activity?"};
             if (DeadChatQuestion == 21){DCPQuestion = "Laptop, Desktop or Handheld?"};
             if (DeadChatQuestion == 22){DCPQuestion = "What's your favorite food?"};
             if (DeadChatQuestion == 23){DCPQuestion = "Java or Bedrock Minecraft?"};
             if (DeadChatQuestion == 24){DCPQuestion = "What's your first memory?"};
             if (DeadChatQuestion == 25){DCPQuestion = "Windows, MacOS or Linux?"};
-            if (DeadChatQuestion == 26){DCPQuestion = "Playstation Or Xbox?"};
+            if (DeadChatQuestion == 26){DCPQuestion = "PlayStation Or Xbox?"};
             if (DeadChatQuestion == 27){DCPQuestion = "How have you been?"};
             if (DeadChatQuestion == 28){DCPQuestion = "Iphone or Android?"};
             if (DeadChatQuestion == 29){DCPQuestion = "Do you have pets?"};
