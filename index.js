@@ -272,40 +272,68 @@ bot.on('messageDelete', async (message) => {
 //Dead Chat Pings
 bot.on('ready', () => {
     setInterval(() => {
-        if (db.get(`settings.DeadChatPings`)== 1){
-            var DeadChatQuestion = Math.round(Math.random() * 31);
-            if (DeadChatQuestion == 0){DCPQuestion = "What is the most valuable thing you currently have in game?"};
-            if (DeadChatQuestion == 1){DCPQuestion = "What movie or book character do you most identify with?"};
-            if (DeadChatQuestion == 2){DCPQuestion = "As a child, what did you wish to be when you grew up?"};
-            if (DeadChatQuestion == 3){DCPQuestion = "Are we seeing signs of evolution in our species?"};
-            if (DeadChatQuestion == 4){DCPQuestion = "What's a trait do you like most about yourself?"};
-            if (DeadChatQuestion == 5){DCPQuestion = "What are you currently working on in Survival?"};
-	        if (DeadChatQuestion == 6){DCPQuestion = "Why is science so important to modern society?"};
-            if (DeadChatQuestion == 7){DCPQuestion = "What are you currently working on in WarLands?"};
-            if (DeadChatQuestion == 8){DCPQuestion = "What is your favorite form of transportation?"};
-            if (DeadChatQuestion == 9){DCPQuestion = "What's the worst thing you ever did as a kid?"};
-            if (DeadChatQuestion == 10){DCPQuestion = "What is your favorite version of Minecraft?"};
-            if (DeadChatQuestion == 11){DCPQuestion = "Is time relative to a person or universal?"};
-	        if (DeadChatQuestion == 12){DCPQuestion = "What song always puts you in a good mood?"};
-            if (DeadChatQuestion == 13){DCPQuestion = "What's the weirdest quirk you find funny?"};
-            if (DeadChatQuestion == 14){DCPQuestion = "Survival, Creative or Hardcore Minecraft?"};
-            if (DeadChatQuestion == 15){DCPQuestion = "What do you like to do on the weekends?"};
-            if (DeadChatQuestion == 16){DCPQuestion = "Would you say you make friends easily?"};
-            if (DeadChatQuestion == 17){DCPQuestion = "What do you like to do on a rainy day?"};
-            if (DeadChatQuestion == 18){DCPQuestion = "What's your favorite type of music?"};
-            if (DeadChatQuestion == 19){DCPQuestion = "What is your favorite Disney movie?"};
-            if (DeadChatQuestion == 20){DCPQuestion = "What's your favorite activity?"};
-            if (DeadChatQuestion == 21){DCPQuestion = "Laptop, Desktop or Handheld?"};
-            if (DeadChatQuestion == 22){DCPQuestion = "What's your favorite food?"};
-            if (DeadChatQuestion == 23){DCPQuestion = "Java or Bedrock Minecraft?"};
-            if (DeadChatQuestion == 24){DCPQuestion = "What's your first memory?"};
-            if (DeadChatQuestion == 25){DCPQuestion = "Windows, MacOS or Linux?"};
-            if (DeadChatQuestion == 26){DCPQuestion = "PlayStation Or Xbox?"};
-            if (DeadChatQuestion == 27){DCPQuestion = "How have you been?"};
-            if (DeadChatQuestion == 28){DCPQuestion = "Iphone or Android?"};
-            if (DeadChatQuestion == 29){DCPQuestion = "Do you have pets?"};
-            if (DeadChatQuestion == 30){DCPQuestion = "Airplane or Car?"};
-
+        if (db.get(`settings.DeadChatPings`) == 1) {
+            var DeadChatQuestion = Math.round(Math.random() * 29);
+            if (DeadChatQuestion == 0){
+                DCPQuestion = "What is the most valuable thing you currently have in-game?";
+            } else if (DeadChatQuestion == 1) {
+                DCPQuestion = "What movie or book character do you most identify with?";
+            } else if (DeadChatQuestion == 2) {
+                DCPQuestion = "As a child, what did you wish to be when you grew up?";
+            } else if (DeadChatQuestion == 3) {
+                DCPQuestion = "Are we seeing signs of evolution in our species?";
+            } else if (DeadChatQuestion == 4) {
+                DCPQuestion = "What is a trait do you like most about yourself?";
+            } else if (DeadChatQuestion == 5){
+                DCPQuestion = "What are you currently working on in Survival?";
+            } else if (DeadChatQuestion == 6) {
+                DCPQuestion = "Why is science so important to modern society?";
+            } else if (DeadChatQuestion == 7) {
+                DCPQuestion = "What is your favorite form of transportation?";
+            } else if (DeadChatQuestion == 8) {
+                DCPQuestion = "What is the worst thing you ever did as a kid?";
+            } else if (DeadChatQuestion == 9) {
+                DCPQuestion = "What is your favorite version of Minecraft?";
+            } else if (DeadChatQuestion == 10) {
+                DCPQuestion = "Is time relative to a person or universal?";
+            } else if (DeadChatQuestion == 11) {
+                DCPQuestion = "What song always puts you in a good mood?";
+            } else if (DeadChatQuestion == 12) {
+                DCPQuestion = "What is the weirdest quirk you find funny?";
+            } else if (DeadChatQuestion == 13) {
+                DCPQuestion = "What gamemode is the best - Survival, Creative, or Hardcore Minecraft?";
+            } else if (DeadChatQuestion == 14) {
+                DCPQuestion = "What do you like to do on the weekends?";
+            } else if (DeadChatQuestion == 15) {
+                DCPQuestion = "Would you say you make friends easily?";
+            } else if (DeadChatQuestion == 16) {
+                DCPQuestion = "What do you like to do on a rainy day?";
+            } else if (DeadChatQuestion == 17) {
+                DCPQuestion = "What is your favorite type of music?";
+            } else if (DeadChatQuestion == 18) {
+                DCPQuestion = "What is your favorite Disney movie?";
+            } else if (DeadChatQuestion == 19) {
+                DCPQuestion = "What's your favorite activity, outside of playing video games?";
+            } else if (DeadChatQuestion == 20) {
+                DCPQuestion = "Which form of device do you prefer - Laptop, Desktop, or Handheld Devices?";
+            } else if (DeadChatQuestion == 21) {
+                DCPQuestion = "What's your favorite food?";
+            } else if (DeadChatQuestion == 22) {
+                DCPQuestion = "Which is better - Java, Bedrock, Legacy Console Edition, Raspberry PI, or Education Edition Minecraft?";
+            } else if (DeadChatQuestion == 23) {
+                DCPQuestion = "What is your first memory?";
+            } else if (DeadChatQuestion == 24) {
+                DCPQuestion = "Which OS do you use - WinOS, macOS, or Linux?";
+            } else if (DeadChatQuestion == 25) {
+                DCPQuestion = "Which gaming console brand is better - PlayStation, Xbox or Nintendo?";
+            } else if (DeadChatQuestion == 26) {
+                DCPQuestion = "How have you been?";
+            } else if (DeadChatQuestion == 27) {
+                DCPQuestion = "Which smartphone do you use - iPhone, Android, or something else?";
+            } else if (DeadChatQuestion == 28) {
+                DCPQuestion = "Do you have pets?";
+            }
+            
             const DeadChatMessage = new discord.MessageEmbed()
                 .setTimestamp()
                 .setColor("RANDOM")
@@ -319,7 +347,7 @@ bot.on('ready', () => {
             PingChannel.send(`Dead Chat Ping! <@&${DCPPingRoleID}>`).then(message => {
                 message.delete();
             });
-        }else{
+        } else {
             return;
         }
     }, 1000 * 60 * 60 * DCPTime);
