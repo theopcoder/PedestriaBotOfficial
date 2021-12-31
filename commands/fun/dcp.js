@@ -9,7 +9,7 @@ module.exports = class DeadChatPingRoleCommand extends Command {
 			name: 'dcp',
 			group: 'fun',
 			memberName: 'dcp',
-			description: 'Recieve or remove the Dead Chat Ping role!',
+			description: 'Receive or remove the Dead Chat Ping role!',
 		});
 	}
 

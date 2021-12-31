@@ -8,6 +8,9 @@ const db = require("quick.db"); //Refer to https://quickdb.js.org/overview/docs 
 const chalk = require("chalk"); // Allowed to add color to console messages
 const path = require("path"); // Allows the bot.registry to find the commands
 
+
+//TODO Add a check in commands to see if its a bot. Example, add check to -stats
+
 const bot = new CommandoClient({
     commandPrefix: BotPrefix,
 });

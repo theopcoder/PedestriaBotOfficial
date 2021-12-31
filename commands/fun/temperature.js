@@ -22,25 +22,25 @@ module.exports = class TemperatureCommand extends Command {
                 .setColor("RED")
                 .setDescription(`
                 What's the number you want to convert?
-                Corrent Usage: -temperature <number> <f/c>`)
+                Correct Usage: -temperature <number> <F/C>`)
             message.channel.send(NoTemp);
             return;
         }
         if (isNaN(words[0])){
-            const IncorectNumber = new discord.MessageEmbed()
+            const IncorrectNumber = new discord.MessageEmbed()
                 .setColor("RED")
                 .setDescription(`
                 You must use a number!
-                Corrent Usage: -temperature <number> <f/c>`)
-            message.channel.send(IncorectNumber);
+                Correct Usage: -temperature <number> <F/C>`)
+            message.channel.send(IncorrectNumber);
             return;
         }
         if (!type){
             const NoConversion = new discord.MessageEmbed()
                 .setColor("RED")
                 .setDescription(`
-                Do you want to convert to f or c?
-                Corrent Usage: -temperature <number> <f/c>`)
+                Do you want to convert to F or C?
+                Correct Usage: -temperature <number> <F/C>`)
             message.channel.send(NoConversion);
             return;
         }
@@ -62,8 +62,8 @@ module.exports = class TemperatureCommand extends Command {
             .setColor(color)
             .setTitle(title)
             .setDescription(`
-                **Fahrenheit:** ${f}°f
-                **Celsius:** ${c}°c
+                **Fahrenheit:** ${f}°F
+                **Celsius:** ${c}°C
             `)
         message.channel.send(TempConversion);
 	}

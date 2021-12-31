@@ -27,7 +27,7 @@ module.exports = class BalanceCommand extends Command {
 				.setTimestamp()
                 .setColor("#668d3c")
 				.setThumbnail(users.displayAvatarURL())
-				.setTitle("Money Balence")
+				.setTitle("Money Balance")
 				.setDescription(`
 					**User:** ${BalUser}
 					**Balance:** $${BalMentions}
@@ -40,7 +40,7 @@ module.exports = class BalanceCommand extends Command {
 				.setTimestamp()
 				.setColor("#668d3c")
 				.setThumbnail(message.author.displayAvatarURL())
-				.setTitle("Money Balence")
+				.setTitle("Money Balance")
 				.setDescription(`**Balance:** $${Bal}`)
             message.channel.send(UserMoney);
         }
