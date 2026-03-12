@@ -9,7 +9,7 @@ A custom Discord bot for the Pedestria Discord server.
 
 # Information:
 Author: theopcoder  
-Version: 2.3.0   
+Version: 2.3.1   
 BuildID: 2021.06.19.2.3.0  
 Website: https://theopcoder.github.io/PedestriaBotOfficial/  
 
