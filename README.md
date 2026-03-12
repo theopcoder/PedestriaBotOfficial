@@ -17,6 +17,7 @@ Website: https://theopcoder.github.io/PedestriaBotOfficial/
 1. Wiicart (wiicart)  
 2. MelonicOverlord (MelonMan)  
 3. Lukas-Batema (Lukas Batema)  
+4. Soapy7261  
 
 # Helpful resources:
 [Discord.js-commando 0.12.3] https://discord.js.org/#/docs/commando/master/general/welcome  
